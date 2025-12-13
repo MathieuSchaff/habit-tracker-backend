@@ -1,0 +1,155 @@
+services:
+  # =========================
+  # Base de données PostgreSQL
+  # =========================
+  db:
+    image: postgres:16 # Image officielle PostgreSQL, version fixée (stabilité prod)
+    container_name: app_db # Nom lisible du conteneur (docker ps)
+    restart: unless-stopped # Redémarre après crash/reboot VPS (sauf arrêt manuel)
+
+    environment:
+      POSTGRES_USER: app # Utilisateur DB dédié (évite d'utiliser 'postgres')
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Mot de passe injecté via .env (sécurité)
+      POSTGRES_DB: appdb # Base créée automatiquement au 1er lancement
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Volume Docker nommé = persistance des données Postgres
+      # Sans ça, toutes les données seraient perdues si le conteneur est recréé
+
+    healthcheck:
+      # Vérifie que Postgres accepte vraiment des connexions
+      # (et pas juste que le conteneur est démarré)
+      test: ["CMD-SHELL", "pg_isready -U app -d appdb"]
+      interval: 5s # Test toutes les 5 secondes
+      timeout: 3s # Timeout d'une tentative
+      retries: 20 # Nombre d'échecs avant "unhealthy"
+
+    networks:
+      - appnet # Réseau privé Docker (accessible via hostname "db")
+
+  # =========================
+  # API Backend (Bun)
+  # =========================
+  api:
+    container_name: app_api
+    build:
+      context: . # Contexte de build = dossier courant
+      dockerfile: Dockerfile # Dockerfile utilisé pour builder l'image Bun
+    restart: unless-stopped
+
+    depends_on:
+      db:
+        condition: service_healthy
+        # L'API démarre uniquement quand Postgres est réellement prêt
+
+    environment:
+      PORT: 3000
+      # Port d'écoute du serveur Bun à l'intérieur du conteneur
+
+      DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
+      # Connexion à Postgres :
+      # - user: app
+      # - password: depuis .env
+      # - host: "db" (DNS interne Docker, PAS localhost)
+      # - port: 5432
+      # - database: appdb
+
+      NODE_ENV: production
+
+    expose:
+      - "3000"
+      # Rend le port accessible UNIQUEMENT aux autres conteneurs du réseau
+      # (pas exposé sur Internet)
+
+    healthcheck:
+      # Vérifie que l'API répond correctement
+      # Nécessite un endpoint GET /health côté backend
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- http://localhost:3000/health >/dev/null 2>&1 || exit 1",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s # Délai avant de commencer les checks (temps de boot)
+
+    networks:
+      - appnet
+
+  # =========================
+  # Reverse Proxy (Nginx)
+  # =========================
+  nginx:
+    image: nginx:1.27-alpine # Image légère et stable
+    container_name: app_nginx
+    restart: unless-stopped
+
+    depends_on:
+      api:
+        condition: service_healthy
+        # Nginx démarre uniquement quand l'API répond
+
+    ports:
+      - "80:80" # HTTP (obligatoire pour Let's Encrypt)
+      - "443:443" # HTTPS (SSL, activé après génération des certs)
+
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      # Configuration Nginx (reverse proxy, routing)
+
+      - certbot_data:/etc/letsencrypt
+      # Certificats SSL persistants (Let's Encrypt)
+
+      - certbot_www:/var/www/certbot
+      # Dossier utilisé pour le challenge HTTP-01 de Let's Encrypt
+
+    networks:
+      - appnet
+
+  # =========================
+  # Certbot (Let's Encrypt)
+  # =========================
+  certbot:
+    image: certbot/certbot
+    container_name: app_certbot
+    restart: unless-stopped
+
+    volumes:
+      - certbot_data:/etc/letsencrypt
+      # Partage des certificats avec Nginx
+
+      - certbot_www:/var/www/certbot
+      # Dossier utilisé pour les challenges HTTP
+
+    entrypoint: /bin/sh
+    command: >
+      -c "trap exit TERM;
+          while :;
+          do
+            certbot renew;
+            sleep 12h & wait $${!};
+          done;"
+    # Boucle infinie :
+    # - tente un renouvellement SSL
+    # - attend 12h
+    # - recommence
+
+# =========================
+# Volumes persistants
+# =========================
+volumes:
+  pgdata: # Données PostgreSQL
+  certbot_data: # Certificats SSL Let's Encrypt
+  certbot_www: # Fichiers temporaires de validation SSL
+
+# =========================
+# Réseau Docker privé
+# =========================
+networks:
+  appnet:
+    driver: bridge
+    # Réseau isolé :
+    # - db <-> api <-> nginx peuvent communiquer
+    # - rien d'autre n'y accède directement
