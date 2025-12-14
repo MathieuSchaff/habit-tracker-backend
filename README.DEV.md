@@ -21,20 +21,17 @@ bun install
 Créer `.env` local :
 
 ```env
-DATABASE_URL=postgres://app:password@localhost:5432/appdb
+POSTGRES_PASSWORD=devpassword
+DATABASE_URL=postgres://app:${POSTGRES_PASSWORD}@localhost:5432/appdb
 ```
+
+⚠️ **Important** : Le mot de passe doit correspondre à `POSTGRES_PASSWORD` dans ton `.env`
 
 ### Démarrer
 
 ```bash
-# PostgreSQL en Docker (optionnel)
-docker run -d \
-  --name dev_postgres \
-  -e POSTGRES_USER=app \
-  -e POSTGRES_PASSWORD=password \
-  -e POSTGRES_DB=appdb \
-  -p 5432:5432 \
-  postgres:16
+# PostgreSQL via docker-compose (utilise le .env)
+docker compose up -d db
 
 # API avec hot reload
 bun run dev
@@ -58,12 +55,14 @@ bun run dev
 
 ### Variables d'environnement
 
+Même `.env` que l'Option 1 :
+
 ```env
-# .env local
-DATABASE_URL=postgres://app:${POSTGRES_PASSWORD}@localhost:5432/appdb
+POSTGRES_PASSWORD=devpassword
+DATABASE_URL=postgres://app:devpassword@localhost:5432/appdb
 ```
 
-⚠️ **Note** : En local, le host est `localhost`, pas `db`
+⚠️ **Note** : En local, le host est `localhost` (pas `db`)
 
 ## 🔥 Hot Reload
 
