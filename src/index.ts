@@ -1,17 +1,17 @@
 const port = Number(process.env.PORT ?? 3000);
 
-Bun.serve({
-  hostname: "0.0.0.0", // IMPORTANT dans Docker askip
-  port,
-  fetch(req) {
-    const url = new URL(req.url);
+import { Hono } from "hono";
+import { healthRoute } from "./routes/health";
+import { habitsRoute } from "./routes/habits";
 
-    if (url.pathname === "/health") {
-      return Response.json({ ok: true });
-    }
+const app = new Hono();
 
-    return new Response("Habit Tracker Backend OK");
-  },
-});
+app.route("/", healthRoute);
+app.route("/habits", habitsRoute);
+
+export default {
+  port: port,
+  fetch: app.fetch,
+};
 
 console.log(`API listening on ${port}`);
