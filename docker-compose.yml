@@ -61,14 +61,13 @@ services:
       - "3000"
       # Rend le port accessible UNIQUEMENT aux autres conteneurs du réseau
       # (pas exposé sur Internet)
-
     healthcheck:
       # Vérifie que l'API répond correctement
       # Nécessite un endpoint GET /health côté backend
       test:
         [
           "CMD-SHELL",
-          "wget -qO- http://localhost:3000/health >/dev/null 2>&1 || exit 1",
+          'bun -e "fetch(''http://127.0.0.1:3000/health'').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"',
         ]
       interval: 10s
       timeout: 3s
@@ -82,7 +81,7 @@ services:
   # Reverse Proxy (Nginx)
   # =========================
   nginx:
-    image: nginx:1.27-alpine # Image légère et stable
+    image: nginx:1.27-bookworm # Image stable
     container_name: app_nginx
     restart: unless-stopped
 
