@@ -1,14 +1,16 @@
-# 💻 README.dev.md - Mode Développement
+# 💻 README.dev.md - Développement
 
 ## 🎯 Principe
 
-En dev, **tu n'as pas besoin de** :
+En dev, pas besoin de :
 
 - ❌ Nginx
 - ❌ Certbot
-- ❌ Rebuild Docker à chaque modification
+- ❌ Rebuild à chaque modification
 
-## 🚀 Option 1 : Sans Docker (recommandé)
+---
+
+## 🚀 Option 1 : API locale (recommandé)
 
 ### Installation
 
@@ -18,99 +20,277 @@ bun install
 
 ### Configuration
 
-Créer `.env` local :
+**1. Créer `.env.dev`** (pour Docker Compose)
 
 ```env
-POSTGRES_PASSWORD=devpassword
-DATABASE_URL=postgres://app:${POSTGRES_PASSWORD}@localhost:5432/appdb
+POSTGRES_PASSWORD=dev_password_123
 ```
 
-⚠️ **Important** : Le mot de passe doit correspondre à `POSTGRES_PASSWORD` dans ton `.env`
+**2. Créer `.env`** (pour Bun local)
+
+```bash
+cp .env.example .env
+```
+
+Contenu :
+
+```env
+DATABASE_URL=postgres://app:dev_password_123@localhost:5432/appdb
+```
+
+⚠️ Les mots de passe doivent correspondre.
 
 ### Démarrer
 
 ```bash
-# PostgreSQL via docker-compose (utilise le .env)
-docker compose up -d db
+# 1. DB via Docker
+bun run docker:dev:db
 
-# API avec hot reload
+# 2. API en local (hot reload automatique)
 bun run dev
 ```
 
-L'API est accessible sur **http://localhost:3000**
+API accessible sur **http://localhost:3000**
 
-## 🐳 Option 2 : Avec Docker
+---
 
-### Lancer uniquement la DB
-
-```bash
-docker compose up -d db
-```
-
-### Démarrer l'API en local
+## 🐳 Option 2 : Tout avec Docker
 
 ```bash
-bun run dev
+bun run docker:dev
 ```
 
-### Variables d'environnement
+**Avantages** :
 
-Même `.env` que l'Option 1 :
+- ✅ Tout conteneurisé
+- ✅ Hot reload fonctionne
+- ✅ Proche de la prod
 
-```env
-POSTGRES_PASSWORD=devpassword
-DATABASE_URL=postgres://app:devpassword@localhost:5432/appdb
-```
+**Inconvénients** :
 
-⚠️ **Note** : En local, le host est `localhost` (pas `db`)
+- ⚠️ Plus lent
+- ⚠️ Plus de ressources
+
+API accessible sur **http://localhost:3000**
+DB accessible sur **localhost:5432**
+
+---
 
 ## 🔥 Hot Reload
 
-Le script `dev` utilise `bun --watch` :
+### Option 1
 
-- Rechargement automatique à chaque sauvegarde
-- Pas besoin de redémarrer manuellement
+Géré par `bun --watch` directement.
+
+### Option 2
+
+Code monté en volume dans `docker-compose.dev.yml` :
+
+```yaml
+volumes:
+  - ./src:/app/src:ro
+```
+
+---
 
 ## 🔍 Debug
 
 ### Logs API
 
-Directement dans le terminal où tu as lancé `bun run dev`
+**Option 1** : Dans le terminal où tu as lancé `bun run dev`
 
-### Logs DB (si Docker)
+**Option 2** : `bun run docker:logs:api`
+
+### Logs DB
 
 ```bash
-docker logs -f dev_postgres
-# ou
-docker logs -f app_db
+docker compose logs -f db
 ```
 
-### Tester l'API
+### Tester
 
 ```bash
 curl http://localhost:3000/health
 ```
+
+### Accès DB
+
+**CLI** :
+
+```bash
+docker compose exec db psql -U app -d appdb
+```
+
+**Client graphique** (DBeaver, pgAdmin) :
+
+- Host: `localhost`
+- Port: `5432`
+- User: `app`
+- Password: `dev_password_123`
+- Database: `appdb`
+
+---
 
 ## 🧹 Nettoyage
 
 ```bash
-# Arrêter la DB Docker
-docker stop dev_postgres
-docker rm dev_postgres
+# Arrêter
+bun run docker:stop
 
-# Ou avec docker-compose
-docker compose down
+# Tout supprimer (⚠️ perte de données)
+bun run docker:clean
 ```
 
-## 📝 Workflow typique
+---
+
+## 📝 Workflow
+
+### Option 1 (recommandé)
 
 ```bash
-# 1. Démarrer la DB
-docker compose up -d db
+# 1. DB
+bun run docker:dev:db
 
-# 2. Coder avec hot reload
+# 2. Vérifier
+docker compose ps
+
+# 3. API
 bun run dev
 
-# 3. Tester
+# 4. Tester
 curl http://localhost:3000/health
 ```
+
+### Option 2
+
+```bash
+# 1. Tout démarrer
+bun run docker:dev
+
+# 2. Logs si besoin
+bun run docker:logs:api
+
+# 3. Arrêter
+bun run docker:stop
+```
+
+---
+
+## 🆚 Comparaison
+
+| Critère    | Option 1     | Option 2    |
+| ---------- | ------------ | ----------- |
+| Vitesse    | ⚡ Rapide    | 🐌 Lent     |
+| Hot reload | ✅ Natif     | ✅ Volume   |
+| Ressources | 💚 Faible    | 🟡 Moyen    |
+| Isolation  | ⚠️ Partielle | ✅ Complète |
+| Simplicité | 🟡 Moyenne   | ✅ Simple   |
+
+**Recommandation** :
+
+- Dev quotidien → Option 1
+- Tests pré-déploiement → Option 2
+
+---
+
+## 🔧 Variables
+
+### `.env.dev` (pour Docker Compose)
+
+```env
+POSTGRES_PASSWORD=dev_password_123
+```
+
+### `.env` (pour Bun local)
+
+```env
+DATABASE_URL=postgres://app:dev_password_123@localhost:5432/appdb
+```
+
+### Différence importante
+
+- **Docker** : host = `db`
+- **Local** : host = `localhost`
+
+---
+
+## 🐛 Problèmes
+
+### DB ne démarre pas
+
+```bash
+docker compose logs db
+bun run docker:clean
+bun run docker:dev:db
+```
+
+### Hot reload ne marche pas
+
+Vérifier : `bun run docker:dev` (pas juste `docker compose up`)
+
+### Connexion DB échoue (Option 1)
+
+Vérifier `.env` :
+
+```bash
+cat .env
+# Doit contenir: DATABASE_URL=postgres://app:dev_password_123@localhost:5432/appdb
+```
+
+### Port 3000 déjà utilisé
+
+```bash
+lsof -i :3000
+```
+
+### Mots de passe différents
+
+Vérifier que le mot de passe est identique dans :
+
+- `.env.dev` → `POSTGRES_PASSWORD=xxx`
+- `.env` → `DATABASE_URL=postgres://app:xxx@...`
+
+---
+
+## 📚 Commandes
+
+```bash
+# Dev
+bun run dev                 # API locale
+bun run docker:dev:db       # DB uniquement
+bun run docker:dev          # Tout avec Docker
+bun run docker:dev:bg       # En arrière-plan
+
+# Gestion
+bun run docker:stop         # Arrêter
+bun run docker:logs         # Tous les logs
+bun run docker:logs:api     # Logs API
+bun run docker:clean        # Tout supprimer
+
+# DB
+bun run db:generate         # Migrations
+bun run db:migrate          # Appliquer migrations
+
+# Build
+bun run build               # Compiler
+bun run start               # Lancer le build
+bun run test                # Tests
+```
+
+---
+
+## ✅ Checklist
+
+### Première fois
+
+- [ ] `bun install`
+- [ ] Créer `.env.dev` avec `POSTGRES_PASSWORD`
+- [ ] Créer `.env` depuis `.env.example`
+- [ ] Vérifier que les mots de passe correspondent
+
+### Chaque session
+
+- [ ] DB démarrée (`bun run docker:dev:db`)
+- [ ] API lancée (`bun run dev`)
+- [ ] `/health` répond 200
+- [ ] Hot reload fonctionne
