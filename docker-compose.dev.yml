@@ -1,0 +1,41 @@
+# =========================
+# Configuration DEV (surcharges)
+# Utilisation: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# =========================
+services:
+  db:
+    # Port exposé pour accès direct depuis l'hôte (DBeaver, pgAdmin, etc.)
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      target: dev # ← Utilise le stage dev du Dockerfile
+
+    # Hot reload : monte le code source en lecture seule
+    volumes:
+      - ./src:/app/src:ro
+      - ./package.json:/app/package.json:ro
+      - ./bun.lock:/app/bun.lock:ro
+      - ./tsconfig.json:/app/tsconfig.json:ro
+
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      LOG_LEVEL: debug
+
+    # Expose le port sur l'hôte pour accès direct
+    # (bypass nginx, utile pour tester l'API directement)
+    ports:
+      - "3000:3000"
+
+    # Override la commande pour forcer le mode watch
+    command: bun --watch src/index.ts
+
+  # Désactive nginx en dev (accès direct à l'API)
+  nginx:
+    profiles: ["disabled"]
+
+  # Désactive certbot en dev (pas besoin de SSL)
+  certbot:
+    profiles: ["disabled"]
