@@ -1,0 +1,25 @@
+import { CryptoHasher } from "bun";
+import { createHash, randomBytes } from "node:crypto";
+
+export function generateSid(): string {
+  return Buffer.from(crypto.getRandomValues(new Uint8Array(32))).toString(
+    "base64url"
+  );
+}
+
+export function hashSid(sid: string): string {
+  // return createHash("sha256").update(sid).digest("hex");
+  const hasher = new CryptoHasher("sha256");
+  hasher.update(sid);
+  return hasher.digest("base64url");
+}
+
+export function cookieOptions(env: "development" | "production") {
+  const isProd = env === "production";
+  return {
+    httpOnly: true,
+    secure: isProd, // en prod uniquement (https)
+    sameSite: "Lax" as const,
+    path: "/",
+  };
+}
