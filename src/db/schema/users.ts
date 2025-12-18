@@ -9,10 +9,8 @@ import {
 } from "drizzle-orm/pg-core";
 
 /**
- * USERS = AUTH / IDENTITÉ
- * - Email = identifiant principal (unique)
- * - password_hash nullable => permet un user "Google-only"
- * - google_sub nullable => identifiant Google (unique si présent)
+ * - password_hash nullable > car on peut se connecter avec google  ( à faire)
+ * - google_sub nullable > identifiant Google
  */
 export const users = pgTable(
   "users",
@@ -63,7 +61,8 @@ export const profiles = pgTable(
     // Pseudo affiché.
     username: varchar("username", { length: 32 }),
 
-    // Optionnel: avatar/bio$
+    // ptionnel: avatar bio
+
     avatarUrl: text("avatar_url"),
     bio: text("bio"),
 

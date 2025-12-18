@@ -29,5 +29,5 @@ export const dailyLogs = pgTable(
   (t) => [
     primaryKey({ columns: [t.userId, t.day] }),
     index("daily_logs_user_day_idx").on(t.userId, t.day),
-  ]
+  ],
 );

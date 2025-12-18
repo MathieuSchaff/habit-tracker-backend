@@ -1,5 +1,4 @@
 import { CryptoHasher } from "bun";
-import { createHash, randomBytes } from "node:crypto";
 
 export function generateSid(): string {
   return Buffer.from(crypto.getRandomValues(new Uint8Array(32))).toString(

@@ -1,10 +1,10 @@
 import { eq, and, isNull, gt } from "drizzle-orm";
-import { sessions } from "../../db/schema"; // adapte si ton export est ailleurs
-import type { DB } from "../../db/index"; // adapte le type (voir note plus bas)
+import { sessions } from "../../db/schema";
+import type { DB } from "../../db/index";
 
 export async function createSession(
   db: DB,
-  args: {
+  sessionArgs: {
     userId: string;
     sidHash: string;
     expiresAt: Date;
@@ -13,11 +13,11 @@ export async function createSession(
   }
 ) {
   await db.insert(sessions).values({
-    userId: args.userId,
-    sidHash: args.sidHash,
-    expiresAt: args.expiresAt,
-    ip: args.ip ?? null,
-    userAgent: args.userAgent ?? null,
+    userId: sessionArgs.userId,
+    sidHash: sessionArgs.sidHash,
+    expiresAt: sessionArgs.expiresAt,
+    ip: sessionArgs.ip ?? null,
+    userAgent: sessionArgs.userAgent ?? null,
   });
 }
 
@@ -42,5 +42,11 @@ export async function revokeSession(db: DB, sidHash: string) {
   await db
     .update(sessions)
     .set({ revokedAt: new Date() })
+    .where(eq(sessions.sidHash, sidHash));
+}
+export async function updateLastSeen(db: DB, sidHash: string) {
+  await db
+    .update(sessions)
+    .set({ lastSeenAt: new Date() })
     .where(eq(sessions.sidHash, sidHash));
 }
