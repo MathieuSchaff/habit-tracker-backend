@@ -1,0 +1,26 @@
+# =========================
+# Configuration pour les TESTS uniquement
+# Lance une DB PostgreSQL séparée sur le port 5433
+# =========================
+services:
+  db-test:
+    image: postgres:16
+    container_name: app_db_test
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: testpassword
+      POSTGRES_DB: appdb_test
+    ports:
+      - "5433:5432" # Port différent pour ne pas conflit avec la DB principale
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d appdb_test"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks:
+      - testnet
+    # Pas de volume = données perdues au redémarrage (c'est voulu pour les tests)
+
+networks:
+  testnet:
+    driver: bridge
