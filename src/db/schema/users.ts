@@ -8,16 +8,14 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-/**
- * - password_hash nullable > car on peut se connecter avec google  ( à faire)
- * - google_sub nullable > identifiant Google
- */
+// password_hash nullable > car on peut se connecter avec google  ( à faire)
+// google_sub nullable > identifiant Google
 export const users = pgTable(
   "users",
   {
     id: uuid("id").defaultRandom().primaryKey(),
 
-    // Email doit être NOT NULL + unique (sinon doublons / login ambigu)
+    // Email doit être NOT NULL et unique (sinon doublons)
     email: varchar("email", { length: 320 }).notNull(),
 
     // Hash Argon2 du mot de passe.
@@ -49,7 +47,7 @@ export const users = pgTable(
   ]
 );
 
-/**  PROFILES = DONNÉES "PUBLIQUES" / AFFICHAGE */
+// profiles c'est pour l'afichage surtout
 export const profiles = pgTable(
   "profiles",
   {
