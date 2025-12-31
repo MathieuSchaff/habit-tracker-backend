@@ -7,6 +7,7 @@ const uuid = z.uuid();
 // ^ = c'est le début, et $ la fin, pour bien dire que c'est pas juste une partie
 // en gros ça peut faire 00 à 19 pour la première partie
 // ou | 20 à 23
+
 const timeFormat = z
   .string()
   .regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Format HH:MM requis (ex: 08:30)");
@@ -14,7 +15,6 @@ const timeFormat = z
 const dateFormat = z
   .string()
   .regex(/^\d{4}-\d{2}-\d{2}$/, "Format YYYY-MM-DD requis");
-
 const dayOfWeek = z.enum([
   "monday",
   "tuesday",
