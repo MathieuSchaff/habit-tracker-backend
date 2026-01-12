@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
 
-import { testDb } from "../../db/db.test.config";
+import { testDb } from "../db.test.config";
 /**
  * Vide toutes les tables de la DB de test
  * À appeler avant/après chaque test pour garantir l'isolation

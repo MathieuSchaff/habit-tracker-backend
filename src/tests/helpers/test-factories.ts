@@ -1,7 +1,7 @@
 import { users, profiles } from "../../db/schema";
 import { hash } from "argon2";
 
-import { testDb } from "../../db/db.test.config";
+import { testDb } from "../db.test.config";
 
 export async function createTestUser(data?: {
   email?: string;
@@ -19,7 +19,7 @@ export async function createTestUser(data?: {
   const [user] = await testDb
     .insert(users)
     .values({
-      email: data?.email || `test${Date.now()}@example.com`,
+      email: data?.email || `test${Date.now()}@exemple.com`,
       passwordHash,
     })
     .returning();

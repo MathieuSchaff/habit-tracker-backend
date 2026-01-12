@@ -1,6 +1,6 @@
-import { testDb } from "../../db/db.test.config";
-import { createHabit, checkHabit } from "../../utils/habits/habitsCrudFuncs";
-import type { CreateHabitInput } from "../../utils/habits/validation";
+import { testDb } from "../db.test.config";
+import { createHabit, checkHabit } from "../../features/habits/service";
+import type { CreateHabitInput } from "../../features/habits/validation";
 import { getTestDate } from "../../utils/dates";
 
 //  override de n'importe quel champ mais de base, des données par défaut
