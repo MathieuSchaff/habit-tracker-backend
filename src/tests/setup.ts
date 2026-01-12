@@ -1,5 +1,5 @@
 import { beforeAll, afterAll, beforeEach } from "bun:test";
-import { testDb, closeTestDb } from "../db/db.test.config";
+import { testDb, closeTestDb } from "./db.test.config";
 import { cleanDatabase } from "./helpers/db-cleaner";
 import { sql } from "drizzle-orm";
 
