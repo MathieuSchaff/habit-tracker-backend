@@ -1,18 +1,17 @@
 const port = Number(process.env.PORT ?? 3000);
 
 import { Hono } from "hono";
-import { healthRoute } from "./routes/health/health.routes";
-import { habitsRoute } from "./routes/habits/habits.routes";
+import { healthRoute } from "./features/health/routes";
+import { habitsRoute } from "./features/habits/routes";
 import { db } from "./db/index";
-import { authRoutes } from "./routes/auth/auth.routes";
+import { authRoutes } from "./features/auth/routes";
 import type { AppEnv } from "./app-env";
 const app = new Hono<AppEnv>();
+const appEnv: "development" | "production" =
+  Bun.env.NODE_ENV === "production" ? "production" : "development";
 app.use("*", async (c, next) => {
   c.set("db", db);
-  c.set(
-    "env",
-    process.env.NODE_ENV === "production" ? "production" : "development"
-  );
+  c.set("env", appEnv);
   await next();
 });
 
