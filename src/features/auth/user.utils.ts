@@ -22,16 +22,6 @@ export async function getUserById(db: DB, userId: string) {
   return user ?? null;
 }
 
-export async function getProfile(db: DB, userId: string) {
-  const [profile] = await db
-    .select()
-    .from(profiles)
-    .where(eq(profiles.userId, userId))
-    .limit(1);
-
-  return profile ?? null;
-}
-
 export async function createUser(
   db: DB,
   userData: {
@@ -65,20 +55,5 @@ export async function createProfile(
     })
     .returning();
 
-  return profile;
-}
-export async function updateProfile(
-  db: DB,
-  profileData: {
-    bio: string;
-    userId: string;
-    firstName?: string;
-    lastName?: string;
-  }
-) {
-  const profile = await db.update(profiles).set({
-    bio: profileData.bio,
-    username,
-  });
   return profile;
 }

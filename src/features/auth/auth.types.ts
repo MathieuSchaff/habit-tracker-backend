@@ -7,16 +7,6 @@ export type UserPublic = {
   email: string;
 };
 
-export type ProfilePublic = {
-  userId: string;
-  username?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  bio?: string | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-};
-
 // Les erreurs spécifiques à l'auth
 
 export type LoginErrorCode =
@@ -48,11 +38,6 @@ export type LoginResponse = ApiResponse<{ user: UserPublic }, LoginErrorCode>;
 export type SignupResponse = ApiResponse<{ user: UserPublic }, SignupErrorCode>;
 
 export type LogoutResponse = ApiResponse<null, never>;
-
-export type MeResponse = ApiResponse<
-  ProfilePublic,
-  AuthErrorCode | Extract<CommonErrorCode, "not_found" | "server_error">
->;
 
 export type PingResponse = ApiResponse<{ ok: boolean }, never>;
 

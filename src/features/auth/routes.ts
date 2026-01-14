@@ -5,7 +5,7 @@ import { cookieOptions, hashSid } from "./utils";
 import { rateLimiter } from "hono-rate-limiter";
 import z, { treeifyError } from "zod";
 import { revokeSession } from "./session.service";
-import { getProfile } from "./user.utils";
+import { getProfile } from "../profile/service";
 import { loginUser, signupUser } from "./service";
 import { requireAuth } from "./middleware";
 
@@ -31,7 +31,7 @@ export const authRoutes = new Hono<AppEnv>();
 
 // Schema de validation
 const authSchema = z.object({
-  email: z.string().email().trim().toLowerCase(),
+  email: z.email().trim().toLowerCase(),
   password: z
     .string()
     .min(8, "Minimum 8 caractères")
@@ -62,10 +62,6 @@ authRoutes.post(
     // Validation
     const parseResult = authSchema.safeParse(await c.req.json());
     if (!parseResult.success) {
-      // return c.json<ApiError<ValidationErrorCode>>(
-      //   err("invalid_input", parseResult.error.flatten()),
-      //   400
-      // );
       return c.json<ApiError<ValidationErrorCode>>(
         err("invalid_input", treeifyError(parseResult.error)),
         HTTP_STATUS.BAD_REQUEST
@@ -155,23 +151,4 @@ authRoutes.post("/logout", async (c) => {
 
   deleteCookie(c, "sid");
   return c.json<LogoutResponse>(ok(null, "Disconnected"), 200);
-});
-
-// ROUTE ME
-authRoutes.get("/me", requireAuth, async (c) => {
-  const db = c.get("db");
-  const userId = c.get("userId")!;
-
-  try {
-    const profile = await getProfile(db, userId);
-
-    if (!profile) {
-      return c.json<MeResponse>(err("not_found"), 404);
-    }
-
-    return c.json<MeResponse>(ok(profile), 200);
-  } catch (e) {
-    console.error("Error in /me:", e);
-    return c.json<MeResponse>(err("server_error"), 500);
-  }
 });
