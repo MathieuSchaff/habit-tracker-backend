@@ -1,4 +1,4 @@
-import { eq, and, isNull, gt } from "drizzle-orm";
+import { eq, and, isNull, gt, or, isNotNull, lt } from "drizzle-orm";
 import { sessions } from "../../db/schema";
 import type { DB } from "../../db/index";
 
@@ -49,4 +49,15 @@ export async function updateLastSeen(db: DB, sidHash: string) {
     .update(sessions)
     .set({ lastSeenAt: new Date() })
     .where(eq(sessions.sidHash, sidHash));
+}
+export async function cleanupUserSessions(db: DB, userId: string) {
+  const now = new Date();
+  await db
+    .delete(sessions)
+    .where(
+      and(
+        eq(sessions.userId, userId),
+        or(lt(sessions.expiresAt, now), isNotNull(sessions.revokedAt))
+      )
+    );
 }

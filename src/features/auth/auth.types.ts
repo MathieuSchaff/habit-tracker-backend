@@ -1,6 +1,6 @@
 // Types spécifiques au module auth
 
-import type { ApiResponse, CommonErrorCode } from "../../types/api";
+import type { ApiResponse, CommonErrorCode, HttpStatus } from "../../types/api";
 
 export type UserPublic = {
   id: string;
@@ -34,7 +34,7 @@ export type AuthErrorCode =
 
 // Mapping erreurs auth => status codes
 
-export const authErrorMapping: Record<string, number> = {
+export const authErrorMapping: Record<string, HttpStatus> = {
   invalid_credentials: 401,
   invalid_session: 401,
   session_expired: 401,
@@ -54,7 +54,12 @@ export type MeResponse = ApiResponse<
   AuthErrorCode | Extract<CommonErrorCode, "not_found" | "server_error">
 >;
 
+export type PingResponse = ApiResponse<{ ok: boolean }, never>;
+
+export type ValidationErrorCode = Extract<CommonErrorCode, "invalid_input">;
+
 //  Types internes services (incluent le sid)
+export type LogoutServiceResult = ApiResponse<null, never>;
 
 export type LoginServiceResult = ApiResponse<
   { user: UserPublic; sid: string },

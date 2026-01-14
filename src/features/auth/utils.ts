@@ -1,5 +1,11 @@
 import { CryptoHasher } from "bun";
-
+// on va faire
+// créa d'un tableau de 32 nombres
+// chaque enfant est un octet de O à 255
+// du coup 32 octet
+// getRandomValues ça remplit le tableau avec des valeurs aléatoires
+// on transfore en buffer
+// puis en texte
 export function generateSid(): string {
   return Buffer.from(crypto.getRandomValues(new Uint8Array(32))).toString(
     "base64url"
@@ -20,5 +26,6 @@ export function cookieOptions(env: "development" | "production") {
     secure: isProd, // en prod uniquement (https)
     sameSite: "Lax" as const,
     path: "/",
+    maxAge: 30 * 24 * 60 * 60,
   };
 }
