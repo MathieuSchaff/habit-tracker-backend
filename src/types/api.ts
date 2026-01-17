@@ -45,6 +45,7 @@ export const HTTP_STATUS = {
   FORBIDDEN: 403,
   NOT_FOUND: 404,
   CONFLICT: 409,
+  RATE_LIMIT_EXCEEDED: 429,
   INTERNAL_SERVER_ERROR: 500,
 } as const;
 // cette function sert si on ajoute des HTTP_STATUS.
@@ -60,6 +61,8 @@ const baseErrorMapping = {
   unauthorized: HTTP_STATUS.UNAUTHORIZED,
   forbidden: HTTP_STATUS.FORBIDDEN,
   server_error: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+  rate_limit_exceeded: 429,
+
   // satifies ajoute un typage supplémentaire.
   // as const comme ça on dit pas que c'est juste des strings
   // mais bien des clé de cet objet ( qu'on utuilise après)
