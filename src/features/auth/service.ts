@@ -8,7 +8,6 @@ import {
 } from "./session.service";
 import { generateSid, hashSid } from "./utils";
 import {
-  type LogoutResponse,
   type SignupServiceResult,
   type LoginServiceResult,
   LogoutServiceResult,
