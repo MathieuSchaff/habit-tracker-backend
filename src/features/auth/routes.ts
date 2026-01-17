@@ -5,9 +5,7 @@ import { cookieOptions, hashSid } from "./utils";
 import { rateLimiter } from "hono-rate-limiter";
 import z, { treeifyError } from "zod";
 import { revokeSession } from "./session.service";
-import { getProfile } from "../profile/service";
 import { loginUser, signupUser } from "./service";
-import { requireAuth } from "./middleware";
 
 // Import des types et helpers
 import {
@@ -22,11 +20,11 @@ import {
   type LoginResponse,
   type SignupResponse,
   type LogoutResponse,
-  type MeResponse,
   type PingResponse,
   type ValidationErrorCode,
   authErrorMapping,
 } from "./auth.types";
+import { zValidator } from "@hono/zod-validator";
 export const authRoutes = new Hono<AppEnv>();
 
 // Schema de validation
@@ -40,7 +38,28 @@ const authSchema = z.object({
     .regex(/[A-Z]/, "Au moins une majuscule")
     .regex(/[0-9]/, "Au moins un chiffre"),
 });
+type ValidationTarget = "json" | "query" | "param" | "form" | "header";
+// https://hono.dev/docs/guides/validation
+// Fonction qui permet de pas répéter zValidator etc.
+// Sachant que zValidator renvoie toujours une erreur avec un status 400
+// donc c'est nécessaire de créer une fonction propre.
+const validate = <T extends z.ZodSchema>(target: ValidationTarget, schema: T) =>
+  zValidator(target, schema, (result, c) => {
+    if (!result.success) {
+      return c.json<ApiError<ValidationErrorCode>>(
+        err("invalid_input", treeifyError(result.error)),
+        HTTP_STATUS.BAD_REQUEST
+      );
+    }
+  });
+// limiter les requetes
 
+const rateLimiterFunc = rateLimiter({
+  windowMs: 15 * 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-7",
+  keyGenerator: (c) => c.req.header("x-forwarded-for") ?? "unknown",
+});
 // ROUTE PING
 authRoutes.get("/ping", (c) => {
   return c.json<PingResponse>(ok({ ok: true }));
@@ -49,69 +68,41 @@ authRoutes.get("/ping", (c) => {
 // ROUTE LOGIN
 authRoutes.post(
   "/login",
-  rateLimiter({
-    windowMs: 15 * 60 * 1000,
-    limit: 5,
-    standardHeaders: "draft-7",
-    keyGenerator: (c) => c.req.header("x-forwarded-for") ?? "unknown",
-  }),
+  rateLimiterFunc,
+  validate("json", authSchema),
   async (c) => {
     const env = c.get("env");
     const db = c.get("db");
-
-    // Validation
-    const parseResult = authSchema.safeParse(await c.req.json());
-    if (!parseResult.success) {
-      return c.json<ApiError<ValidationErrorCode>>(
-        err("invalid_input", treeifyError(parseResult.error)),
-        HTTP_STATUS.BAD_REQUEST
-      );
-    }
-
-    const { email, password } = parseResult.data;
-
+    const { email, password } = c.req.valid("json");
     // Appel service
     const result = await loginUser(db, email, password);
 
     // Erreur
     if (!isApiSuccess(result)) {
       return c.json<LoginResponse>(
-        result,
+        err(result.error),
         errorToStatus(result.error, authErrorMapping)
       );
     }
-
     // Succès : set cookie et retourne user
     setCookie(c, "sid", result.data.sid, cookieOptions(env));
 
-    return c.json<LoginResponse>(ok({ user: result.data.user }), 200);
+    return c.json<LoginResponse>(
+      ok({ user: result.data.user }),
+      HTTP_STATUS.OK
+    );
   }
 );
 
 // ROUTE SIGNUP
 authRoutes.post(
   "/signup",
-  rateLimiter({
-    windowMs: 15 * 60 * 1000,
-    limit: 5,
-    standardHeaders: "draft-7",
-    keyGenerator: (c) => c.req.header("x-forwarded-for") ?? "unknown",
-  }),
+  validate("json", authSchema),
+  rateLimiterFunc,
   async (c) => {
     const db = c.get("db");
     const env = c.get("env");
-
-    // Validation
-    const parseResult = authSchema.safeParse(await c.req.json());
-    if (!parseResult.success) {
-      return c.json<ApiError<ValidationErrorCode>>(
-        err("invalid_input", z.treeifyError(parseResult.error)),
-        400
-      );
-    }
-
-    const { email, password } = parseResult.data;
-
+    const { email, password } = c.req.valid("json");
     // Appel service
     const result = await signupUser(db, email, password);
 
@@ -126,7 +117,10 @@ authRoutes.post(
     // Succès : set cookie et retourne user
     setCookie(c, "sid", result.data.sid, cookieOptions(env));
 
-    return c.json<SignupResponse>(ok({ user: result.data.user }), 200);
+    return c.json<SignupResponse>(
+      ok({ user: result.data.user }),
+      HTTP_STATUS.OK
+    );
   }
 );
 
@@ -137,7 +131,10 @@ authRoutes.post("/logout", async (c) => {
 
   // Pas de session = déjà déconnecté, on retourne succès quand même
   if (!sid) {
-    return c.json<LogoutResponse>(ok(null, "Already disconnected"), 200);
+    return c.json<LogoutResponse>(
+      ok(null, "Already disconnected"),
+      HTTP_STATUS.OK
+    );
   }
 
   const sidHash = hashSid(sid);
@@ -150,5 +147,5 @@ authRoutes.post("/logout", async (c) => {
   }
 
   deleteCookie(c, "sid");
-  return c.json<LogoutResponse>(ok(null, "Disconnected"), 200);
+  return c.json<LogoutResponse>(ok(null, "Disconnected"), HTTP_STATUS.OK);
 });
