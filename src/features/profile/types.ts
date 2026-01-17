@@ -1,4 +1,9 @@
-import { ApiResponse, CommonErrorCode } from "../../types/api";
+import {
+  ApiResponse,
+  CommonErrorCode,
+  HTTP_STATUS,
+  HttpStatus,
+} from "../../types/api";
 import { AuthErrorCode } from "../auth/auth.types";
 import { profiles } from "../../db/schema/users";
 import type { InferSelectModel, InferInsertModel } from "drizzle-orm";
@@ -14,16 +19,27 @@ export type ProfilePublic = {
 
 export type MeResponse = ApiResponse<
   ProfilePublic,
-  AuthErrorCode | Extract<CommonErrorCode, "not_found" | "server_error">
+  AuthErrorCode | ProfileErrorCode
 >;
 
-// Types générés automatiquement depuis le schéma Drizzle
+// Typés depuis Drizzle
 export type Profile = InferSelectModel<typeof profiles>;
 export type NewProfile = InferInsertModel<typeof profiles>;
 
-// Types métier spécifiques (optionnels)
 export type PublicProfile = Omit<Profile, "userId">;
 
 export type ProfileUpdate = Partial<
   Pick<Profile, "username" | "bio" | "avatarUrl">
 >;
+export type ProfileErrorCode =
+  | CommonErrorCode
+  | "profile_not_found"
+  | "invalid_profile_data"
+  | "profile_update_failed";
+export const profileErrorMapping: Partial<
+  Record<ProfileErrorCode, HttpStatus>
+> = {
+  profile_not_found: HTTP_STATUS.NOT_FOUND,
+  invalid_profile_data: HTTP_STATUS.BAD_REQUEST,
+  profile_update_failed: HTTP_STATUS.CONFLICT,
+};
