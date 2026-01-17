@@ -1,7 +1,5 @@
 // Types spécifiques au module auth
-
 import type { ApiResponse, CommonErrorCode, HttpStatus } from "../../types/api";
-// import type { HttpStatus } from "../../types/api";
 export type UserPublic = {
   id: string;
   email: string;

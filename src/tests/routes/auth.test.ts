@@ -6,6 +6,8 @@ import { testDb } from "../db.test.config";
 import { authRoutes } from "../../features/auth/routes";
 import { createTestUser } from "../helpers/test-factories";
 import { hash } from "argon2";
+import { profileRoute } from "../../features/profile";
+import { HTTP_STATUS } from "../../types/api";
 
 function createTestApp() {
   const app = new Hono<AppEnv>();
@@ -17,6 +19,7 @@ function createTestApp() {
   });
 
   app.route("/auth", authRoutes);
+  app.route("/profile", profileRoute);
 
   return app;
 }
@@ -237,52 +240,47 @@ describe("Auth Routes", () => {
         method: "POST",
       });
 
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(HTTP_STATUS.OK);
       const data = await res.json();
       expect(data.success).toBe(true);
     });
   });
 
-  describe("GET /auth/me", () => {
+  describe("GET /profile", () => {
     it("should return user profile when authenticated", async () => {
-      // Login first
-      const passwordHash = await hash("TestPass123!");
-      await createTestUser({
-        email: "me@test.com",
-        password: passwordHash,
-      });
-
-      const loginRes = await app.request("/auth/login", {
+      const res = await app.request("/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: "me@test.com",
+          email: "newuser@test.com",
           password: "TestPass123!",
         }),
       });
 
-      const cookies = loginRes.headers.get("Set-Cookie");
+      const cookies = res.headers.get("Set-Cookie");
 
       // Request /me
-      const meRes = await app.request("/auth/me", {
+      const meRes = await app.request("/profile", {
         headers: {
           Cookie: cookies || "",
         },
       });
 
-      expect(meRes.status).toBe(200);
+      expect(meRes.status).toBe(HTTP_STATUS.OK);
       const data = await meRes.json();
       expect(data.success).toBe(true);
       expect(data.data.userId).toBeDefined();
     });
 
     it("should reject unauthenticated request", async () => {
-      const res = await app.request("/auth/me");
+      const res = await app.request("/profile");
 
-      expect(res.status).toBe(401);
+      console.log(res);
+      expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED);
       const data = await res.json();
+      console.log(data);
       expect(data.success).toBe(false);
     });
   });

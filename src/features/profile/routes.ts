@@ -11,9 +11,11 @@ export const profileRoute = new Hono<AppEnv>();
 
 // Toutes les routes users nécessitent l'auth
 profileRoute.use("*", requireAuth);
-
+profileRoute.get("/ping", async (c) => {
+  return c.json(ok("ok"));
+});
 // ROUTE ME
-profileRoute.get("/me", async (c) => {
+profileRoute.get("/", async (c) => {
   const db = c.get("db");
   const userId = c.get("userId")!;
 
@@ -38,32 +40,28 @@ profileRoute.get("/me", async (c) => {
 });
 
 // PATCH /me - Mettre à jour le profil
-profileRoute.patch(
-  "/me",
-  zValidator("json", profileUpdateSchema),
-  async (c) => {
-    const db = c.get("db");
-    const userId = c.get("userId")!;
+profileRoute.patch("/", zValidator("json", profileUpdateSchema), async (c) => {
+  const db = c.get("db");
+  const userId = c.get("userId")!;
 
-    try {
-      const data = c.req.valid("json");
+  try {
+    const data = c.req.valid("json");
 
-      const updated = await updateProfile(db, userId, data);
+    const updated = await updateProfile(db, userId, data);
 
-      if (!updated) {
-        return c.json<MeResponse>(
-          err("not_found"),
-          errorToStatus("not_found", profileErrorMapping)
-        );
-      }
-
-      return c.json<MeResponse>(ok(updated), HTTP_STATUS.OK);
-    } catch (e) {
-      console.error("Error in PATCH /me:", e);
+    if (!updated) {
       return c.json<MeResponse>(
-        err("server_error", e instanceof Error ? e.message : undefined),
-        errorToStatus("server_error", profileErrorMapping)
+        err("not_found"),
+        errorToStatus("not_found", profileErrorMapping)
       );
     }
+
+    return c.json<MeResponse>(ok(updated), HTTP_STATUS.OK);
+  } catch (e) {
+    console.error("Error in PATCH /me:", e);
+    return c.json<MeResponse>(
+      err("server_error", e instanceof Error ? e.message : undefined),
+      errorToStatus("server_error", profileErrorMapping)
+    );
   }
-);
+});
