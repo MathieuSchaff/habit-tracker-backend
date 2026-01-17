@@ -32,7 +32,7 @@ profileRoute.get("/me", async (c) => {
     console.error("Error in /me:", e);
     return c.json<MeResponse>(
       err("server_error"),
-      errorToStatus("server_error")
+      errorToStatus("server_error", profileErrorMapping)
     );
   }
 });
