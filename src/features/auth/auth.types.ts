@@ -1,7 +1,7 @@
 // Types spécifiques au module auth
 
 import type { ApiResponse, CommonErrorCode, HttpStatus } from "../../types/api";
-
+// import type { HttpStatus } from "../../types/api";
 export type UserPublic = {
   id: string;
   email: string;
@@ -24,12 +24,12 @@ export type AuthErrorCode =
 
 // Mapping erreurs auth => status codes
 
-export const authErrorMapping: Record<string, HttpStatus> = {
+export const authErrorMapping = {
   invalid_credentials: 401,
   invalid_session: 401,
   session_expired: 401,
   email_exists: 409,
-};
+} as const satisfies Record<string, HttpStatus>;
 
 //  Types des réponses API, ce que le client reçoit
 
