@@ -101,8 +101,11 @@ shell-frontend: ## Shell dans le conteneur frontend
 # =========================
 # Base de données
 # =========================
-db-migrate: ## Applique les migrations Drizzle
-	cd backend && bun run db:migrate
+# db-migrate: ## Applique les migrations Drizzle
+# 	cd backend && bun run db:migrate
+db-migrate:
+	@export $$(grep -v '^#' .env.dev | xargs) && \
+	cd backend && DATABASE_URL=postgres://app:$$POSTGRES_PASSWORD@localhost:5432/appdb bun run db:migrate
 
 db-push: ## Push le schema Drizzle (dev)
 	cd backend && bun run db:push
