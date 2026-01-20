@@ -1,0 +1,45 @@
+# =========================
+# Configuration PROD (surcharges)
+# Utilisation: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# =========================
+
+services:
+  db:
+    restart: unless-stopped
+    # Pas de port exposé en prod (sécurité)
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: prod
+
+    restart: unless-stopped
+
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      LOG_LEVEL: info
+
+    # Expose uniquement dans le réseau Docker (pas sur l'hôte)
+    expose:
+      - "3000"
+
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    restart: unless-stopped
+    expose:
+      - "80"
+
+  nginx:
+    depends_on:
+      api:
+        condition: service_healthy
+      frontend:
+        condition: service_started

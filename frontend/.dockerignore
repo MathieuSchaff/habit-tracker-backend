@@ -1,29 +1,24 @@
 # =========================
-# Dependencies
+# Git
 # =========================
-node_modules/
-.bun/
+.git
+.gitignore
 
 # =========================
-# Build outputs
+# Dependencies (reinstalled in container)
+# =========================
+node_modules/
+
+# =========================
+# Build (rebuilt in container)
 # =========================
 dist/
-build/
-*.tsbuildinfo
 
 # =========================
 # Environment
 # =========================
-.env
-.env.local
-.env.prod
-.env.production
-
-# =========================
-# Database
-# =========================
-backups/
-*.sql
+.env*
+!.env.example
 
 # =========================
 # IDE
@@ -32,28 +27,28 @@ backups/
 .vscode/
 *.swp
 *.swo
-*~
 
 # =========================
-# OS
+# Documentation
 # =========================
-.DS_Store
-Thumbs.db
+*.md
 
 # =========================
-# Logs
+# Tests
 # =========================
-logs/
-*.log
-npm-debug.log*
-bun-debug.log*
-
-# =========================
-# Test
-# =========================
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
 coverage/
 
 # =========================
-# Docker (local volumes)
+# Docker
 # =========================
-pgdata/
+Dockerfile*
+nginx.conf
+
+# =========================
+# Misc
+# =========================
+.DS_Store
+Thumbs.db

@@ -1,13 +1,16 @@
-.PHONY: help dev prod stop restart logs logs-api logs-db logs-nginx clean ps shell-api shell-db health
+.PHONY: help dev dev-d prod prod-logs stop restart logs logs-api logs-db logs-nginx logs-frontend clean ps shell-api shell-db shell-frontend health test test-db-up test-db-down ssl-init ssl-renew db-backup db-restore db-migrate db-studio
 
 # Couleurs pour l'affichage
 GREEN  := \033[0;32m
 YELLOW := \033[0;33m
-NC     := \033[0m # No Color
+CYAN   := \033[0;36m
+NC     := \033[0m
 
 help: ## Affiche cette aide
-	@echo "$(GREEN)Commandes disponibles :$(NC)"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(YELLOW)%-15s$(NC) %s\n", $$1, $$2}'
+	@echo "$(GREEN)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(NC)"
+	@echo "$(GREEN)  Commandes disponibles$(NC)"
+	@echo "$(GREEN)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(NC)"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(YELLOW)%-18s$(NC) %s\n", $$1, $$2}'
 
 # =========================
 # Développement
@@ -15,8 +18,11 @@ help: ## Affiche cette aide
 dev: ## Lance l'environnement de développement
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env.dev up --build
 
-dev-d: ## Lance l'environnement de développement en arrière-plan
+dev-d: ## Lance le dev en arrière-plan
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env.dev up -d --build
+
+dev-down: ## Arrête l'environnement de développement
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml down
 
 # =========================
 # Production
@@ -24,60 +30,105 @@ dev-d: ## Lance l'environnement de développement en arrière-plan
 prod: ## Lance l'environnement de production
 	docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env.prod up -d --build
 
-prod-logs: ## Affiche les logs de production en continu
+prod-logs: ## Affiche les logs de production
 	docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f
+
+prod-down: ## Arrête l'environnement de production
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml down
+
+# =========================
+# Tests
+# =========================
+test-db-up: ## Lance la DB de test
+	docker compose -f docker-compose.test.yml up -d
+	@echo "$(CYAN)Attente que la DB soit prête...$(NC)"
+	@sleep 3
+
+test-db-down: ## Arrête la DB de test
+	docker compose -f docker-compose.test.yml down
+
+test: test-db-up ## Lance les tests (backend)
+	@cd backend && DATABASE_URL=postgres://app:testpassword@localhost:5433/appdb_test bun test || ($(MAKE) test-db-down && exit 1)
+	@$(MAKE) test-db-down
+	@echo "$(GREEN)✓ Tests terminés$(NC)"
+
+test-watch: test-db-up ## Lance les tests en mode watch
+	cd backend && DATABASE_URL=postgres://app:testpassword@localhost:5433/appdb_test bun test --watch
 
 # =========================
 # Gestion des conteneurs
 # =========================
 stop: ## Arrête tous les conteneurs
-	docker compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.prod.yml down
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml down 2>/dev/null || true
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml down 2>/dev/null || true
+	docker compose -f docker-compose.test.yml down 2>/dev/null || true
 
-restart: stop dev ## Redémarre l'environnement de développement
+restart: dev-down dev ## Redémarre l'environnement de développement
 
 ps: ## Affiche l'état des conteneurs
-	docker compose ps
+	@docker compose ps
 
 # =========================
 # Logs
 # =========================
-logs: ## Affiche tous les logs en continu
+logs: ## Affiche tous les logs
 	docker compose logs -f
 
-logs-api: ## Affiche les logs de l'API uniquement
+logs-api: ## Logs de l'API
 	docker compose logs -f api
 
-logs-db: ## Affiche les logs de la base de données
+logs-db: ## Logs de la base de données
 	docker compose logs -f db
 
-logs-nginx: ## Affiche les logs de Nginx
+logs-nginx: ## Logs de Nginx
 	docker compose logs -f nginx
+
+logs-frontend: ## Logs du frontend
+	docker compose logs -f frontend
 
 # =========================
 # Shell interactif
 # =========================
-shell-api: ## Ouvre un shell dans le conteneur API
+shell-api: ## Shell dans le conteneur API
 	docker compose exec api /bin/sh
 
-shell-db: ## Ouvre psql dans le conteneur DB
+shell-db: ## psql dans le conteneur DB
 	docker compose exec db psql -U app -d appdb
 
-# =========================
-# Maintenance
-# =========================
-clean: ## Supprime tous les conteneurs, volumes et images
-	docker compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.prod.yml down -v
-	docker system prune -af --volumes
-
-health: ## Vérifie la santé des services
-	@echo "$(GREEN)État des services :$(NC)"
-	@docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Health}}"
+shell-frontend: ## Shell dans le conteneur frontend
+	docker compose exec frontend /bin/sh
 
 # =========================
-# SSL (production uniquement)
+# Base de données
 # =========================
-ssl-init: ## Génère les certificats SSL pour la première fois
-	@echo "$(YELLOW)Génération des certificats SSL...$(NC)"
+db-migrate: ## Applique les migrations Drizzle
+	cd backend && bun run db:migrate
+
+db-push: ## Push le schema Drizzle (dev)
+	cd backend && bun run db:push
+
+db-studio: ## Lance Drizzle Studio
+	cd backend && bun run db:studio
+
+db-backup: ## Backup de la base de données
+	@mkdir -p ./backups
+	docker compose exec db pg_dump -U app appdb > ./backups/backup_$(shell date +%Y%m%d_%H%M%S).sql
+	@echo "$(GREEN)✓ Backup créé dans ./backups/$(NC)"
+
+db-restore: ## Restaure la DB (usage: make db-restore FILE=./backups/backup.sql)
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(YELLOW)Usage: make db-restore FILE=./backups/backup.sql$(NC)"; \
+		exit 1; \
+	fi
+	docker compose exec -T db psql -U app appdb < $(FILE)
+	@echo "$(GREEN)✓ Base de données restaurée$(NC)"
+
+# =========================
+# SSL (production)
+# =========================
+ssl-init: ## Génère les certificats SSL (modifier le domaine d'abord)
+	@echo "$(YELLOW)⚠ Modifier le domaine et l'email dans le Makefile avant d'exécuter$(NC)"
+	@read -p "Continuer ? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
 	docker compose -f docker-compose.yml -f docker-compose.prod.yml exec certbot \
 		certbot certonly --webroot -w /var/www/certbot \
 		-d votredomaine.com \
@@ -85,21 +136,35 @@ ssl-init: ## Génère les certificats SSL pour la première fois
 		--agree-tos \
 		--no-eff-email
 
-ssl-renew: ## Renouvelle les certificats SSL manuellement
+ssl-renew: ## Renouvelle les certificats SSL
 	docker compose -f docker-compose.yml -f docker-compose.prod.yml exec certbot certbot renew
 
 # =========================
-# Base de données
+# Maintenance
 # =========================
-db-backup: ## Crée un backup de la base de données
-	@mkdir -p ./backups
-	docker compose exec db pg_dump -U app appdb > ./backups/backup_$(shell date +%Y%m%d_%H%M%S).sql
-	@echo "$(GREEN)Backup créé dans ./backups/$(NC)"
+clean: ## Supprime conteneurs, volumes et images
+	@echo "$(YELLOW)⚠ Cette action supprime toutes les données Docker$(NC)"
+	@read -p "Continuer ? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v 2>/dev/null || true
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml down -v 2>/dev/null || true
+	docker compose -f docker-compose.test.yml down -v 2>/dev/null || true
+	docker system prune -af --volumes
 
-db-restore: ## Restaure la base de données (nécessite DB_BACKUP_FILE=chemin/vers/backup.sql)
-	@if [ -z "$(DB_BACKUP_FILE)" ]; then \
-		echo "$(YELLOW)Usage: make db-restore DB_BACKUP_FILE=./backups/backup.sql$(NC)"; \
-		exit 1; \
-	fi
-	docker compose exec -T db psql -U app appdb < $(DB_BACKUP_FILE)
-	@echo "$(GREEN)Base de données restaurée$(NC)"
+clean-soft: ## Supprime les conteneurs (garde les volumes)
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml down 2>/dev/null || true
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml down 2>/dev/null || true
+	docker compose -f docker-compose.test.yml down 2>/dev/null || true
+
+health: ## Vérifie la santé des services
+	@echo "$(GREEN)État des services :$(NC)"
+	@docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Health}}"
+
+# =========================
+# Installation
+# =========================
+install: ## Installe les dépendances (backend + frontend)
+	cd backend && bun install
+	cd frontend && bun install
+
+build: ## Build les images Docker
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml build

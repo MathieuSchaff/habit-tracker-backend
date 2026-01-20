@@ -1,6 +1,7 @@
 # =========================
 # Configuration de base commune à dev et prod
 # =========================
+
 services:
   # =========================
   # Base de données PostgreSQL
@@ -23,12 +24,12 @@ services:
       - appnet
 
   # =========================
-  # API Backend (Bun)
+  # API Backend (Bun + Hono)
   # =========================
   api:
     container_name: app_api
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     depends_on:
       db:
@@ -38,11 +39,67 @@ services:
     networks:
       - appnet
 
+  # =========================
+  # Frontend React (Vite)
+  # =========================
+  frontend:
+    container_name: app_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - api
+    networks:
+      - appnet
+
+  # =========================
+  # Reverse Proxy (Nginx)
+  # =========================
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: app_nginx
+    restart: unless-stopped
+    depends_on:
+      - api
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    networks:
+      - appnet
+
+  # =========================
+  # Certbot (Let's Encrypt)
+  # =========================
+  certbot:
+    image: certbot/certbot
+    container_name: app_certbot
+    restart: unless-stopped
+    volumes:
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    entrypoint: /bin/sh
+    command: >
+      -c "trap exit TERM;
+          while :;
+          do
+            certbot renew;
+            sleep 12h & wait $${!};
+          done;"
+    networks:
+      - appnet
+
 # =========================
 # Volumes persistants
 # =========================
 volumes:
   pgdata:
+  certbot_data:
+  certbot_www:
 
 # =========================
 # Réseau Docker privé

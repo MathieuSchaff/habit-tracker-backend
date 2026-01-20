@@ -1,7 +1,8 @@
 # =========================
 # Configuration pour les TESTS uniquement
-# Lance une DB PostgreSQL séparée sur le port 5433
+# Utilisation: docker compose -f docker-compose.test.yml up -d
 # =========================
+
 services:
   db-test:
     image: postgres:16
@@ -11,7 +12,7 @@ services:
       POSTGRES_PASSWORD: testpassword
       POSTGRES_DB: appdb_test
     ports:
-      - "5433:5432" # Port différent pour ne pas conflit avec la DB principale
+      - "5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U app -d appdb_test"]
       interval: 5s
@@ -19,7 +20,9 @@ services:
       retries: 20
     networks:
       - testnet
-    # Pas de volume = données perdues au redémarrage (c'est voulu pour les tests)
+    # Pas de volume = données perdues au redémarrage (voulu pour les tests)
+    tmpfs:
+      - /var/lib/postgresql/data
 
 networks:
   testnet:
