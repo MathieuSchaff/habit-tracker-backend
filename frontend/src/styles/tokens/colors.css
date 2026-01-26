@@ -1,0 +1,60 @@
+:root {
+  /* === COULEURS DE BASE === */
+
+  /* Primary - Vert tropical */
+  --color-primary: #2d9b5a;
+  --color-primary-hover: #258a4e;
+  --color-primary-light: #e8f5ee;
+  --color-primary-dark: #146232;
+
+  /* Secondary - Jaune soleil */
+  --color-secondary: #f2b705;
+  --color-secondary-hover: #d9a504;
+  --color-secondary-light: #fef9e7;
+
+  /* Accent - Orange brûlé */
+  --color-accent: #e85d04;
+  --color-accent-hover: #d15303;
+  --color-accent-light: #fef0e8;
+
+  /* === SEMANTIC === */
+  --color-success: var(--color-primary);
+  --color-warning: var(--color-secondary);
+  --color-error: #dc2626;
+  --color-error-light: #fee2e2;
+  --color-info: #0284c7;
+  --color-info-light: #e0f2fe;
+
+  /* === INTERFACE (ce que tu utilises 90% du temps) === */
+
+  /* Backgrounds */
+  --bg-page: #faf6f1; /* fond de page */
+  --bg-card: #ffffff; /* cards, modals */
+  --bg-muted: #f0ebe3; /* sections secondaires */
+
+  /* Texte */
+  --text-primary: #1a1a1a; /* titres, texte principal */
+  --text-secondary: #4d4238; /* texte normal */
+  --text-muted: #6b5d4d; /* labels, placeholders */
+  --text-inverse: #ffffff; /* texte sur fond coloré */
+
+  /* Bordures & séparateurs */
+  --border-default: #e0d9cf;
+  --border-strong: #c7bdae;
+
+  /* === DARK THEME (à activer via data-theme="dark") === */
+}
+
+[data-theme="dark"] {
+  --bg-page: #1a1a1a;
+  --bg-card: #302924;
+  --bg-muted: #4d4238;
+
+  --text-primary: #faf6f1;
+  --text-secondary: #e0d9cf;
+  --text-muted: #a89a88;
+  --text-inverse: #1a1a1a;
+
+  --border-default: #4d4238;
+  --border-strong: #6b5d4d;
+}
