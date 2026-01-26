@@ -15,6 +15,7 @@ help: ## Affiche cette aide
 # =========================
 # Développement
 # =========================
+
 dev: ## Lance l'environnement de développement
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml --env-file .env.dev up --build
 
@@ -97,21 +98,24 @@ shell-db: ## psql dans le conteneur DB
 
 shell-frontend: ## Shell dans le conteneur frontend
 	docker compose exec frontend /bin/sh
-
 # =========================
 # Base de données
 # =========================
-# db-migrate: ## Applique les migrations Drizzle
-# 	cd backend && bun run db:migrate
-db-migrate:
-	@export $$(grep -v '^#' .env.dev | xargs) && \
-	cd backend && DATABASE_URL=postgres://app:$$POSTGRES_PASSWORD@localhost:5432/appdb bun run db:migrate
+
+# Variable locale pour les outils hors Docker
+DB_LOCAL = postgres://app:$(POSTGRES_PASSWORD)@localhost:5432/appdb
+
+db-migrate: ## Applique les migrations Drizzle
+	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit migrate
+
+db-generate: ## Génère les migrations Drizzle
+	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit generate
 
 db-push: ## Push le schema Drizzle (dev)
-	cd backend && bun run db:push
+	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit push
 
 db-studio: ## Lance Drizzle Studio
-	cd backend && bun run db:studio
+	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit studio --port 4983
 
 db-backup: ## Backup de la base de données
 	@mkdir -p ./backups
@@ -125,7 +129,6 @@ db-restore: ## Restaure la DB (usage: make db-restore FILE=./backups/backup.sql)
 	fi
 	docker compose exec -T db psql -U app appdb < $(FILE)
 	@echo "$(GREEN)✓ Base de données restaurée$(NC)"
-
 # =========================
 # SSL (production)
 # =========================
