@@ -1,18 +1,16 @@
 :root {
-  /* === COULEURS DE BASE === */
+  color-scheme: light dark;
 
-  /* Primary - Vert tropical */
+  /* === COULEURS DE BASE === */
   --color-primary: #2d9b5a;
   --color-primary-hover: #258a4e;
   --color-primary-light: #e8f5ee;
   --color-primary-dark: #146232;
 
-  /* Secondary - Jaune soleil */
   --color-secondary: #f2b705;
   --color-secondary-hover: #d9a504;
   --color-secondary-light: #fef9e7;
 
-  /* Accent - Orange brûlé */
   --color-accent: #e85d04;
   --color-accent-hover: #d15303;
   --color-accent-light: #fef0e8;
@@ -25,36 +23,16 @@
   --color-info: #0284c7;
   --color-info-light: #e0f2fe;
 
-  /* === INTERFACE (ce que tu utilises 90% du temps) === */
+  /* === INTERFACE === */
+  --bg-page: light-dark(#faf6f1, #1a1a1a);
+  --bg-card: light-dark(#ffffff, #302924);
+  --bg-muted: light-dark(#f0ebe3, #4d4238);
 
-  /* Backgrounds */
-  --bg-page: #faf6f1; /* fond de page */
-  --bg-card: #ffffff; /* cards, modals */
-  --bg-muted: #f0ebe3; /* sections secondaires */
+  --text-primary: light-dark(#1a1a1a, #faf6f1);
+  --text-secondary: light-dark(#4d4238, #e0d9cf);
+  --text-muted: light-dark(#6b5d4d, #a89a88);
+  --text-inverse: light-dark(#ffffff, #1a1a1a);
 
-  /* Texte */
-  --text-primary: #1a1a1a; /* titres, texte principal */
-  --text-secondary: #4d4238; /* texte normal */
-  --text-muted: #6b5d4d; /* labels, placeholders */
-  --text-inverse: #ffffff; /* texte sur fond coloré */
-
-  /* Bordures & séparateurs */
-  --border-default: #e0d9cf;
-  --border-strong: #c7bdae;
-
-  /* === DARK THEME (à activer via data-theme="dark") === */
-}
-
-[data-theme="dark"] {
-  --bg-page: #1a1a1a;
-  --bg-card: #302924;
-  --bg-muted: #4d4238;
-
-  --text-primary: #faf6f1;
-  --text-secondary: #e0d9cf;
-  --text-muted: #a89a88;
-  --text-inverse: #1a1a1a;
-
-  --border-default: #4d4238;
-  --border-strong: #6b5d4d;
+  --border-default: light-dark(#e0d9cf, #4d4238);
+  --border-strong: light-dark(#c7bdae, #6b5d4d);
 }
