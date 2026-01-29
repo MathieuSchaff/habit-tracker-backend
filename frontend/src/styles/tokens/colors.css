@@ -1,38 +1,96 @@
 :root {
   color-scheme: light dark;
 
-  /* === COULEURS DE BASE === */
-  --color-primary: #2d9b5a;
-  --color-primary-hover: #258a4e;
-  --color-primary-light: #e8f5ee;
-  --color-primary-dark: #146232;
+  /* === HUES === */
+  --hue-primary: 145deg;
+  --hue-accent: 85deg;
+  --hue-error: 25deg;
+  --hue-neutral: 70deg;
 
-  --color-secondary: #f2b705;
-  --color-secondary-hover: #d9a504;
-  --color-secondary-light: #fef9e7;
+  /* === PRIMARY PALETTE (vert) === */
+  --primary-20: oklch(20% 0.08 var(--hue-primary));
+  --primary-40: oklch(40% 0.12 var(--hue-primary));
+  --primary-60: oklch(60% 0.15 var(--hue-primary));
+  --primary-75: oklch(75% 0.15 var(--hue-primary));
+  --primary-90: oklch(90% 0.08 var(--hue-primary));
 
-  --color-accent: #e85d04;
-  --color-accent-hover: #d15303;
-  --color-accent-light: #fef0e8;
+  /* === ACCENT PALETTE (jaune doré) === */
+  --accent-20: oklch(20% 0.08 var(--hue-accent));
+  --accent-60: oklch(60% 0.14 var(--hue-accent));
+  --accent-80: oklch(80% 0.14 var(--hue-accent));
+  --accent-95: oklch(95% 0.06 var(--hue-accent));
 
-  /* === SEMANTIC === */
-  --color-success: var(--color-primary);
-  --color-warning: var(--color-secondary);
-  --color-error: #dc2626;
-  --color-error-light: #fee2e2;
-  --color-info: #0284c7;
-  --color-info-light: #e0f2fe;
+  /* === ERROR PALETTE (orange) === */
+  --error-20: oklch(20% 0.08 var(--hue-error));
+  --error-65: oklch(65% 0.18 var(--hue-error));
+  --error-90: oklch(90% 0.08 var(--hue-error));
 
-  /* === INTERFACE === */
-  --bg-page: light-dark(#faf6f1, #1a1a1a);
-  --bg-card: light-dark(#ffffff, #302924);
-  --bg-muted: light-dark(#f0ebe3, #4d4238);
+  /* === NEUTRAL PALETTE === */
+  --neutral-10: oklch(10% 0.02 var(--hue-neutral));
+  --neutral-20: oklch(20% 0.02 var(--hue-neutral));
+  --neutral-30: oklch(30% 0.02 var(--hue-neutral));
+  --neutral-50: oklch(50% 0.02 var(--hue-neutral));
+  --neutral-70: oklch(70% 0.02 var(--hue-neutral));
+  --neutral-85: oklch(85% 0.02 var(--hue-neutral));
+  --neutral-95: oklch(95% 0.02 var(--hue-neutral));
+  --neutral-99: oklch(99% 0.01 var(--hue-neutral));
 
-  --text-primary: light-dark(#1a1a1a, #faf6f1);
-  --text-secondary: light-dark(#4d4238, #e0d9cf);
-  --text-muted: light-dark(#6b5d4d, #a89a88);
-  --text-inverse: light-dark(#ffffff, #1a1a1a);
+  /* === SEMANTIC COLORS (Light Mode) === */
 
-  --border-default: light-dark(#e0d9cf, #4d4238);
-  --border-strong: light-dark(#c7bdae, #6b5d4d);
+  /* Actions */
+  --color-primary: var(--primary-40);
+  --color-primary-hover: var(--primary-60);
+  --color-success: var(--primary-75);
+
+  /* Accent (streaks, badges, highlights) */
+  --color-accent: var(--accent-60);
+  --color-accent-light: var(--accent-95);
+
+  /* Feedback */
+  --color-error: var(--error-65);
+  --color-error-light: var(--error-90);
+
+  /* === INTERFACE (Light Mode) === */
+  --bg-page: var(--neutral-95);
+  --bg-card: var(--neutral-99);
+  --bg-muted: var(--neutral-85);
+
+  --text-primary: var(--neutral-10);
+  --text-secondary: var(--neutral-50);
+  --text-muted: var(--neutral-70);
+  --text-inverse: var(--neutral-99);
+
+  --border-default: var(--neutral-85);
+  --border-strong: var(--neutral-70);
+}
+
+/* === DARK MODE === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Actions */
+    --color-primary: var(--primary-60);
+    --color-primary-hover: var(--primary-75);
+    --color-success: var(--primary-75);
+
+    /* Accent */
+    --color-accent: var(--accent-80);
+    --color-accent-light: var(--accent-20);
+
+    /* Feedback */
+    --color-error: var(--error-65);
+    --color-error-light: var(--error-20);
+
+    /* Interface - ton bg vert forêt */
+    --bg-page: oklch(33% 0.06 var(--hue-primary));
+    --bg-card: oklch(40% 0.05 var(--hue-primary));
+    --bg-muted: oklch(28% 0.04 var(--hue-primary));
+
+    --text-primary: var(--neutral-99);
+    --text-secondary: var(--neutral-70);
+    --text-muted: var(--neutral-50);
+    --text-inverse: var(--neutral-10);
+
+    --border-default: oklch(45% 0.04 var(--hue-primary));
+    --border-strong: oklch(50% 0.05 var(--hue-primary));
+  }
 }
