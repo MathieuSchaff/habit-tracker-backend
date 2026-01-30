@@ -7,7 +7,7 @@ import { authRoutes } from "../../features/auth/routes";
 import { createTestUser } from "../helpers/test-factories";
 import { hash } from "argon2";
 import { profileRoute } from "../../features/profile";
-import { HTTP_STATUS } from "../../types/api";
+import { HTTP_STATUS } from "@habit-tracker/shared";
 
 function createTestApp() {
   const app = new Hono<AppEnv>();

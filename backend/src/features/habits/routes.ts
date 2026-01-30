@@ -27,7 +27,9 @@ import {
   updateHabitFrequency,
 } from "./service";
 import { AppEnv } from "../../app-env";
-import { err, errorToStatus, HTTP_STATUS, ok } from "../../types/api";
+// import { err, errorToStatus, HTTP_STATUS, ok } from "../../types/api";
+
+import { err, errorToStatus, HTTP_STATUS, ok } from "@habit-tracker/shared";
 import { requireAuth } from "../auth/middleware";
 import { zValidator } from "@hono/zod-validator";
 import { habitErrorToStatus } from "./types";
