@@ -15,6 +15,8 @@ export const UserPublicSchema = z.object({
   email: z.email(),
 });
 export type AuthInput = z.infer<typeof authSchema>;
+
+
 // quand je flatten une erreur ça renvoie par ex:
 // {
   // formErrors: [ 'Unrecognized key: "extraKey"' ],
@@ -22,6 +24,7 @@ export type AuthInput = z.infer<typeof authSchema>;
   //   username: [ 'Invalid input: expected string, received number' ],
   //   favoriteNumbers: [ 'Invalid input: expected number, received string' ]
   // }
+  // Moi je renvoie une réponse de type err(, mais j'ajoute les détails avec flattenError)
 export type ZodFieldErrors = {
   email?: string[];
   password?: string[];
