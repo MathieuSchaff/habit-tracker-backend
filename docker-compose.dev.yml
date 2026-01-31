@@ -11,50 +11,96 @@ services:
 
     api:
         build:
-            context: ./backend
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: backend/Dockerfile
             target: dev
 
+        # ─────────────────────────────────────────────────────────────
+        # VOLUMES : Structure workspace Bun complète
+        # ─────────────────────────────────────────────────────────────
+        # Le package.json racine déclare 3 workspaces : backend, frontend, shared
+        # Bun a besoin de TOUS les voir pour résoudre les dépendances.
+        #
+        # - package.json racine   → définit les workspaces
+        # - bun.lock              → lockfile
+        # - backend/              → (read-write pour le hot reload)
+        # - shared/               → types partagés
+        # - frontend/             → monté en :ro car Bun doit le voir, mais
+        #                           on n'écrit pas dedans depuis l'API
+        # - node_modules anonymes → évite que le mount écrase les deps
+        # ─────────────────────────────────────────────────────────────
         volumes:
-            - ./backend/src:/app/src:ro
-            - ./backend/drizzle:/app/drizzle:ro
+            - ./package.json:/app/package.json:ro
+            - ./bun.lock:/app/bun.lock
+            - ./backend:/app/backend
+            - ./shared:/app/shared
+            - ./frontend:/app/frontend:ro
+            # volumes anonymes pour pas que docker écrase ces dossiers avec mes dossiers
+            # pour que ça évite de crash
+            # POURQUOI ?
+            # 1. Pendant le 'build', Docker installe des bibliothèques (node_modules)
+            #    spécifiques à Linux.
+            # 2. Sans ces lignes, le montage de mon dossier Windows (le volume du dessus)
+            #    viendrait ÉCRASER ces fichiers Linux par mes dossiers Windows.
+            # 3. Résultat : l'app crasherait car elle essaierait d'utiliser des outils
+            #    Windows sur un système Linux.
+            - /app/node_modules
+            - /app/backend/node_modules
 
         environment:
             NODE_ENV: development
             PORT: 3000
             LOG_LEVEL: debug
 
-        # Expose le port sur l'hôte pour accès direct (bypass nginx)
         ports:
             - "3000:3000"
 
-        command: bun --watch src/index.ts
-
+        # ─────────────────────────────────────────────────────────────
+        # COMMAND : bun install depuis /app (racine workspace)
+        # ─────────────────────────────────────────────────────────────
+        # Le Dockerfile définit WORKDIR=/app/backend, mais bun install
+        # doit tourner depuis /app pour voir le package.json racine.
+        # ─────────────────────────────────────────────────────────────
+        command: sh -c "cd /app/backend && bun --watch src/index.ts"
     frontend:
-        # Pas de build en dev, on utilise le serveur Vite
         build:
-            context: ./frontend
-            dockerfile: Dockerfile.dev
+            context: .
+            dockerfile: frontend/Dockerfile.dev
+
         ports:
             - "5173:5173"
+
+        # ─────────────────────────────────────────────────────────────
+        # VOLUMES : Même logique, mais ici c'est backend/ en :ro
+        # ─────────────────────────────────────────────────────────────
         volumes:
-            # - ./frontend/src:/app/src
-            # - ./frontend/vite.config.ts:/app/vite.config.ts:ro
-            # - ./frontend/tsr.config.json:/app/tsr.config.json:ro
-            # - ./frontend/tsconfig.json:/app/tsconfig.json:ro
-            # - ./frontend/tsconfig.app.json:/app/tsconfig.app.json:ro
-            # - ./frontend/tsconfig.node.json:/app/tsconfig.node.json:ro
-            # - ./frontend/index.html:/app/index.html:ro
-            # - /app/node_modules
-            - ./frontend:/app
-            - /app/node_modules # Préserve les node_modules du container
+            - ./package.json:/app/package.json:ro
+            - ./bun.lock:/app/bun.lock:ro
+            - ./frontend:/app/frontend
+            - ./shared:/app/shared:ro
+            - ./backend:/app/backend:ro
+            # volumes anonymes pour pas que docker écrase ces dossiers avec mes dossiers
+            # pour que ça évite de crash
+            # POURQUOI ?
+            # 1. Pendant le 'build', Docker installe des bibliothèques (node_modules)
+            #    spécifiques à Linux.
+            # 2. Sans ces lignes, le montage de mon dossier Windows (le volume du dessus)
+            #    viendrait ÉCRASER ces fichiers Linux par mes dossiers Windows.
+            # 3. Résultat : l'app crasherait car elle essaierait d'utiliser des outils
+            #    Windows sur un système Linux.
+            - /app/node_modules
+            - /app/frontend/node_modules
+
         environment:
             - VITE_API_URL=http://localhost:3000
 
-    # Désactive nginx en dev (accès direct à l'API)
+        # command: sh -c "cd /app/backend && bun --watch src/index.ts"
+        command: sh -c "cd /app/frontend && bun run dev --host 0.0.0.0"
+
+    # Désactive nginx en dev (accès direct à l'API et au frontend)
     nginx:
         profiles: ["disabled"]
 
-    # Désactive certbot en dev (pas besoin de SSL)
+    # Désactive certbot en dev (pas besoin de SSL en local)
     certbot:
         profiles: ["disabled"]

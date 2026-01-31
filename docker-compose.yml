@@ -1,13 +1,21 @@
 # =========================
 # Configuration de base commune à dev et prod
 # =========================
-
+# Explication:
+# On crée 5 linux containeurs isolés, chacun fait tourner différent services
+# Il y a 3 storage volumes qui sont persistants même quand on restart un conteneur
+# 1 network privé, comme ça les conteneurs peuvent communiquer entre eux.
+# Aucun fichier sur l'ordinateur hôte, a part la config nginx
+#
 services:
     # =========================
     # Base de données PostgreSQL
+    # PostgreSQL 16 serveur
+    # Ca crée un volume appelé pgdata qui contient les fichiers de la db
+    # Est monté dans /var/lib/docker/volumes sur l'ordi
     # =========================
     db:
-        image: postgres:16
+        image: postgres:16 # On télécharge l'image officielle de PostgreSQL version 16
         container_name: app_db
         # Au final : DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
         environment:
@@ -26,15 +34,18 @@ services:
 
     # =========================
     # API Backend (Bun + Hono)
+    # ca cherche un fichier : backend/Dockerfile
+    # et build une image à partir de ça
+    #
     # =========================
     api:
         container_name: app_api
         build:
-            context: ./backend
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: backend/Dockerfile
         depends_on:
             db:
-                condition: service_healthy
+                condition: service_healthy # Attends que la DB soit "en forme" avant de démarrer
         environment:
             DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
         networks:
@@ -42,14 +53,16 @@ services:
 
     # =========================
     # Frontend React (Vite)
+    # ca cherche un fichier : frontend/Dockerfile
+    #
     # =========================
     frontend:
         container_name: app_frontend
         build:
-            context: ./frontend
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: frontend/Dockerfile
         depends_on:
-            - api
+            - api # On a besoin de l'API pour que le site serve à quelque chose
         networks:
             - appnet
 
