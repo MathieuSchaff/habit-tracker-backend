@@ -15,3 +15,14 @@ export const UserPublicSchema = z.object({
   email: z.email(),
 });
 export type AuthInput = z.infer<typeof authSchema>;
+// quand je flatten une erreur ça renvoie par ex:
+// {
+  // formErrors: [ 'Unrecognized key: "extraKey"' ],
+  // fieldErrors: {
+  //   username: [ 'Invalid input: expected string, received number' ],
+  //   favoriteNumbers: [ 'Invalid input: expected number, received string' ]
+  // }
+export type ZodFieldErrors = {
+  email?: string[];
+  password?: string[];
+};
