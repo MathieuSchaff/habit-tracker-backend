@@ -1,3 +1,5 @@
+include .env.dev
+export
 .PHONY: help dev dev-d dev-rebuild dev-rebuild-api dev-rebuild-frontend prod prod-logs stop restart logs logs-api logs-db logs-nginx logs-frontend clean clean-images ps shell-api shell-db shell-frontend health test test-db-up test-db-down ssl-init ssl-renew db-backup db-restore db-migrate db-studio
 
 # Couleurs pour l'affichage
@@ -78,7 +80,7 @@ test-watch: test-db-up ## Lance les tests en mode watch
 
 # Utilisation : make test-only ARGS="auth"
 test-only: test-db-up
-	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun test -t "$(ARGS)"
+	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun test "$(ARGS)"
 	@$(MAKE) test-db-down
 
 # =========================
@@ -131,18 +133,28 @@ shell-frontend: ## Shell dans le conteneur frontend
 # Variable locale pour les outils hors Docker
 DB_LOCAL = postgres://app:$(POSTGRES_PASSWORD)@localhost:5432/appdb
 
+# db-migrate: ## Applique les migrations Drizzle
+# 	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit migrate
+
+# db-generate: ## Génère les migrations Drizzle
+# 	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit generate
+
+# db-push: ## Push le schema Drizzle (dev)
+# 	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit push
+
+# db-studio: ## Lance Drizzle Studio
+# 	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit studio --port 4983
 db-migrate: ## Applique les migrations Drizzle
-	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit migrate
+	cd backend && DATABASE_URL="$(DB_LOCAL)" npx drizzle-kit migrate
 
 db-generate: ## Génère les migrations Drizzle
-	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit generate
+	cd backend && DATABASE_URL="$(DB_LOCAL)" npx drizzle-kit generate
 
 db-push: ## Push le schema Drizzle (dev)
-	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit push
+	cd backend && DATABASE_URL="$(DB_LOCAL)" npx drizzle-kit push
 
 db-studio: ## Lance Drizzle Studio
-	DATABASE_URL=$(DB_LOCAL) cd backend && npx drizzle-kit studio --port 4983
-
+	cd backend && DATABASE_URL="$(DB_LOCAL)" npx drizzle-kit studio --port 4983
 db-backup: ## Backup de la base de données
 	@mkdir -p ./backups
 	docker compose exec db pg_dump -U app appdb > ./backups/backup_$(shell date +%Y%m%d_%H%M%S).sql
