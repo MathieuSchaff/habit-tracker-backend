@@ -2,16 +2,17 @@
 # Frontend Dockerfile (Development)
 # Serveur Vite avec hot reload
 # =========================
-
 FROM oven/bun:1-alpine
 WORKDIR /app
 
-# Copie des fichiers de dépendances
+# Copier structure workspace
 COPY package.json bun.lock ./
+COPY frontend/package.json frontend/
+COPY shared/package.json shared/
+COPY backend/package.json backend/
 RUN bun install --frozen-lockfile
 
 # Le code source est monté en volume (voir docker-compose.dev.yml)
-
+WORKDIR /app/frontend
 EXPOSE 5173
-
 CMD ["bun", "run", "dev", "--host", "0.0.0.0"]
