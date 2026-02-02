@@ -114,6 +114,16 @@ logs-nginx: ## Logs de Nginx
 logs-frontend: ## Logs du frontend
 	docker compose logs -f frontend
 
+# Lint & format
+lint:
+	bunx biome check .
+
+lint-fix:
+	bunx biome check --write .
+
+format:
+	bunx biome format --write .
+
 # =========================
 # Shell interactif
 # =========================

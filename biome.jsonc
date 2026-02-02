@@ -1,0 +1,77 @@
+// biome.jsonc
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+
+  // Fichiers à traiter
+  "files": {
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/build",
+      "!**/drizzle/migrations",
+      "!**/*.min.js",
+      "!**/coverage",
+    ],
+  },
+
+  // Formatter global
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+  },
+
+  // JavaScript / TypeScript
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "trailingCommas": "es5",
+      "arrowParentheses": "always",
+    },
+  },
+
+  // JSON (pas de trailing commas en JSON standard)
+  "json": {
+    "formatter": {
+      "indentWidth": 2,
+      "trailingCommas": "none",
+    },
+  },
+
+  // Linter
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "error",
+        "noUnusedImports": "error",
+      },
+      "style": {
+        "noNonNullAssertion": "warn",
+        "useConst": "error",
+        "useTemplate": "warn",
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noConsole": "warn",
+      },
+    },
+  },
+
+  // Assist (remplace organizeImports)
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+        },
+      },
+    },
+  },
+}
