@@ -6,7 +6,9 @@ export const Route = createFileRoute('/signup')({
 })
 
 function RouteComponent() {
-    return <div>
-      <SignupPage/>
-  </div>
+  return (
+    <div>
+      <SignupPage />
+    </div>
+  )
 }

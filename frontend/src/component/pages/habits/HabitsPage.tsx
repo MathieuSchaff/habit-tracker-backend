@@ -1,3 +1,1 @@
-export const HabitsPage = () => {
-
-}
+export const HabitsPage = () => {}

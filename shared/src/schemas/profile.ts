@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const profileUpdateSchema = z
   .object({
@@ -6,6 +6,6 @@ export const profileUpdateSchema = z
     bio: z.string().max(500).optional(),
     avatarUrl: z.url().optional(),
   })
-  .strict();
+  .strict()
 
-export type ProfileUpdateInput = z.infer<typeof profileUpdateSchema>;
+export type ProfileUpdateInput = z.infer<typeof profileUpdateSchema>

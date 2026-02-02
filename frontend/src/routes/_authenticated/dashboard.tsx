@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute("/_authenticated/dashboard")({
+export const Route = createFileRoute('/_authenticated/dashboard')({
   component: DashboardPage,
-});
+})
 
 function DashboardPage() {
   return (
@@ -10,5 +10,5 @@ function DashboardPage() {
       <h1>Dashboard</h1>
       <p>Tu es connecté ! 🎉</p>
     </div>
-  );
+  )
 }

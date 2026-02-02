@@ -1,10 +1,10 @@
-import "./Spinner.css";
-import clsx from "clsx";
+import './Spinner.css'
+import clsx from 'clsx'
 
 type SpinnerProps = {
-  className?: string;
-};
+  className?: string
+}
 
 export const Spinner = ({ className }: SpinnerProps) => {
-  return <span className={clsx("spinner", className)} />;
-};
+  return <span className={clsx('spinner', className)} />
+}

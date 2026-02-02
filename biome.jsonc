@@ -12,6 +12,7 @@
       "!**/drizzle/migrations",
       "!**/*.min.js",
       "!**/coverage",
+      "!**/*.gen.ts",
     ],
   },
 
