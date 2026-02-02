@@ -3,12 +3,13 @@ import { Button } from "../../Button/Button";
 import { Input } from "../../Input/Input";
 import { AuthLayout } from "../../Layout/AuthLayout/AuthLayout";
 import "./LoginPage.css";
-import { useMutation } from "@tanstack/react-query";
-import type { LoginResponse, LoginErrorCode } from "@habit-tracker/shared";
+import type {  LoginErrorCode } from "@habit-tracker/shared";
 import { authSchema, type AuthInput } from "@habit-tracker/shared";
-import { useNavigate } from "@tanstack/react-router";
+import {  useNavigate } from "@tanstack/react-router";
 import z from "zod"
 import type {ZodFieldErrors} from "@habit-tracker/shared"
+import { useLogin } from "../../../lib/queries/auth";
+import { useQueryClient } from "@tanstack/react-query";
 //  erreurs dans le formulaire
 
 type FieldErrors = Partial<Record<keyof AuthInput | "form", string>>;
@@ -19,45 +20,12 @@ const errorMessages: Record<LoginErrorCode, string> = {
   server_error: "Erreur serveur, réessayez plus tard",
 };
 
-async function login(data: AuthInput): Promise<LoginResponse> {
-  const res = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify(data),
-  });
-  return res.json();
-}
 
 export const LoginPage = () => {
   const [errors, setErrors] = useState<FieldErrors>({});
   const navigate = useNavigate();
-
-  const loginMutation = useMutation({
-      mutationFn: login,
-      onSuccess: (res) => {
-        if (res.success) {
-          navigate({ to: "/dashboard" });
-        } else {
-          // Si c'est une erreur de validation avec details
-            if (res.error === "invalid_input" && res.details) {
-              // https://zod.dev/error-formatting
-              // si erreur est invalid input on va regarder quels sont les erreurs
-                // email ou password pas bien formaté
-              // const fe = (res.details as { fieldErrors: Record<string, string[]> }).fieldErrors;
-
-            const { fieldErrors } = res.details as { fieldErrors: ZodFieldErrors };
-            setErrors({
-              email: fieldErrors.email?.[0],
-              password: fieldErrors.password?.[0],
-            });
-          } else {
-            setErrors({ form: errorMessages[res.error] ?? "Erreur inconnue" });
-          }
-        }
-      },
-  });
-
+const login = useLogin()
+const queryClient = useQueryClient()
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget));
@@ -73,7 +41,28 @@ export const LoginPage = () => {
     }
 
     setErrors({});
-    loginMutation.mutate(result.data);
+      login.mutate(result.data, {
+          onSuccess: (res) => {
+              if (res.success) {
+                queryClient.invalidateQueries({ queryKey: ["session"] });
+                  queryClient.invalidateQueries({ queryKey: ["auth"] });
+                navigate({to: "/dashboard"})
+              } else {
+                  if (res.error === "invalid_input" && res.details) {
+                    // https://zod.dev/error-formatting
+                    // si erreur est invalid input on va regarder quels sont les erreurs
+                    // email ou password pas bien formaté
+                  const { fieldErrors } = res.details as { fieldErrors: ZodFieldErrors };
+                  setErrors({
+                    email: fieldErrors.email?.[0],
+                    password: fieldErrors.password?.[0],
+                  });
+                } else {
+                  setErrors({ form: errorMessages[res.error] ?? "Erreur inconnue" });
+                }
+             }
+        }
+    });
   };
   return (
     <AuthLayout
@@ -106,15 +95,15 @@ export const LoginPage = () => {
           error={errors.password}
         />
 
-        <a href="/forgot-password" className="login-forgot">
+        {/*<Link to="/forgot-password" className="login-forgot">
           Mot de passe oublié ?
-        </a>
+        </Link>*/}
 
         <Button
           type="submit"
           fullWidth
           variant="primary"
-          disabled={loginMutation.isPending}
+          disabled={login.isPending}
         >
             {/*{loginMutation.isPending ? "Connexion..." : "Se connecter"}*/}
             Se connecter
