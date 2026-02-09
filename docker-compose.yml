@@ -8,116 +8,119 @@
 # Aucun fichier sur l'ordinateur hôte, a part la config nginx
 #
 services:
-    # =========================
-    # Base de données PostgreSQL
-    # PostgreSQL 16 serveur
-    # Ca crée un volume appelé pgdata qui contient les fichiers de la db
-    # Est monté dans /var/lib/docker/volumes sur l'ordi
-    # =========================
-    db:
-        image: postgres:16 # On télécharge l'image officielle de PostgreSQL version 16
-        container_name: app_db
-        # Au final : DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
-        environment:
-            POSTGRES_USER: app
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            POSTGRES_DB: appdb
-        volumes:
-            - pgdata:/var/lib/postgresql/data
-        healthcheck:
-            test: ["CMD-SHELL", "pg_isready -U app -d appdb"]
-            interval: 5s
-            timeout: 3s
-            retries: 20
-        networks:
-            - appnet
+  # =========================
+  # Base de données PostgreSQL
+  # PostgreSQL 16 serveur
+  # Ca crée un volume appelé pgdata qui contient les fichiers de la db
+  # Est monté dans /var/lib/docker/volumes sur l'ordi
+  # =========================
+  db:
+    image: postgres:16 # On télécharge l'image officielle de PostgreSQL version 16
+    container_name: app_db
+    # Au final : DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: appdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d appdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks:
+      - appnet
 
-    # =========================
-    # API Backend (Bun + Hono)
-    # ca cherche un fichier : backend/Dockerfile
-    # et build une image à partir de ça
-    #
-    # =========================
-    api:
-        container_name: app_api
-        build:
-            context: .
-            dockerfile: backend/Dockerfile
-        depends_on:
-            db:
-                condition: service_healthy # Attends que la DB soit "en forme" avant de démarrer
-        environment:
-            DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
-        networks:
-            - appnet
+  # =========================
+  # API Backend (Bun + Hono)
+  # ca cherche un fichier : backend/Dockerfile
+  # et build une image à partir de ça
+  #
+  # =========================
+  api:
+    container_name: app_api
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy # Attends que la DB soit "en forme" avant de démarrer
+    environment:
+      DATABASE_URL: postgres://app:${POSTGRES_PASSWORD}@db:5432/appdb
+      JWT_SECRET: ${JWT_SECRET}
+      REFRESH_SECRET: ${REFRESH_SECRET}
 
-    # =========================
-    # Frontend React (Vite)
-    # ca cherche un fichier : frontend/Dockerfile
-    #
-    # =========================
-    frontend:
-        container_name: app_frontend
-        build:
-            context: .
-            dockerfile: frontend/Dockerfile
-        depends_on:
-            - api # On a besoin de l'API pour que le site serve à quelque chose
-        networks:
-            - appnet
+    networks:
+      - appnet
 
-    # =========================
-    # Reverse Proxy (Nginx)
-    # =========================
-    nginx:
-        image: nginx:1.27-alpine
-        container_name: app_nginx
-        restart: unless-stopped
-        depends_on:
-            - api
-            - frontend
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - ./nginx/conf.d:/etc/nginx/conf.d:ro
-            - certbot_data:/etc/letsencrypt
-            - certbot_www:/var/www/certbot
-        networks:
-            - appnet
+  # =========================
+  # Frontend React (Vite)
+  # ca cherche un fichier : frontend/Dockerfile
+  #
+  # =========================
+  frontend:
+    container_name: app_frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - api # On a besoin de l'API pour que le site serve à quelque chose
+    networks:
+      - appnet
 
-    # =========================
-    # Certbot (Let's Encrypt)
-    # =========================
-    certbot:
-        image: certbot/certbot
-        container_name: app_certbot
-        restart: unless-stopped
-        volumes:
-            - certbot_data:/etc/letsencrypt
-            - certbot_www:/var/www/certbot
-        entrypoint: /bin/sh
-        command: >
-            -c "trap exit TERM;
-                while :;
-                do
-                  certbot renew;
-                  sleep 12h & wait $${!};
-                done;"
-        networks:
-            - appnet
+  # =========================
+  # Reverse Proxy (Nginx)
+  # =========================
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: app_nginx
+    restart: unless-stopped
+    depends_on:
+      - api
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    networks:
+      - appnet
+
+  # =========================
+  # Certbot (Let's Encrypt)
+  # =========================
+  certbot:
+    image: certbot/certbot
+    container_name: app_certbot
+    restart: unless-stopped
+    volumes:
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    entrypoint: /bin/sh
+    command: >
+      -c "trap exit TERM;
+          while :;
+          do
+            certbot renew;
+            sleep 12h & wait $${!};
+          done;"
+    networks:
+      - appnet
 
 # =========================
 # Volumes persistants
 # =========================
 volumes:
-    pgdata:
-    certbot_data:
-    certbot_www:
+  pgdata:
+  certbot_data:
+  certbot_www:
 
 # =========================
 # Réseau Docker privé
 # =========================
 networks:
-    appnet:
-        driver: bridge
+  appnet:
+    driver: bridge
