@@ -1,7 +1,9 @@
 import { z } from 'zod'
 
+//  Validation Schemas
+
 export const authSchema = z.object({
-  email: z.email().trim().toLowerCase(),
+  email: z.string().trim().toLowerCase().email(),
   password: z
     .string()
     .min(8, 'Minimum 8 caractères')
@@ -10,21 +12,23 @@ export const authSchema = z.object({
     .regex(/[A-Z]/, 'Au moins une majuscule')
     .regex(/[0-9]/, 'Au moins un chiffre'),
 })
-export const UserPublicSchema = z.object({
+
+export const loginSchema = authSchema
+
+export const signupSchema = authSchema
+
+export const userPublicSchema = z.object({
   id: z.string(),
   email: z.email(),
 })
+
+//  Inferred Types
+
 export type AuthInput = z.infer<typeof authSchema>
 
-// quand je flatten une erreur ça renvoie par ex:
-// {
-// formErrors: [ 'Unrecognized key: "extraKey"' ],
-// fieldErrors: {
-//   username: [ 'Invalid input: expected string, received number' ],
-//   favoriteNumbers: [ 'Invalid input: expected number, received string' ]
-// }
-// Moi je renvoie une réponse de type err(, mais j'ajoute les détails avec flattenError)
-export type ZodFieldErrors = {
+//  Validation Error Types
+
+export type AuthFieldErrors = {
   email?: string[]
   password?: string[]
 }
