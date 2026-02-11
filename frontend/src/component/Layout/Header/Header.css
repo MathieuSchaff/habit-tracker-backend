@@ -1,0 +1,166 @@
+@layer components {
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: var(--space-4) var(--space-6);
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 3.05rem;
+    height: 100dvh;
+    background-color: var(--accent-95);
+    overflow: hidden;
+    padding: var(--space-2);
+    transition: width var(--transition-base, 0.3s);
+    z-index: var(--z-nav, 100);
+  }
+  .main-nav--open {
+    width: 10rem;
+  }
+
+  .main-nav__header {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+
+  .main-nav--open .main-nav__header {
+    justify-content: space-between;
+  }
+  .main-nav__title {
+    margin: 0;
+    color: var(--primary-40);
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    text-box-trim: trim-start;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+
+    transition:
+      max-width 0.15s ease-out,
+      opacity 0.15s ease-out,;
+  }
+  /* a relire si problèmes
+https://medium.com/@meyerweb/what-is-the-css-ch-unit-20b999426ac0*/
+  .main-nav--open .main-nav__title {
+    max-width: 15ch;
+    opacity: 1;
+  }
+
+  .main-nav__toggle {
+    color: var(--primary-40);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm, 0.25rem);
+    cursor: pointer;
+    transition:
+      background-color var(--transition-fast, 0.15s),
+      rotateY var(--transition-base, 0.2s);
+  }
+  .main-nav--open .main-nav__toggle {
+    transform: rotateY(180deg);
+    margin-right: 0.5rem;
+  }
+  .main-nav__toggle:hover {
+    background-color: var(--bg-muted);
+  }
+
+  .main-nav__toggle:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .main-nav__list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    row-gap: 0.3rem;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+    padding-top: 1rem;
+  }
+
+  .main-nav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    color: var(--primary-40);
+    font-size: var(--text-sm);
+    /*font-weight: var(--font-medium);*/
+    text-decoration: none;
+    line-height: 1.25rem;
+    border-radius: 0.375rem;
+    corner-shape: round;
+    transition:
+      color var(--transition-fast, 0.15s) ease,
+      background-color var(--transition-fast, 0.15s) ease;
+  }
+
+  .main-nav__link:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-muted);
+  }
+
+  .main-nav__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm, 0.25rem);
+  }
+
+  .main-nav__icon {
+    flex-shrink: 0;
+  }
+  .main-nav__label {
+    width: 0;
+    opacity: 0;
+    transition:
+      width var(--transition-fast, 0, 15s) ease,
+      opacity var(--transition-fast 0, 15s) ease;
+  }
+  .main-nav--open .main-nav__label {
+    width: auto;
+    opacity: 1;
+  }
+  .secondary-nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .secondary-nav__link {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: color var(--transition-fast, 0.15s) ease;
+  }
+
+  .secondary-nav__link:hover {
+    color: var(--text-primary);
+  }
+
+  .secondary-nav__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm, 0.25rem);
+  }
+
+  .secondary-nav__logout {
+    font-size: var(--text-sm);
+  }
+}
