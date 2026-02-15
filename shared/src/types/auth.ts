@@ -47,7 +47,7 @@ export type LoginResult = ApiResponse<AuthenticatedResult, 'invalid_credentials'
 
 // Refresh
 export type RefreshResult = ApiResponse<
-  AuthTokens,
+  AuthenticatedResult,
   'invalid_token' | 'session_expired' | 'missing_refresh_token' | 'server_error'
 >
 
