@@ -1,4 +1,5 @@
 import './Spinner.css'
+
 import clsx from 'clsx'
 
 type SpinnerProps = {
