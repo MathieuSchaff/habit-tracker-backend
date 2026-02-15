@@ -1,0 +1,14 @@
+.app-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 3.05rem 1fr;
+  grid-template-rows: 60px 1fr;
+  grid-template-areas:
+    "nav-side nav-top"
+    "nav-side content";
+  background-color: var(--bg-page);
+}
+.content {
+  grid-area: content;
+  /*padding: 2rem;*/
+}

@@ -1,21 +1,22 @@
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { Home, ListChecks, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
+import { Home, ListChecks, PanelLeftOpen } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { useClickOutside } from '../../../hooks/useClickOutside'
-import { authQueries, useLogout } from '../../../lib/queries/auth'
+import { useLogout } from '../../../lib/queries/auth'
+import { useAuthStore } from '../../../store/auth'
 import { Button } from '../../Button/Button'
+import { AuroreLogo } from '../../Logo/Logo'
+import { ThemeToggle } from '../../Themetoggle/Themetoggle'
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const navigate = useNavigate()
 
-  const { data: session } = useQuery(authQueries.session())
+  const isAuthenticated = useAuthStore((state) => !!state.accessToken)
   const logout = useLogout()
-
-  const isAuthenticated = session?.data?.authenticated
 
   const closeMenu = () => setIsOpen(false)
   const toggleMenu = () => setIsOpen((prev) => !prev)
@@ -39,7 +40,11 @@ export const Header = () => {
         aria-label="Navigation principale"
       >
         <div className="main-nav__header">
-          <h2 className="main-nav__title">Aurore</h2>
+          {/*<h2 className="main-nav__title">Aurore</h2>*/}
+          <div className="main-nav__logo">
+            <AuroreLogo size={40} />
+          </div>
+
           <button
             type="button"
             className="main-nav__toggle"
@@ -48,7 +53,7 @@ export const Header = () => {
             aria-controls="main-nav-list"
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
-            <PanelLeftOpen size={18} />
+            <PanelLeftOpen />
           </button>
         </div>
 
@@ -68,9 +73,11 @@ export const Header = () => {
           </li>
         </ul>
       </nav>
-
-      <nav aria-label="Navigation secondaire">
+      <nav className="nav-secondary" aria-label="Navigation secondaire">
         <ul className="secondary-nav__list">
+          <li>
+            <ThemeToggle />
+          </li>
           {isAuthenticated ? (
             <>
               <li>
