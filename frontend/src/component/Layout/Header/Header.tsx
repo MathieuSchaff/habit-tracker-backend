@@ -1,6 +1,5 @@
-// import { useQuery } from '@tanstack/react-query'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { Home, ListChecks, PanelLeftOpen } from 'lucide-react'
+import { PanelLeftOpen } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { useClickOutside } from '../../../hooks/useClickOutside'
@@ -8,6 +7,7 @@ import { useLogout } from '../../../lib/queries/auth'
 import { useAuthStore } from '../../../store/auth'
 import { Button } from '../../Button/Button'
 import { AuroreLogo } from '../../Logo/Logo'
+import { NavSideList } from '../../Nav/NavItem/NavItem'
 import { ThemeToggle } from '../../Themetoggle/Themetoggle'
 
 export const Header = () => {
@@ -40,7 +40,6 @@ export const Header = () => {
         aria-label="Navigation principale"
       >
         <div className="main-nav__header">
-          {/*<h2 className="main-nav__title">Aurore</h2>*/}
           <div className="main-nav__logo">
             <AuroreLogo size={40} />
           </div>
@@ -53,25 +52,10 @@ export const Header = () => {
             aria-controls="main-nav-list"
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
-            <PanelLeftOpen />
+            <PanelLeftOpen size={18} />
           </button>
         </div>
-
-        <ul id="main-nav-list" className="main-nav__list">
-          <li>
-            <Link to="/" onClick={closeMenu} className="main-nav__link">
-              <Home size={15} className="main-nav__icon" aria-hidden="true" />
-              <span className="main-nav__label">Accueil</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/habits" onClick={closeMenu} className="main-nav__link">
-              <ListChecks size={15} className="main-nav__icon" aria-hidden="true" />
-
-              <span className="main-nav__label">Habitudes</span>
-            </Link>
-          </li>
-        </ul>
+        <NavSideList onItemClick={closeMenu} />
       </nav>
       <nav className="nav-secondary" aria-label="Navigation secondaire">
         <ul className="secondary-nav__list">
@@ -97,11 +81,19 @@ export const Header = () => {
               </li>
             </>
           ) : (
-            <li>
-              <Link to="/login" onClick={closeMenu} className="secondary-nav__link">
-                Connexion
-              </Link>
-            </li>
+            <>
+              {' '}
+              <li>
+                <Link to="/login" onClick={closeMenu} className="secondary-nav__link">
+                  Connexion
+                </Link>
+              </li>
+              <li>
+                <Link to="/signup" onClick={closeMenu} className="secondary-nav__cta">
+                  S'inscrire
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </nav>

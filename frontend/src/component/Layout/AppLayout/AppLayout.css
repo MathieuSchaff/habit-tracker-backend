@@ -1,14 +1,18 @@
 .app-layout {
   min-height: 100dvh;
-  display: grid;
-  grid-template-columns: 3.05rem 1fr;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas:
-    "nav-side nav-top"
-    "nav-side content";
+  display: flex;
+  flex-direction: column;
   background-color: var(--bg-page);
 }
+
 .content {
-  grid-area: content;
-  /*padding: 2rem;*/
+  padding: 1rem;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .app-layout {
+    padding-left: var(--nav-collapsed, 3.05rem);
+    transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
