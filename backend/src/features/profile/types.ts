@@ -1,15 +1,14 @@
-import { profiles } from '../../db/schema/users'
-import type { InferSelectModel, InferInsertModel } from 'drizzle-orm'
+import type { InferInsertModel, InferSelectModel } from 'drizzle-orm'
 
-// Ré-export depuis shared pour usage local
+import type { profiles } from '../../db/schema/users'
+
 export {
-  type ProfilePublic,
-  type ProfileErrorCode,
   type MeResponse,
+  type ProfileErrorCode,
+  type ProfilePublic,
   profileErrorMapping,
 } from '@habit-tracker/shared'
-
-// Types Drizzle (restent dans backend)
+// restent dans backend
 export type Profile = InferSelectModel<typeof profiles>
 export type NewProfile = InferInsertModel<typeof profiles>
 export type PublicProfile = Omit<Profile, 'userId'>
