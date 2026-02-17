@@ -1,6 +1,6 @@
 import type { ApiResponse, CommonErrorCode, HttpStatus } from './api'
-import type { AuthErrorCode } from './auth'
 import { HTTP_STATUS } from './api'
+import type { AuthErrorCode } from './auth'
 
 export type ProfilePublic = {
   userId: string
@@ -9,8 +9,8 @@ export type ProfilePublic = {
   lastName?: string | null
   bio?: string | null
   avatarUrl?: string | null
-  createdAt?: Date | null
-  updatedAt?: Date | null
+  createdAt?: string | null
+  updatedAt?: string | null
 }
 
 export type ProfileErrorCode =
