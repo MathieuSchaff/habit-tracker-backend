@@ -2,6 +2,15 @@ import { afterAll, beforeAll, beforeEach } from 'bun:test'
 
 import { sql } from 'drizzle-orm'
 
+// import {
+//   habitChecks,
+//   habitFrequencies,
+//   habitPeriods,
+//   habitReminders,
+//   habits,
+//   habitTimings,
+//   users,
+// } from '../db/schema'
 import { closeTestDb, testDb } from './db.test.config'
 import { cleanDatabase } from './helpers/db-cleaner'
 
@@ -20,6 +29,13 @@ beforeAll(async () => {
 
 // Avant chaque test : vider la DB
 beforeEach(async () => {
+  // await testDb.delete(habitChecks)
+  // await testDb.delete(habitTimings)
+  // await testDb.delete(habitReminders)
+  // await testDb.delete(habitPeriods)
+  // await testDb.delete(habitFrequencies)
+  // await testDb.delete(habits)
+  // await testDb.delete(users)
   await cleanDatabase()
 })
 
