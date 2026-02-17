@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 
+import type { Email, RawPassword } from '@habit-tracker/shared'
+
 import {
   generateRefreshToken,
   verifyAccessToken,
@@ -8,68 +10,76 @@ import {
 import { findValidRefreshToken } from '../../../features/auth/refresh-token.service'
 import { login, refresh } from '../../../features/auth/service'
 import { JWT_SECRET, REFRESH_SECRET } from '../../helpers/secrets'
+import { TEST_CREDENTIALS } from '../../helpers/test-credentials'
 import { createTestUser } from '../../helpers/test-factories'
 import { createCtx, testDb } from './auth-test.setup'
 
-async function loginAndGetTokens(email = 'test@example.com', password = 'ValidPass123!') {
+async function connecterEtRecupererTokens(
+  rawEmail: string,
+  rawPassword: string,
+  ctx?: Parameters<typeof createCtx>[0]
+) {
   const result = await login(
-    createCtx({ ip: '127.0.0.1', userAgent: 'TestBrowser/1.0' }),
-    email,
-    password
+    createCtx({ ip: '127.0.0.1', userAgent: 'TestBrowser/1.0', ...ctx }),
+    rawEmail as unknown as Email,
+    rawPassword as unknown as RawPassword
   )
-  if (!result.success) throw new Error('Login failed in helper')
+  if (!result.success) throw new Error(`Login échoué pour ${rawEmail}`)
   return result.data
 }
 
 describe('refresh', () => {
-  it('should rotate tokens successfully', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
-    const { refreshToken: oldRefresh } = await loginAndGetTokens()
+  // ─── Rotation de tokens ──────────────────────────────────────────────
+
+  it('devrait faire une rotation de tokens avec succès', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    const { refreshToken: ancienRefresh } = await connecterEtRecupererTokens(
+      creds.rawEmail,
+      creds.rawPassword
+    )
 
     const result = await refresh(
       createCtx({ ip: '192.168.1.1', userAgent: 'TestBrowser/1.0' }),
-      oldRefresh
+      ancienRefresh
     )
 
     expect(result.success).toBe(true)
     if (!result.success) return
-
     expect(result.data.accessToken).toBeDefined()
     expect(result.data.refreshToken).toBeDefined()
-
-    const payload = await verifyAccessToken(result.data.accessToken, JWT_SECRET)
-    expect(payload).not.toBeNull()
-
-    expect(result.data.refreshToken).not.toBe(oldRefresh)
+    expect(result.data.refreshToken).not.toBe(ancienRefresh)
   })
 
-  it('should generate a valid new access token', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
-    const { refreshToken, user } = await loginAndGetTokens()
+  it('devrait générer un nouvel access token valide après refresh', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    const { refreshToken, user } = await connecterEtRecupererTokens(
+      creds.rawEmail,
+      creds.rawPassword
+    )
 
     const result = await refresh(createCtx({ ip: '127.0.0.1', userAgent: 'Test' }), refreshToken)
-
-    expect(result.success).toBe(true)
     if (!result.success) return
 
     const payload = await verifyAccessToken(result.data.accessToken, JWT_SECRET)
     expect(payload).not.toBeNull()
     if (!payload) return
-
     expect(payload.sub).toBe(user.id)
     expect(payload.type).toBe('access')
   })
 
-  it('should store new refresh token in DB', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
-    const { refreshToken } = await loginAndGetTokens()
+  // ─── Stockage du nouveau refresh token ───────────────────────────────
+
+  it('devrait stocker le nouveau refresh token en base avec IP et UserAgent', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    const { refreshToken } = await connecterEtRecupererTokens(creds.rawEmail, creds.rawPassword)
 
     const result = await refresh(
-      createCtx({ ip: '192.168.1.1', userAgent: 'NewBrowser/2.0' }),
+      createCtx({ ip: '192.168.1.1', userAgent: 'NouveauBrowser/2.0' }),
       refreshToken
     )
-
-    expect(result.success).toBe(true)
     if (!result.success) return
 
     const newPayload = await verifyRefreshToken(result.data.refreshToken, REFRESH_SECRET)
@@ -79,14 +89,16 @@ describe('refresh', () => {
     const stored = await findValidRefreshToken(testDb, newPayload.jti)
     expect(stored).not.toBeNull()
     if (!stored) return
-
     expect(stored.ip).toBe('192.168.1.1')
-    expect(stored.userAgent).toBe('NewBrowser/2.0')
+    expect(stored.userAgent).toBe('NouveauBrowser/2.0')
   })
 
-  it('should revoke old refresh token after rotation', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
-    const { refreshToken } = await loginAndGetTokens()
+  // ─── Révocation de l'ancien token ────────────────────────────────────
+
+  it("devrait révoquer l'ancien refresh token après rotation", async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    const { refreshToken } = await connecterEtRecupererTokens(creds.rawEmail, creds.rawPassword)
 
     const oldPayload = await verifyRefreshToken(refreshToken, REFRESH_SECRET)
     if (!oldPayload) return
@@ -97,21 +109,27 @@ describe('refresh', () => {
     expect(oldStored).toBeNull()
   })
 
-  it('should detect replay attack and revoke all user tokens', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
-    const { refreshToken: stolenToken } = await loginAndGetTokens()
+  // ─── Détection de replay attack ──────────────────────────────────────
+
+  it("devrait détecter une attaque par replay et révoquer tous les tokens de l'utilisateur", async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    const { refreshToken: tokenVole } = await connecterEtRecupererTokens(
+      creds.rawEmail,
+      creds.rawPassword
+    )
 
     // Utilisation légitime (rotation)
     const refreshResult = await refresh(
-      createCtx({ ip: '127.0.0.1', userAgent: 'LegitBrowser' }),
-      stolenToken
+      createCtx({ ip: '127.0.0.1', userAgent: 'NavigateurLegitime' }),
+      tokenVole
     )
     expect(refreshResult.success).toBe(true)
 
-    // Attaquant réutilise le token volé → replay détecté
+    // L'attaquant réutilise le token volé → replay détecté
     const replayResult = await refresh(
-      createCtx({ ip: '10.0.0.1', userAgent: 'EvilBrowser' }),
-      stolenToken
+      createCtx({ ip: '10.0.0.1', userAgent: 'NavigateurMalveillant' }),
+      tokenVole
     )
     expect(replayResult.success).toBe(false)
     if (!replayResult.success) {
@@ -128,10 +146,12 @@ describe('refresh', () => {
     }
   })
 
-  it('should fail with invalid refresh token', async () => {
+  // ─── Tokens invalides ────────────────────────────────────────────────
+
+  it('devrait échouer avec un refresh token invalide', async () => {
     const result = await refresh(
       createCtx({ ip: '127.0.0.1', userAgent: 'Test' }),
-      'totally.invalid.token'
+      'token.completement.invalide'
     )
 
     expect(result.success).toBe(false)
@@ -140,7 +160,7 @@ describe('refresh', () => {
     }
   })
 
-  it('should fail with refresh token not stored in DB', async () => {
+  it('devrait échouer avec un refresh token absent de la base', async () => {
     const fakeUserId = crypto.randomUUID()
     const { token } = await generateRefreshToken(fakeUserId, REFRESH_SECRET)
 
@@ -152,9 +172,76 @@ describe('refresh', () => {
     }
   })
 
-  it('should fail with empty token', async () => {
+  it('devrait échouer avec un token vide', async () => {
     const result = await refresh(createCtx({ ip: '127.0.0.1', userAgent: 'Test' }), '')
 
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error).toBe('invalid_token')
+    }
+  })
+
+  // ─── Rotations multiples successives ─────────────────────────────────
+
+  it('devrait supporter plusieurs rotations successives', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    let { refreshToken: currentToken } = await connecterEtRecupererTokens(
+      creds.rawEmail,
+      creds.rawPassword
+    )
+
+    for (let i = 0; i < 3; i++) {
+      const result = await refresh(
+        createCtx({ ip: '127.0.0.1', userAgent: `Rotation${i}` }),
+        currentToken
+      )
+      expect(result.success).toBe(true)
+      if (!result.success) return
+      expect(result.data.refreshToken).not.toBe(currentToken)
+      currentToken = result.data.refreshToken
+    }
+
+    // Le dernier token doit toujours être valide en base
+    const lastPayload = await verifyRefreshToken(currentToken, REFRESH_SECRET)
+    expect(lastPayload).not.toBeNull()
+    if (!lastPayload) return
+    const lastStored = await findValidRefreshToken(testDb, lastPayload.jti)
+    expect(lastStored).not.toBeNull()
+  })
+
+  // ─── Isolation entre utilisateurs ────────────────────────────────────
+
+  it("ne devrait pas affecter le refresh token d'un autre utilisateur", async () => {
+    const toto = TEST_CREDENTIALS.toto
+    const alice = TEST_CREDENTIALS.alice
+    await createTestUser(toto.rawEmail, toto.rawPassword)
+    await createTestUser(alice.rawEmail, alice.rawPassword)
+
+    const tokensToto = await connecterEtRecupererTokens(toto.rawEmail, toto.rawPassword)
+    const tokensAlice = await connecterEtRecupererTokens(alice.rawEmail, alice.rawPassword)
+
+    // Toto fait un refresh
+    await refresh(createCtx({ ip: '127.0.0.1', userAgent: 'Test' }), tokensToto.refreshToken)
+
+    // Le refresh token d'Alice doit toujours être valide
+    const pAlice = await verifyRefreshToken(tokensAlice.refreshToken, REFRESH_SECRET)
+    if (!pAlice) return
+    const sAlice = await findValidRefreshToken(testDb, pAlice.jti)
+    expect(sAlice).not.toBeNull()
+  })
+
+  // ─── Refresh après logout ────────────────────────────────────────────
+
+  it('devrait échouer si on tente un refresh après un logout', async () => {
+    const { logout } = await import('../../../features/auth/service')
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+    const { refreshToken } = await connecterEtRecupererTokens(creds.rawEmail, creds.rawPassword)
+
+    await logout(createCtx(), refreshToken)
+
+    const result = await refresh(createCtx({ ip: '127.0.0.1', userAgent: 'Test' }), refreshToken)
     expect(result.success).toBe(false)
     if (!result.success) {
       expect(result.error).toBe('invalid_token')

@@ -1,7 +1,9 @@
-import { beforeAll, afterAll, beforeEach } from 'bun:test'
-import { testDb, closeTestDb } from './db.test.config'
-import { cleanDatabase } from './helpers/db-cleaner'
+import { afterAll, beforeAll, beforeEach } from 'bun:test'
+
 import { sql } from 'drizzle-orm'
+
+import { closeTestDb, testDb } from './db.test.config'
+import { cleanDatabase } from './helpers/db-cleaner'
 
 // Avant tous les tests : vérifier que la connexion fonctionne
 beforeAll(async () => {

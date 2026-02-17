@@ -1,23 +1,9 @@
 import { beforeEach, describe, expect, it } from 'bun:test'
-import { Hono } from 'hono'
-import { AppEnv } from '../../app-env'
-import { testDb } from '../db.test.config'
-import { habits } from '../../features/habits/routes'
-import { authRoutes } from '../../features/auth'
-function createTestApp() {
-  const app = new Hono<AppEnv>()
 
-  app.use('*', async (c, next) => {
-    c.set('db', testDb)
-    c.set('env', 'development')
-    await next()
-  })
-  app.route('/auth', authRoutes)
+import type { Hono } from 'hono'
 
-  app.route('/habits', habits)
-
-  return app
-}
+import type { AppEnv } from '../../app-env'
+import { createTestApp } from './createTestApp'
 
 describe('Habits routes', () => {
   let app: Hono<AppEnv>
@@ -34,7 +20,7 @@ describe('Habits routes', () => {
         password: 'TestPass123!',
       }),
     })
-
+    // biome-ignore lint: testing
     cookie = res.headers.get('set-cookie')!
   })
 

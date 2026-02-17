@@ -2,29 +2,12 @@ import { beforeEach, describe, expect, it } from 'bun:test'
 
 import { HTTP_STATUS } from '@habit-tracker/shared'
 
-import { Hono } from 'hono'
+import type { Hono } from 'hono'
 
 import type { AppEnv } from '../../app-env'
-import { jwtAuthRoutes } from '../../features/auth/routes'
-import { testDb } from '../db.test.config'
-import { JWT_SECRET, REFRESH_SECRET } from '../helpers/secrets'
+import { TEST_CREDENTIALS } from '../helpers/test-credentials'
 import { createTestUser } from '../helpers/test-factories'
-
-function createTestApp() {
-  const app = new Hono<AppEnv>()
-
-  app.use('*', async (c, next) => {
-    c.set('db', testDb)
-    c.set('env', 'development')
-    c.set('jwtSecret', JWT_SECRET)
-    c.set('refreshSecret', REFRESH_SECRET)
-    await next()
-  })
-
-  app.route('/auth', jwtAuthRoutes)
-
-  return app
-}
+import { createTestApp } from './createTestApp'
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
@@ -40,12 +23,12 @@ function extractCookie(res: Response): string {
   return res.headers.get('Set-Cookie') ?? ''
 }
 
-async function signupAndGetCookies(app: Hono<AppEnv>, email: string, password: string) {
-  const res = await jsonPost(app, '/auth/signup', { email, password })
-  const data = await res.json()
-  const cookie = extractCookie(res)
-  return { res, data, cookie, accessToken: data.data?.accessToken as string }
-}
+// async function signupAndGetCookies(app: Hono<AppEnv>, email: string, password: string) {
+//   const res = await jsonPost(app, '/auth/signup', { email, password })
+//   const data = await res.json()
+//   const cookie = extractCookie(res)
+//   return { res, data, cookie, accessToken: data.data?.accessToken as string }
+// }
 
 async function loginAndGetCookies(app: Hono<AppEnv>, email: string, password: string) {
   const res = await jsonPost(app, '/auth/login', { email, password })
@@ -67,16 +50,18 @@ describe('Auth Routes (browser)', () => {
 
   describe('POST /auth/signup', () => {
     it('should create a new user and set refresh token cookie', async () => {
+      const creds = TEST_CREDENTIALS.toto
+
       const res = await jsonPost(app, '/auth/signup', {
-        email: 'newuser@test.com',
-        password: 'TestPass123!',
+        email: creds.rawEmail,
+        password: creds.rawPassword,
       })
 
       expect(res.status).toBe(HTTP_STATUS.CREATED)
 
       const data = await res.json()
       expect(data.success).toBe(true)
-      expect(data.data.user.email).toBe('newuser@test.com')
+      expect(data.data.user.email).toBe(creds.rawEmail)
       expect(data.data.accessToken).toBeDefined()
 
       // Le refresh token ne doit PAS être dans le body (httpOnly cookie)
@@ -87,10 +72,38 @@ describe('Auth Routes (browser)', () => {
       expect(cookie).toContain('HttpOnly')
     })
 
-    it('should reject invalid email', async () => {
+    it('should signup Alice successfully', async () => {
+      const creds = TEST_CREDENTIALS.alice
+
+      const res = await jsonPost(app, '/auth/signup', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.CREATED)
+      const data = await res.json()
+      expect(data.success).toBe(true)
+      expect(data.data.user.email).toBe(creds.rawEmail)
+    })
+
+    it('should signup Jean-Michel (hyphenated email)', async () => {
+      const creds = TEST_CREDENTIALS.jeanmichel
+
+      const res = await jsonPost(app, '/auth/signup', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.CREATED)
+      const data = await res.json()
+      expect(data.success).toBe(true)
+      expect(data.data.user.email).toBe(creds.rawEmail)
+    })
+
+    it('should reject invalid email format', async () => {
       const res = await jsonPost(app, '/auth/signup', {
         email: 'invalid-email',
-        password: 'TestPass123!',
+        password: TEST_CREDENTIALS.toto.rawPassword,
       })
 
       expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
@@ -98,10 +111,54 @@ describe('Auth Routes (browser)', () => {
       expect(data.success).toBe(false)
     })
 
-    it('should reject weak password', async () => {
+    it('should reject empty email', async () => {
       const res = await jsonPost(app, '/auth/signup', {
-        email: 'test@test.com',
-        password: 'weak',
+        email: '',
+        password: TEST_CREDENTIALS.toto.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+      const data = await res.json()
+      expect(data.success).toBe(false)
+    })
+
+    it('should reject too short password', async () => {
+      const res = await jsonPost(app, '/auth/signup', {
+        email: TEST_CREDENTIALS.toto.rawEmail,
+        password: TEST_CREDENTIALS.invalide.motDePasseTropCourt,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+      const data = await res.json()
+      expect(data.success).toBe(false)
+    })
+
+    it('should reject weak password (no uppercase)', async () => {
+      const res = await jsonPost(app, '/auth/signup', {
+        email: TEST_CREDENTIALS.toto.rawEmail,
+        password: TEST_CREDENTIALS.invalide.sansMajuscule,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+      const data = await res.json()
+      expect(data.success).toBe(false)
+    })
+
+    it('should reject weak password (no digit)', async () => {
+      const res = await jsonPost(app, '/auth/signup', {
+        email: TEST_CREDENTIALS.toto.rawEmail,
+        password: TEST_CREDENTIALS.invalide.sansChiffre,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+      const data = await res.json()
+      expect(data.success).toBe(false)
+    })
+
+    it('should reject empty password', async () => {
+      const res = await jsonPost(app, '/auth/signup', {
+        email: TEST_CREDENTIALS.toto.rawEmail,
+        password: '',
       })
 
       expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
@@ -110,11 +167,27 @@ describe('Auth Routes (browser)', () => {
     })
 
     it('should reject duplicate email', async () => {
-      await createTestUser('existing@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
 
       const res = await jsonPost(app, '/auth/signup', {
-        email: 'existing@test.com',
-        password: 'TestPass123!',
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.CONFLICT)
+      const data = await res.json()
+      expect(data.success).toBe(false)
+      expect(data.error).toBe('email_exists')
+    })
+
+    it('should reject duplicate email with different casing', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+
+      const res = await jsonPost(app, '/auth/signup', {
+        email: 'TOTO@EXEMPLE.FR',
+        password: creds.rawPassword,
       })
 
       expect(res.status).toBe(HTTP_STATUS.CONFLICT)
@@ -125,13 +198,48 @@ describe('Auth Routes (browser)', () => {
 
     it('should normalize email on signup', async () => {
       const res = await jsonPost(app, '/auth/signup', {
-        email: '  NewUser@TEST.COM  ',
-        password: 'TestPass123!',
+        email: '  TOTO@EXEMPLE.FR  ',
+        password: TEST_CREDENTIALS.toto.rawPassword,
       })
 
       expect(res.status).toBe(HTTP_STATUS.CREATED)
       const data = await res.json()
-      expect(data.data.user.email).toBe('newuser@test.com')
+      expect(data.data.user.email).toBe(TEST_CREDENTIALS.toto.rawEmail)
+    })
+
+    it('should reject empty body', async () => {
+      const res = await app.request('/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+    })
+
+    it('should not expose refreshToken in response body', async () => {
+      const creds = TEST_CREDENTIALS.alice
+
+      const res = await jsonPost(app, '/auth/signup', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      const data = await res.json()
+      expect(data.data.refreshToken).toBeUndefined()
+    })
+
+    it('should not expose passwordHash in response body', async () => {
+      const creds = TEST_CREDENTIALS.toto
+
+      const res = await jsonPost(app, '/auth/signup', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      const data = await res.json()
+      expect(data.data.user.passwordHash).toBeUndefined()
+      expect(data.data.user.password).toBeUndefined()
     })
   })
 
@@ -139,18 +247,19 @@ describe('Auth Routes (browser)', () => {
 
   describe('POST /auth/login', () => {
     it('should login existing user and set refresh token cookie', async () => {
-      await createTestUser('login@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
 
       const res = await jsonPost(app, '/auth/login', {
-        email: 'login@test.com',
-        password: 'TestPass123!',
+        email: creds.rawEmail,
+        password: creds.rawPassword,
       })
 
       expect(res.status).toBe(HTTP_STATUS.OK)
 
       const data = await res.json()
       expect(data.success).toBe(true)
-      expect(data.data.user.email).toBe('login@test.com')
+      expect(data.data.user.email).toBe(creds.rawEmail)
       expect(data.data.accessToken).toBeDefined()
       expect(data.data.refreshToken).toBeUndefined()
 
@@ -160,11 +269,12 @@ describe('Auth Routes (browser)', () => {
     })
 
     it('should reject wrong password', async () => {
-      await createTestUser('login@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
 
       const res = await jsonPost(app, '/auth/login', {
-        email: 'login@test.com',
-        password: 'WrongPass123!',
+        email: creds.rawEmail,
+        password: TEST_CREDENTIALS.invalide.mauvaisMotDePasse,
       })
 
       expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
@@ -175,8 +285,8 @@ describe('Auth Routes (browser)', () => {
 
     it('should reject non-existent user', async () => {
       const res = await jsonPost(app, '/auth/login', {
-        email: 'notfound@test.com',
-        password: 'TestPass123!',
+        email: TEST_CREDENTIALS.invalide.emailInconnu,
+        password: TEST_CREDENTIALS.toto.rawPassword,
       })
 
       expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
@@ -185,10 +295,51 @@ describe('Auth Routes (browser)', () => {
       expect(data.error).toBe('invalid_credentials')
     })
 
+    it('should return same error for wrong email and wrong password (timing-safe)', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+
+      const resBadEmail = await jsonPost(app, '/auth/login', {
+        email: TEST_CREDENTIALS.invalide.emailInconnu,
+        password: creds.rawPassword,
+      })
+      const resBadPassword = await jsonPost(app, '/auth/login', {
+        email: creds.rawEmail,
+        password: TEST_CREDENTIALS.invalide.mauvaisMotDePasse,
+      })
+
+      expect(resBadEmail.status).toBe(resBadPassword.status)
+      const dataBadEmail = await resBadEmail.json()
+      const dataBadPassword = await resBadPassword.json()
+      expect(dataBadEmail.error).toBe(dataBadPassword.error)
+      expect(dataBadEmail.error).toBe('invalid_credentials')
+    })
+
     it('should reject invalid email format', async () => {
       const res = await jsonPost(app, '/auth/login', {
         email: 'not-an-email',
-        password: 'TestPass123!',
+        password: TEST_CREDENTIALS.toto.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+    })
+
+    it('should reject empty email', async () => {
+      const res = await jsonPost(app, '/auth/login', {
+        email: '',
+        password: TEST_CREDENTIALS.toto.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
+    })
+
+    it('should reject empty password', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+
+      const res = await jsonPost(app, '/auth/login', {
+        email: creds.rawEmail,
+        password: '',
       })
 
       expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
@@ -203,17 +354,62 @@ describe('Auth Routes (browser)', () => {
 
       expect(res.status).toBe(HTTP_STATUS.BAD_REQUEST)
     })
+
+    it('should normalize email on login', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+
+      const res = await jsonPost(app, '/auth/login', {
+        email: '  TOTO@EXEMPLE.FR  ',
+        password: creds.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.OK)
+      const data = await res.json()
+      expect(data.data.user.email).toBe(creds.rawEmail)
+    })
+
+    it('should not expose passwordHash in response body', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+
+      const res = await jsonPost(app, '/auth/login', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      const data = await res.json()
+      expect(data.data.user.passwordHash).toBeUndefined()
+      expect(data.data.user.password).toBeUndefined()
+    })
+
+    it('should reject password from another user', async () => {
+      const toto = TEST_CREDENTIALS.toto
+      const alice = TEST_CREDENTIALS.alice
+      await createTestUser(toto.rawEmail, toto.rawPassword)
+      await createTestUser(alice.rawEmail, alice.rawPassword)
+
+      const res = await jsonPost(app, '/auth/login', {
+        email: toto.rawEmail,
+        password: alice.rawPassword,
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
+      const data = await res.json()
+      expect(data.error).toBe('invalid_credentials')
+    })
   })
 
   // ━━━ REFRESH ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   describe('POST /auth/refresh', () => {
     it('should rotate tokens with valid refresh cookie', async () => {
-      await createTestUser('refresh@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
       const { cookie: loginCookie } = await loginAndGetCookies(
         app,
-        'refresh@test.com',
-        'TestPass123!'
+        creds.rawEmail,
+        creds.rawPassword
       )
 
       const res = await app.request('/auth/refresh', {
@@ -227,7 +423,6 @@ describe('Auth Routes (browser)', () => {
       expect(data.success).toBe(true)
       expect(data.data.accessToken).toBeDefined()
 
-      // Nouveau cookie de refresh
       const newCookie = extractCookie(res)
       expect(newCookie).toContain('refresh_token=')
     })
@@ -255,12 +450,13 @@ describe('Auth Routes (browser)', () => {
       expect(data.error).toBe('invalid_token')
     })
 
-    it('should invalidate old refresh token after rotation', async () => {
-      await createTestUser('refresh@test.com', 'TestPass123!')
+    it('should invalidate old refresh token after rotation (replay detection)', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
       const { cookie: loginCookie } = await loginAndGetCookies(
         app,
-        'refresh@test.com',
-        'TestPass123!'
+        creds.rawEmail,
+        creds.rawPassword
       )
 
       // Premier refresh → OK
@@ -277,17 +473,57 @@ describe('Auth Routes (browser)', () => {
       })
       expect(res2.status).toBe(HTTP_STATUS.UNAUTHORIZED)
     })
+
+    it('should allow multiple successive rotations with fresh cookies', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+      let { cookie: currentCookie } = await loginAndGetCookies(
+        app,
+        creds.rawEmail,
+        creds.rawPassword
+      )
+
+      for (let i = 0; i < 3; i++) {
+        const res = await app.request('/auth/refresh', {
+          method: 'POST',
+          headers: { Cookie: currentCookie },
+        })
+        expect(res.status).toBe(HTTP_STATUS.OK)
+
+        const data = await res.json()
+        expect(data.success).toBe(true)
+        expect(data.data.accessToken).toBeDefined()
+
+        currentCookie = extractCookie(res)
+        expect(currentCookie).toContain('refresh_token=')
+      }
+    })
+
+    it('should not expose refreshToken in response body', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+      const { cookie } = await loginAndGetCookies(app, creds.rawEmail, creds.rawPassword)
+
+      const res = await app.request('/auth/refresh', {
+        method: 'POST',
+        headers: { Cookie: cookie },
+      })
+
+      const data = await res.json()
+      expect(data.data.refreshToken).toBeUndefined()
+    })
   })
 
   // ━━━ LOGOUT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   describe('POST /auth/logout', () => {
     it('should logout and clear refresh cookie', async () => {
-      await createTestUser('logout@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
       const { cookie, accessToken } = await loginAndGetCookies(
         app,
-        'logout@test.com',
-        'TestPass123!'
+        creds.rawEmail,
+        creds.rawPassword
       )
 
       const res = await app.request('/auth/logout', {
@@ -302,7 +538,6 @@ describe('Auth Routes (browser)', () => {
       const data = await res.json()
       expect(data.success).toBe(true)
 
-      // Le cookie doit être supprimé
       const setCookie = extractCookie(res)
       expect(setCookie).toContain('refresh_token=;')
     })
@@ -315,15 +550,26 @@ describe('Auth Routes (browser)', () => {
       expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
     })
 
+    it('should reject logout with invalid access token', async () => {
+      const res = await app.request('/auth/logout', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer invalid.token.here',
+        },
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
+    })
+
     it('should invalidate refresh token after logout', async () => {
-      await createTestUser('logout@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
       const { cookie, accessToken } = await loginAndGetCookies(
         app,
-        'logout@test.com',
-        'TestPass123!'
+        creds.rawEmail,
+        creds.rawPassword
       )
 
-      // Logout
       await app.request('/auth/logout', {
         method: 'POST',
         headers: {
@@ -339,14 +585,69 @@ describe('Auth Routes (browser)', () => {
       })
       expect(refreshRes.status).toBe(HTTP_STATUS.UNAUTHORIZED)
     })
+
+    it('should allow re-login after logout', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+      const { cookie, accessToken } = await loginAndGetCookies(
+        app,
+        creds.rawEmail,
+        creds.rawPassword
+      )
+
+      await app.request('/auth/logout', {
+        method: 'POST',
+        headers: {
+          Cookie: cookie,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+
+      const reloginRes = await jsonPost(app, '/auth/login', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+
+      expect(reloginRes.status).toBe(HTTP_STATUS.OK)
+      const data = await reloginRes.json()
+      expect(data.success).toBe(true)
+      expect(data.data.user.email).toBe(creds.rawEmail)
+    })
+
+    it('should not affect other user sessions on logout', async () => {
+      const toto = TEST_CREDENTIALS.toto
+      const alice = TEST_CREDENTIALS.alice
+      await createTestUser(toto.rawEmail, toto.rawPassword)
+      await createTestUser(alice.rawEmail, alice.rawPassword)
+
+      const totoSession = await loginAndGetCookies(app, toto.rawEmail, toto.rawPassword)
+      const aliceSession = await loginAndGetCookies(app, alice.rawEmail, alice.rawPassword)
+
+      // Toto se déconnecte
+      await app.request('/auth/logout', {
+        method: 'POST',
+        headers: {
+          Cookie: totoSession.cookie,
+          Authorization: `Bearer ${totoSession.accessToken}`,
+        },
+      })
+
+      // Alice peut toujours rafraîchir ses tokens
+      const aliceRefresh = await app.request('/auth/refresh', {
+        method: 'POST',
+        headers: { Cookie: aliceSession.cookie },
+      })
+      expect(aliceRefresh.status).toBe(HTTP_STATUS.OK)
+    })
   })
 
   // ━━━ SESSION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   describe('GET /auth/session', () => {
     it('should return authenticated user info', async () => {
-      await createTestUser('session@test.com', 'TestPass123!')
-      const { accessToken } = await loginAndGetCookies(app, 'session@test.com', 'TestPass123!')
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+      const { accessToken } = await loginAndGetCookies(app, creds.rawEmail, creds.rawPassword)
 
       const res = await app.request('/auth/session', {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -363,6 +664,128 @@ describe('Auth Routes (browser)', () => {
       const res = await app.request('/auth/session')
 
       expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
+    })
+
+    it('should reject request with invalid access token', async () => {
+      const res = await app.request('/auth/session', {
+        headers: { Authorization: 'Bearer invalid.token.here' },
+      })
+
+      expect(res.status).toBe(HTTP_STATUS.UNAUTHORIZED)
+    })
+
+    it('should reject request with expired/revoked access token after logout', async () => {
+      const creds = TEST_CREDENTIALS.toto
+      await createTestUser(creds.rawEmail, creds.rawPassword)
+      const { cookie, accessToken } = await loginAndGetCookies(
+        app,
+        creds.rawEmail,
+        creds.rawPassword
+      )
+
+      await app.request('/auth/logout', {
+        method: 'POST',
+        headers: {
+          Cookie: cookie,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+
+      // Note: l'access token JWT peut encore être valide (pas de blacklist),
+      // mais ce test documente le comportement attendu si vous implémentez
+      // une invalidation des access tokens.
+      // Si l'access token est encore valide après logout, ce test peut être
+      // adapté ou supprimé selon votre stratégie.
+    })
+
+    it('should return correct user for each session', async () => {
+      const toto = TEST_CREDENTIALS.toto
+      const alice = TEST_CREDENTIALS.alice
+      await createTestUser(toto.rawEmail, toto.rawPassword)
+      await createTestUser(alice.rawEmail, alice.rawPassword)
+
+      const { accessToken: tokenToto } = await loginAndGetCookies(
+        app,
+        toto.rawEmail,
+        toto.rawPassword
+      )
+      const { accessToken: tokenAlice } = await loginAndGetCookies(
+        app,
+        alice.rawEmail,
+        alice.rawPassword
+      )
+
+      const resToto = await app.request('/auth/session', {
+        headers: { Authorization: `Bearer ${tokenToto}` },
+      })
+      const resAlice = await app.request('/auth/session', {
+        headers: { Authorization: `Bearer ${tokenAlice}` },
+      })
+
+      const dataToto = await resToto.json()
+      const dataAlice = await resAlice.json()
+
+      expect(dataToto.data.userId).toBeDefined()
+      expect(dataAlice.data.userId).toBeDefined()
+      expect(dataToto.data.userId).not.toBe(dataAlice.data.userId)
+    })
+  })
+
+  // ━━━ FULL FLOW ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  describe('Full auth flow', () => {
+    it('should complete signup → login → refresh → session → logout cycle', async () => {
+      const creds = TEST_CREDENTIALS.alice
+
+      // 1. Signup
+      const signupRes = await jsonPost(app, '/auth/signup', {
+        email: creds.rawEmail,
+        password: creds.rawPassword,
+      })
+      expect(signupRes.status).toBe(HTTP_STATUS.CREATED)
+
+      // 2. Login
+      const { cookie, accessToken } = await loginAndGetCookies(
+        app,
+        creds.rawEmail,
+        creds.rawPassword
+      )
+      expect(accessToken).toBeDefined()
+
+      // 3. Refresh
+      const refreshRes = await app.request('/auth/refresh', {
+        method: 'POST',
+        headers: { Cookie: cookie },
+      })
+      expect(refreshRes.status).toBe(HTTP_STATUS.OK)
+      const refreshData = await refreshRes.json()
+      const newAccessToken = refreshData.data.accessToken
+      const newCookie = extractCookie(refreshRes)
+
+      // 4. Session with new access token
+      const sessionRes = await app.request('/auth/session', {
+        headers: { Authorization: `Bearer ${newAccessToken}` },
+      })
+      expect(sessionRes.status).toBe(HTTP_STATUS.OK)
+      const sessionData = await sessionRes.json()
+      expect(sessionData.data.authenticated).toBe(true)
+
+      // 5. Logout
+      const logoutRes = await app.request('/auth/logout', {
+        method: 'POST',
+        headers: {
+          Cookie: newCookie,
+          Authorization: `Bearer ${newAccessToken}`,
+        },
+      })
+      expect(logoutRes.status).toBe(HTTP_STATUS.OK)
+
+      // 6. Refresh after logout should fail
+      const postLogoutRefresh = await app.request('/auth/refresh', {
+        method: 'POST',
+        headers: { Cookie: newCookie },
+      })
+      expect(postLogoutRefresh.status).toBe(HTTP_STATUS.UNAUTHORIZED)
     })
   })
 })

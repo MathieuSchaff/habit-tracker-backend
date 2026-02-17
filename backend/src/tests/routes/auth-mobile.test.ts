@@ -2,29 +2,11 @@ import { beforeEach, describe, expect, it } from 'bun:test'
 
 import { HTTP_STATUS } from '@habit-tracker/shared'
 
-import { Hono } from 'hono'
+import type { Hono } from 'hono'
 
 import type { AppEnv } from '../../app-env'
-import { jwtAuthRoutes } from '../../features/auth/routes'
-import { testDb } from '../db.test.config'
-import { JWT_SECRET, REFRESH_SECRET } from '../helpers/secrets'
 import { createTestUser } from '../helpers/test-factories'
-
-function createTestApp() {
-  const app = new Hono<AppEnv>()
-
-  app.use('*', async (c, next) => {
-    c.set('db', testDb)
-    c.set('env', 'development')
-    c.set('jwtSecret', JWT_SECRET)
-    c.set('refreshSecret', REFRESH_SECRET)
-    await next()
-  })
-
-  app.route('/auth', jwtAuthRoutes)
-
-  return app
-}
+import { createTestApp } from './createTestApp'
 
 //  Helpers
 

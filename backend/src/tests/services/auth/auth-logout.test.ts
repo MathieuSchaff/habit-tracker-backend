@@ -4,14 +4,18 @@ import { verifyRefreshToken } from '../../../features/auth/jwt.utils'
 import { findValidRefreshToken } from '../../../features/auth/refresh-token.service'
 import { login, logout } from '../../../features/auth/service'
 import { REFRESH_SECRET } from '../../helpers/secrets'
+import { TEST_CREDENTIALS } from '../../helpers/test-credentials'
 import { createTestUser } from '../../helpers/test-factories'
 import { createCtx, testDb } from './auth-test.setup'
 
 describe('logout', () => {
-  it('should revoke refresh token on logout', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
+  // ─── Déconnexion réussie ─────────────────────────────────────────────
 
-    const loginResult = await login(createCtx(), 'test@example.com', 'ValidPass123!')
+  it('devrait révoquer le refresh token au logout', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+
+    const loginResult = await login(createCtx(), creds.email, creds.password)
     expect(loginResult.success).toBe(true)
     if (!loginResult.success) return
 
@@ -25,10 +29,13 @@ describe('logout', () => {
     expect(stored).toBeNull()
   })
 
-  it('should handle double logout gracefully', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
+  // ─── Double logout ───────────────────────────────────────────────────
 
-    const loginResult = await login(createCtx(), 'test@example.com', 'ValidPass123!')
+  it('devrait gérer un double logout gracieusement', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+
+    const loginResult = await login(createCtx(), creds.email, creds.password)
     expect(loginResult.success).toBe(true)
     if (!loginResult.success) return
 
@@ -39,28 +46,33 @@ describe('logout', () => {
     expect(result2.success).toBe(true)
   })
 
-  it('should handle logout with invalid token', async () => {
-    const result = await logout(createCtx(), 'invalid.token.here')
+  // ─── Tokens invalides / vides ────────────────────────────────────────
+
+  it('devrait gérer un logout avec un token invalide', async () => {
+    const result = await logout(createCtx(), 'token.completement.invalide')
     expect(result.success).toBe(true)
   })
 
-  it('should handle logout with empty token', async () => {
+  it('devrait gérer un logout avec un token vide', async () => {
     const result = await logout(createCtx(), '')
     expect(result.success).toBe(true)
   })
 
-  it('should not affect other sessions on single logout', async () => {
-    await createTestUser('test@example.com', 'ValidPass123!')
+  // ─── Isolation des sessions ──────────────────────────────────────────
+
+  it("ne devrait pas affecter les autres sessions au logout d'un seul appareil", async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
 
     const login1 = await login(
-      createCtx({ ip: '192.168.1.1', userAgent: 'Device1' }),
-      'test@example.com',
-      'ValidPass123!'
+      createCtx({ ip: '192.168.1.1', userAgent: 'Appareil1' }),
+      creds.email,
+      creds.password
     )
     const login2 = await login(
-      createCtx({ ip: '192.168.1.2', userAgent: 'Device2' }),
-      'test@example.com',
-      'ValidPass123!'
+      createCtx({ ip: '192.168.1.2', userAgent: 'Appareil2' }),
+      creds.email,
+      creds.password
     )
 
     expect(login1.success).toBe(true)
@@ -69,10 +81,56 @@ describe('logout', () => {
 
     await logout(createCtx(), login1.data.refreshToken)
 
+    const p1 = await verifyRefreshToken(login1.data.refreshToken, REFRESH_SECRET)
     const p2 = await verifyRefreshToken(login2.data.refreshToken, REFRESH_SECRET)
-    if (!p2) return
 
+    if (p1) {
+      const s1 = await findValidRefreshToken(testDb, p1.jti)
+      expect(s1).toBeNull()
+    }
+
+    if (!p2) return
     const s2 = await findValidRefreshToken(testDb, p2.jti)
     expect(s2).not.toBeNull()
+  })
+
+  it("ne devrait pas affecter les sessions d'un autre utilisateur", async () => {
+    const toto = TEST_CREDENTIALS.toto
+    const alice = TEST_CREDENTIALS.alice
+    await createTestUser(toto.rawEmail, toto.rawPassword)
+    await createTestUser(alice.rawEmail, alice.rawPassword)
+
+    const loginToto = await login(createCtx(), toto.email, toto.password)
+    const loginAlice = await login(createCtx(), alice.email, alice.password)
+
+    expect(loginToto.success).toBe(true)
+    expect(loginAlice.success).toBe(true)
+    if (!loginToto.success || !loginAlice.success) return
+
+    await logout(createCtx(), loginToto.data.refreshToken)
+
+    const pAlice = await verifyRefreshToken(loginAlice.data.refreshToken, REFRESH_SECRET)
+    if (!pAlice) return
+    const sAlice = await findValidRefreshToken(testDb, pAlice.jti)
+    expect(sAlice).not.toBeNull()
+  })
+
+  // ─── Login après logout ──────────────────────────────────────────────
+
+  it('devrait pouvoir se reconnecter après un logout', async () => {
+    const creds = TEST_CREDENTIALS.toto
+    await createTestUser(creds.rawEmail, creds.rawPassword)
+
+    const loginResult = await login(createCtx(), creds.email, creds.password)
+    if (!loginResult.success) return
+
+    await logout(createCtx(), loginResult.data.refreshToken)
+
+    const reloginResult = await login(createCtx(), creds.email, creds.password)
+    expect(reloginResult.success).toBe(true)
+    if (!reloginResult.success) return
+    expect(reloginResult.data.user.email).toBe(creds.rawEmail)
+    expect(reloginResult.data.accessToken).toBeDefined()
+    expect(reloginResult.data.refreshToken).toBeDefined()
   })
 })

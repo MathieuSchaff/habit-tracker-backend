@@ -1,13 +1,21 @@
-import { describe, it, expect, beforeEach } from 'bun:test'
-import { testDb } from '../../db.test.config'
-import { createTestUser } from '../../helpers/test-factories'
-import { createTestHabit } from '../../helpers/habit-helpers'
-import { createHabit, getHabitById, getUserHabits } from '../../../features/habits/service'
-import type { CreateHabitInput } from '../../../features/habits/validation'
+import { beforeEach, describe, expect, it } from 'bun:test'
+
 import { eq } from 'drizzle-orm'
+
 import { habits } from '../../../db/schema/habits'
+import {
+  createHabit,
+  getHabitById,
+  getUserHabits,
+  HabitError,
+} from '../../../features/habits/service'
+import type { CreateHabitInput } from '../../../features/habits/validation'
+import { testDb } from '../../db.test.config'
+import { createTestHabit } from '../../helpers/habit-helpers'
+import { createTestUser } from '../../helpers/test-factories'
 
 describe('Habits Reading', () => {
+  // biome-ignore lint: testing
   let user: any
 
   beforeEach(async () => {
@@ -15,10 +23,17 @@ describe('Habits Reading', () => {
   })
 
   describe('getHabitById', () => {
-    it("returns null if the ID doesn't exist", async () => {
+    it("should throw an error(habits_not_found) if the ID doesn't exist", async () => {
       const fakeId = crypto.randomUUID()
-      const res = await getHabitById(fakeId, testDb)
-      expect(res).toBeNull()
+      // ca doit throw une habit error
+      try {
+        await getHabitById(fakeId, testDb)
+        throw new Error('should have thrown')
+      } catch (e) {
+        expect(e).toBeInstanceOf(HabitError)
+        expect((e as HabitError).code).toBe('habit_not_found')
+      }
+      expect(getHabitById(fakeId, testDb)).rejects.toThrow(HabitError)
     })
 
     it('fetches a habit with all its nested relations', async () => {
@@ -57,7 +72,7 @@ describe('Habits Reading', () => {
     })
 
     it("doesn't leak habits from other users", async () => {
-      const stranger = await createTestUser({ email: 'toto@test.com' })
+      const stranger = await createTestUser('toto@test.com')
 
       await createTestHabit(user.id, { name: 'Ma tâche' })
       await createTestHabit(stranger.id, { name: 'Autre tâche' })
