@@ -1,23 +1,24 @@
-import { eq, and, between, isNull, desc, asc, sql } from 'drizzle-orm'
 import { differenceInDays, startOfDay } from 'date-fns'
-import { db } from '../../db'
-import {
-  habits,
-  habitFrequencies,
-  habitTimings,
-  habitReminders,
-  habitPeriods,
-  habitChecks,
-  type Habit,
-  type HabitFrequency,
-  type HabitTiming,
-  type HabitReminder,
-  type HabitPeriod,
-  type HabitCheck,
-} from '../../db/schema/habits'
-import { type CreateHabitInput, type UpdateHabitInput } from './validation'
+import { and, asc, between, desc, eq, isNull, sql } from 'drizzle-orm'
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres'
-import * as schema from '../../db/schema'
+
+import { db } from '../../db'
+import type * as schema from '../../db/schema'
+import {
+  type Habit,
+  type HabitCheck,
+  type HabitFrequency,
+  type HabitPeriod,
+  type HabitReminder,
+  type HabitTiming,
+  habitChecks,
+  habitFrequencies,
+  habitPeriods,
+  habitReminders,
+  habits,
+  habitTimings,
+} from '../../db/schema/habits'
+import type { CreateHabitInput, UpdateHabitInput } from './validation'
 
 type Database = NodePgDatabase<typeof schema>
 

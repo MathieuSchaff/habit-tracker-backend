@@ -1,29 +1,29 @@
 import type {
   Habit,
-  HabitFrequency,
-  HabitTiming,
-  HabitReminder,
-  HabitPeriod,
   HabitCheck,
+  HabitFrequency,
+  HabitPeriod,
+  HabitReminder,
+  HabitTiming,
 } from '../../db/schema/habits'
 
 // Export des types Zod (inputs de validation)
 export type {
-  Frequency,
-  Timing,
-  Reminder,
-  Period,
-  CreateHabitInput,
-  UpdateHabitInput,
   CheckHabitInput,
-  ToggleCheckInput,
+  CreateHabitInput,
+  Frequency,
   GetHabitChecksQuery,
-  GetUserChecksQuery,
   GetHabitStatsQuery,
-  UpdateFrequencyInput,
-  SetTimingsInput,
-  SetRemindersInput,
+  GetUserChecksQuery,
+  Period,
+  Reminder,
   SetPeriodInput,
+  SetRemindersInput,
+  SetTimingsInput,
+  Timing,
+  ToggleCheckInput,
+  UpdateFrequencyInput,
+  UpdateHabitInput,
 } from './validation'
 
 // Types composés/enrichis
