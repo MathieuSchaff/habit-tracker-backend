@@ -1,5 +1,5 @@
-import type { ApiResponse, CommonErrorCode, HttpStatus } from './api'
-import { HTTP_STATUS } from './api'
+import { HTTP_STATUS } from '../helpers'
+import type { ApiResponse, CommonErrorCode, HttpStatus } from '../types/api'
 import type { AuthErrorCode } from './auth'
 
 export type ProfilePublic = {
