@@ -14,6 +14,7 @@ RUN bun install --frozen-lockfile
 # ---------- dev ----------
 FROM base AS dev
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/backend/node_modules ./backend/node_modules
 COPY backend/ ./backend/
 COPY shared/ ./shared/
 WORKDIR /app/backend
