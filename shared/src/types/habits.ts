@@ -1,23 +1,14 @@
-import type {
-  Habit,
-  HabitCheck,
-  HabitFrequency,
-  HabitPeriod,
-  HabitReminder,
-  HabitTiming,
-} from '../../../backend/src/db/schema'
-
-// Export des types Zod (inputs de validation)
 export type {
   CheckHabitInput,
   CreateHabitInput,
+  DateRangeQuery,
   Frequency,
-  GetHabitChecksQuery,
-  GetHabitStatsQuery,
   GetUserChecksQuery,
+  HabitProductInput,
   Period,
   Reminder,
   SetPeriodInput,
+  SetProductsInput,
   SetRemindersInput,
   SetTimingsInput,
   Timing,
@@ -26,7 +17,97 @@ export type {
   UpdateHabitInput,
 } from '../schemas/habits'
 
-// Types composés/enrichis
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+export type HabitCheckStatus = 'pending' | 'done' | 'skipped'
+
+// ─── Entity Types ─────────────────────────────────────────────────────────────
+// Types standalone mirrorant le schéma Drizzle.
+// Définis ici (pas importés du backend) pour garder shared indépendant de l'ORM.
+
+export type Habit = {
+  id: string
+  name: string
+  createdAt: Date
+  updatedAt: Date
+  userId: string
+  category: string
+  position: number
+  archivedAt: Date | null
+}
+
+export type HabitProduct = {
+  id: string
+  habitId: string
+  productId: string
+  /** Ex: "2 gouttes", "1 comprimé", "1 noisette" */
+  dosage: string | null
+  order: number
+  createdAt: Date
+}
+
+export type HabitFrequency = {
+  habitId: string
+  /** "daily" | "weekly" | "monthly" | "interval" */
+  type: string
+  intervalDays: number | null
+  daysOfWeek: number[] | null
+  daysOfMonth: number[] | null
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type HabitTiming = {
+  id: string
+  /** Résolu par l'API à partir du schedule — le front ne voit pas scheduleId */
+  habitId: string
+  /**
+   * Jour concerné, sémantique selon la fréquence :
+   * - weekly → 0-6 (lun-dim)
+   * - monthly → 1-31
+   * - daily/every_n_days → null
+   */
+  day: number | null
+  /** Format HH:MM */
+  time: string
+  label: string | null
+  createdAt: Date
+}
+
+export type HabitReminder = {
+  id: string
+  habitId: string
+  beforeMinutes: number
+  createdAt: Date
+}
+
+export type HabitPeriod = {
+  habitId: string
+  /** Format YYYY-MM-DD */
+  startDate: string
+  /** Format YYYY-MM-DD */
+  endDate: string
+  activeMonths: number[] | null
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type HabitCheck = {
+  id: string
+  userId: string
+  habitId: string
+  /** Format YYYY-MM-DD — date pour laquelle le check compte */
+  scheduledDate: string
+  timingId: string | null
+  /** Format HH:MM — heure réelle d'exécution */
+  actualTime: string | null
+  /** null si status !== 'done' */
+  completedAt: Date | null
+  status: HabitCheckStatus
+  createdAt: Date
+}
+
+// ─── Composed Types ───────────────────────────────────────────────────────────
 
 /**
  * Habitude avec toutes ses relations chargées.
@@ -41,6 +122,7 @@ export type HabitWithRelations = Habit & {
   timings: HabitTiming[]
   reminders: HabitReminder[]
   period: HabitPeriod | null
+  products: HabitProduct[]
 }
 
 /**
@@ -59,6 +141,14 @@ export type TodayHabit = {
 }
 
 /**
+ * Résultat du toggle check (POST /habits/:id/check).
+ */
+export type ToggleCheckResult = {
+  checked: boolean
+  check?: HabitCheck
+}
+
+/**
  * Statistiques agrégées d'une habitude sur une période donnée.
  *
  * @remarks
@@ -72,14 +162,15 @@ export type HabitStats = {
   completionRate: number
 }
 
+// ─── Error Codes ──────────────────────────────────────────────────────────────
+
 /**
  * Codes d'erreur spécifiques au domaine habits.
  *
  * @remarks
  * Ne pas étendre `CommonErrorCode` ici — les codes communs
  * (`unauthorized`, `server_error`, etc.) sont gérés au niveau du handler.
- * Voir `habitErrorToStatus` pour le mapping vers les status HTTP.
- * @see {@link habitErrorToStatus}
+ * @see {@link habitErrorMapping}
  */
 export type HabitErrorCode =
   | 'habit_not_found'
@@ -98,39 +189,8 @@ export type HabitErrorCode =
   | 'check_creation_failed'
   | 'check_not_found'
   | 'check_delete_failed'
-  | 'unauthorized_access' // 403 — l'habitude appartient à un autre userId
-  | 'invalid_date_range' // 400 — startDate > endDate dans les query params
-  | 'database_error' // 500 — erreur Drizzle non catchée spécifiquement
-
-/**
- * Mapping `HabitErrorCode` → status HTTP.
- *
- * @remarks
- * Utiliser avec `errorToStatus` depuis `@habit-tracker/shared/api`
- * plutôt que d'accéder directement à ce mapping dans les handlers.
- * @example
- * const status = habitErrorToStatus[error] ?? HTTP_STATUS.INTERNAL_SERVER_ERROR
- * return c.json(err(error), status)
- * @see {@link HabitErrorCode}
- */
-export const habitErrorToStatus = {
-  habit_not_found: 404,
-  habit_creation_failed: 500,
-  habit_update_failed: 500,
-  habit_delete_failed: 500,
-  frequency_update_failed: 500,
-  timing_not_found: 404,
-  timing_creation_failed: 500,
-  timing_delete_failed: 500,
-  reminder_not_found: 404,
-  reminder_creation_failed: 500,
-  reminder_delete_failed: 500,
-  period_update_failed: 500,
-  period_delete_failed: 500,
-  check_creation_failed: 500,
-  check_not_found: 404,
-  check_delete_failed: 500,
-  unauthorized_access: 403,
-  invalid_date_range: 400,
-  database_error: 500,
-} as const
+  | 'product_association_failed'
+  | 'product_not_found'
+  | 'unauthorized_access'
+  | 'invalid_date_range'
+  | 'database_error'
