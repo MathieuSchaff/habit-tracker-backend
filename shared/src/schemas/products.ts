@@ -1,25 +1,21 @@
 import { z } from 'zod'
-
-// ─── Primitives ──────────────────────────────────────────────────────────────
-
+import { fieldChangeSchema } from './common'
 const uuid = z.uuid()
-
-// ─── Input Schemas ───────────────────────────────────────────────────────────
 
 export const createProductSchema = z.object({
   name: z.string().min(1).max(200),
   brand: z.string().min(1).max(200).optional(),
   kind: z.string().min(1).max(100),
   unit: z.string().min(1).max(50),
-
-  // Contenance
+  slug: z.string().max(100).optional(),
+  inci: z.string().max(5000).optional(),
+  description: z.string().max(5000).optional(),
   totalAmount: z.number().int().min(1).optional(),
   amountUnit: z.string().min(1).max(50).optional(),
-
   url: z.url().max(2000).optional(),
   notes: z.string().max(5000).optional(),
   priceCents: z.number().int().min(0).optional(),
-  expiresAt: z.string().max(50).optional(), // format libre, nullable en DB
+  expiresAt: z.string().max(50).optional(),
 })
 
 export const updateProductSchema = z
@@ -28,6 +24,9 @@ export const updateProductSchema = z
     brand: z.string().min(1).max(200).nullable().optional(),
     kind: z.string().min(1).max(100).optional(),
     unit: z.string().min(1).max(50).optional(),
+    slug: z.string().max(100).optional(),
+    inci: z.string().max(5000).nullable().optional(),
+    description: z.string().max(5000).nullable().optional(),
     totalAmount: z.number().int().min(1).nullable().optional(),
     amountUnit: z.string().min(1).max(50).nullable().optional(),
     url: z.url().max(2000).nullable().optional(),
@@ -41,21 +40,16 @@ export const updateStockSchema = z.object({
   qty: z.number().int().min(0),
 })
 
-/** Payload pour POST /products/:id/collaborators */
-export const addCollaboratorSchema = z.object({
-  userId: uuid,
-  role: z.enum(['editor']).default('editor'),
-})
-
-// ─── Entity Response Schemas ─────────────────────────────────────────────────
-
 export const productResponseSchema = z.object({
   id: uuid,
   createdBy: uuid,
   name: z.string(),
+  slug: z.string(),
   brand: z.string().nullable(),
   kind: z.string(),
   unit: z.string(),
+  inci: z.string().nullable(),
+  description: z.string().nullable(),
   totalAmount: z.number().int().nullable(),
   amountUnit: z.string().nullable(),
   url: z.string().nullable(),
@@ -66,14 +60,6 @@ export const productResponseSchema = z.object({
   updatedAt: z.date(),
 })
 
-export const productCollaboratorResponseSchema = z.object({
-  id: uuid,
-  productId: uuid,
-  userId: uuid,
-  role: z.string(),
-  createdAt: z.date(),
-})
-
 export const productStockResponseSchema = z.object({
   id: uuid,
   userId: uuid,
@@ -82,14 +68,51 @@ export const productStockResponseSchema = z.object({
   updatedAt: z.date(),
 })
 
-export const productWithStockResponseSchema = productResponseSchema.extend({
-  stock: productStockResponseSchema.nullable(),
-  collaborators: z.array(productCollaboratorResponseSchema).optional(),
+export const productEditResponseSchema = z.object({
+  id: uuid,
+  productId: uuid,
+  editedBy: uuid,
+  changes: z.record(
+    z.string(),
+    z.object({
+      old: z.string().nullable(),
+      new: z.string().nullable(),
+    })
+  ),
+  summary: z.string().nullable(),
+  createdAt: z.date(),
 })
 
-// ─── Inferred Types ──────────────────────────────────────────────────────────
+export const productWithStockResponseSchema = productResponseSchema.extend({
+  stock: productStockResponseSchema.nullable(),
+})
 
+const editableProductFields = {
+  name: fieldChangeSchema(z.string()),
+  brand: fieldChangeSchema(z.string()),
+  kind: fieldChangeSchema(z.string()),
+  unit: fieldChangeSchema(z.string()),
+  slug: fieldChangeSchema(z.string()),
+  inci: fieldChangeSchema(z.string()),
+  description: fieldChangeSchema(z.string()),
+  totalAmount: fieldChangeSchema(z.number().int()),
+  amountUnit: fieldChangeSchema(z.string()),
+  url: fieldChangeSchema(z.url()),
+  notes: fieldChangeSchema(z.string()),
+  priceCents: fieldChangeSchema(z.number().int()),
+  expiresAt: fieldChangeSchema(z.string()),
+  updatedAt: fieldChangeSchema(z.iso.datetime()),
+}
+
+export const productChangesSchema = z
+  .object(editableProductFields)
+  .partial()
+  .refine((data) => Object.keys(data).length > 0, {
+    message: 'At least one field change is required',
+  })
+
+export type ProductChanges = z.infer<typeof productChangesSchema>
 export type CreateProductInput = z.infer<typeof createProductSchema>
 export type UpdateProductInput = z.infer<typeof updateProductSchema>
 export type UpdateStockInput = z.infer<typeof updateStockSchema>
-export type AddCollaboratorInput = z.infer<typeof addCollaboratorSchema>
+export type ProductEditResponseSchema = z.infer<typeof productEditResponseSchema>

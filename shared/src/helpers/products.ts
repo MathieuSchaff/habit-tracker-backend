@@ -1,4 +1,4 @@
-import type { HttpStatus } from '../types'
+import type { HttpStatus } from '../types/api'
 import type { ProductErrorCode } from '../types/products'
 import { HTTP_STATUS } from './constants'
 
@@ -18,9 +18,6 @@ export const productErrorMapping = {
   product_update_failed: HTTP_STATUS.INTERNAL_SERVER_ERROR,
   product_delete_failed: HTTP_STATUS.INTERNAL_SERVER_ERROR,
   product_already_exists: HTTP_STATUS.CONFLICT,
-  collaborator_add_failed: HTTP_STATUS.INTERNAL_SERVER_ERROR,
-  collaborator_remove_failed: HTTP_STATUS.INTERNAL_SERVER_ERROR,
-  collaborator_not_found: HTTP_STATUS.NOT_FOUND,
   stock_update_failed: HTTP_STATUS.INTERNAL_SERVER_ERROR,
   unauthorized_access: HTTP_STATUS.FORBIDDEN,
   database_error: HTTP_STATUS.INTERNAL_SERVER_ERROR,

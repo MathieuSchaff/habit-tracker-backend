@@ -1,35 +1,20 @@
-export type {
-  AddCollaboratorInput,
-  CreateProductInput,
-  UpdateProductInput,
-  UpdateStockInput,
-} from '../schemas/products'
-
-// ─── Entity Types ─────────────────────────────────────────────────────────────
-
-export const COLLABORATOR_ROLES = ['editor'] as const
-export type CollaboratorRole = (typeof COLLABORATOR_ROLES)[number]
-
-// ─── Product Type ─────────────────────────────────────────
+import type { FieldChange } from './common'
 
 export type Product = {
   id: string
   createdBy: string
   name: string
+  slug: string
   brand: string | null
   kind: string
   unit: string
 
-  // Détails produit
   inci: string | null
-  keyIngredients: string[] | null
   description: string | null
 
-  // Contenance
   totalAmount: number | null
   amountUnit: string | null
 
-  // Infos secondaires
   url: string | null
   notes: string | null
   priceCents: number | null
@@ -40,15 +25,6 @@ export type Product = {
   updatedAt: string | Date
 }
 
-// ─── Collaborator Type ────────────────────────────────────
-
-export type ProductCollaborator = {
-  id: string
-  productId: string
-  userId: string
-  role: CollaboratorRole
-  createdAt: string | Date
-}
 export type ProductStock = {
   id: string
   userId: string
@@ -56,24 +32,31 @@ export type ProductStock = {
   qty: number
   updatedAt: string | Date
 }
-// ─── Type Composé (pour le Frontend) ──────────────────────
 
 export type ProductWithStock = Product & {
   stock: ProductStock | null
-  collaborators?: ProductCollaborator[]
+}
+export type EditableProductKeys = Exclude<keyof Product, 'id' | 'createdBy' | 'createdAt' | 'slug'>
+
+export type ProductChanges = {
+  [K in EditableProductKeys]?: FieldChange<Product[K]>
 }
 
-// ─── Error Codes ──────────────────────────────────────────────────────────────
-
+export type ProductEdit = {
+  id: string
+  productId: string
+  editedBy: string
+  // changes: Record<string, { old: string | null; new: string | null }>
+  changes: ProductChanges
+  summary: string | null
+  createdAt: string | Date
+}
 export type ProductErrorCode =
   | 'product_not_found'
   | 'product_creation_failed'
   | 'product_update_failed'
   | 'product_delete_failed'
   | 'product_already_exists'
-  | 'collaborator_add_failed'
-  | 'collaborator_remove_failed'
-  | 'collaborator_not_found'
   | 'stock_update_failed'
   | 'unauthorized_access'
   | 'database_error'

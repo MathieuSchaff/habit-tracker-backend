@@ -1,4 +1,4 @@
-import type { HttpStatus } from '../types'
+import type { HttpStatus } from '../types/api'
 import type { HabitErrorCode } from '../types/habits'
 import { HTTP_STATUS } from './constants'
 

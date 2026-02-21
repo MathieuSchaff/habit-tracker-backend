@@ -1,4 +1,4 @@
-import type { baseErrorMapping, HTTP_STATUS } from '../helpers'
+import type { baseErrorMapping, HTTP_STATUS } from '../helpers/constants'
 // ─── API Response Types ──────────────────────────────────
 
 /**

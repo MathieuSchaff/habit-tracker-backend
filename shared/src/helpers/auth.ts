@@ -1,6 +1,10 @@
-import type { AuthErrorCode, HttpStatus } from '../types'
+import { HttpStatus } from '../types/api'
+import type { AuthErrorCode } from '../types/auth'
 import { HTTP_STATUS } from './constants'
 
+// POUR L'INSTANT je redéclare, car y'a un soucis dans les imports......
+// TODO: gérer ce prob
+// type HttpStatus2 = (typeof HTTP_STATUS)[keyof typeof HTTP_STATUS]
 /**
  * Mapping des codes d'erreur auth vers les status HTTP correspondants.
  *

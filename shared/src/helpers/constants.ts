@@ -1,4 +1,4 @@
-import type { HttpStatus } from '../types'
+import type { HttpStatus } from '../types/api'
 // ─── HTTP Status Codes ───────────────────────────────────
 
 /** Codes HTTP utilisés dans l'API. Utiliser ces constantes plutôt que des nombres littéraux. */

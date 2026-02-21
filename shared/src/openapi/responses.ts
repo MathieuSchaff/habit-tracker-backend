@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { ErrorResponseSchema, SuccessResponseSchema } from '../schemas'
+import { ErrorResponseSchema, SuccessResponseSchema } from '../schemas/api'
 // ─── OpenAPI Response Helpers ────────────────────────────
 
 /**

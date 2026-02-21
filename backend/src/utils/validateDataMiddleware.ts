@@ -1,6 +1,7 @@
+import { type ApiError, err, HTTP_STATUS } from '@habit-tracker/shared'
+
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
-import { err, HTTP_STATUS, type ApiError } from '@habit-tracker/shared'
 
 export type ValidationTarget = 'json' | 'query' | 'param' | 'form' | 'header'
 

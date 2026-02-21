@@ -1,4 +1,4 @@
-import type { ApiError, ApiResponse, ApiSuccess, CommonErrorCode, HttpStatus } from '../types'
+import type { ApiError, ApiResponse, ApiSuccess, CommonErrorCode, HttpStatus } from '../types/api'
 import { baseErrorMapping, HTTP_STATUS } from './constants'
 // ─── Response Factories ──────────────────────────────────
 

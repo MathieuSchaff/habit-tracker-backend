@@ -1,3 +1,7 @@
 export * from './habits'
 export * from './products'
+export * from './ingredients'
+export * from './product-ingredients'
+export * from './tags'
+export * from './user-bans'
 export * from './users'
