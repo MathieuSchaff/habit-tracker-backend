@@ -1,11 +1,11 @@
-// biome.jsonc
 {
   "$schema": "https://biomejs.dev/schemas/2.3.13/schema.json",
-
-  // Fichiers à traiter
   "files": {
     "includes": [
-      "**",
+      "biome.jsonc",
+      "backend/src/**",
+      "frontend/src/**",
+      "shared/src/**",
       "!**/node_modules",
       "!**/dist",
       "!**/build",
@@ -15,16 +15,12 @@
       "!**/*.gen.ts"
     ]
   },
-
-  // Formatter global
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 100
   },
-
-  // JavaScript / TypeScript
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
@@ -33,16 +29,12 @@
       "arrowParentheses": "always"
     }
   },
-
-  // JSON (pas de trailing commas en JSON standard)
   "json": {
     "formatter": {
       "indentWidth": 2,
       "trailingCommas": "none"
     }
   },
-
-  // Linter
   "linter": {
     "enabled": true,
     "rules": {
@@ -63,8 +55,6 @@
       }
     }
   },
-  // A voir la doc si problèmes d'imports pas beau
-  // https://biomejs.dev/assist/actions/organize-imports/
   "assist": {
     "enabled": true,
     "actions": {

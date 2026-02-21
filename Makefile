@@ -3,13 +3,14 @@ export
 .PHONY: help \
 	dev dev-d dev-down dev-rebuild dev-rebuild-api dev-rebuild-frontend \
 	install-deps reinstall-backend reinstall-frontend \
-	prod prod-down prod-logs \
+	prod prod-down prod-logs prod-migrate \
 	test test-db-up test-db-down test-watch test-only test-db-studio \
+	test-migrate test-migrate-run test-migrate-clean \
 	stop restart ps \
 	logs logs-api logs-db logs-nginx logs-frontend \
 	lint lint-fix format \
 	shell-api shell-db shell-frontend \
-	db-migrate db-generate db-push db-studio db-backup db-restore \
+	db-migrate db-generate db-push db-studio db-backup db-restore db-seed \
 	ssl-init ssl-renew \
 	clean clean-soft clean-images \
 	health install build
@@ -86,6 +87,9 @@ prod-logs: ## Affiche les logs de production
 prod-down: ## Arrête l'environnement de production
 	$(COMPOSE_PROD) down
 
+prod-migrate: ## Applique les migrations sur la DB prod
+	$(COMPOSE_PROD) exec api sh -c "cd /app && bun x drizzle-kit migrate"
+
 # Variable pour l'URL de test (plus propre)
 TEST_DB_URL=postgres://app:testpassword@localhost:5433/appdb_test
 
@@ -93,8 +97,10 @@ test-db-up: ## Lance la DB de test et crée les tables
 	$(COMPOSE_TEST) up -d
 	@echo "$(CYAN)Attente que la DB soit prête...$(NC)"
 	@sleep 3
+	@until $(COMPOSE_TEST) exec db-test pg_isready -U app -d appdb_test 2>/dev/null; do sleep 1; done
 	@echo "$(CYAN)Synchronisation du schéma (Drizzle Push)...$(NC)"
-	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun x drizzle-kit push
+	# @cd backend && DATABASE_URL=$(TEST_DB_URL) bun x drizzle-kit push
+	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun x drizzle-kit push --force
 	@echo "$(GREEN)✓ DB de test prête et structurée$(NC)"
 
 test-db-down: ## Arrête la DB de test
@@ -115,6 +121,28 @@ test-only: test-db-up ## Lance des tests spécifiques (ARGS="pattern")
 
 test-db-studio: ## Lance Drizzle Studio
 	cd backend && DATABASE_URL="$(TEST_DB_URL)" npx drizzle-kit studio --port 4982
+
+test-migrate-run: ## Lance la DB test, applique les migrations et les tests
+	$(COMPOSE_TEST) up -d
+	@sleep 3
+	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun x drizzle-kit push
+	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun test
+	$(COMPOSE_TEST) down
+	@echo "$(GREEN)✓ Tests terminés$(NC)"
+
+test-migrate: ## Lance la DB test et applique les migrations
+	$(COMPOSE_TEST) up -d
+	@sleep 3
+	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun x drizzle-kit push
+	@echo "$(GREEN)✓ Migrations appliquées$(NC)"
+
+test-migrate-clean: ## Nettoie la DB test, la relance et applique les migrations
+	$(COMPOSE_TEST) down
+	$(COMPOSE_TEST) up -d
+	@sleep 3
+	@cd backend && DATABASE_URL=$(TEST_DB_URL) bun x drizzle-kit push
+	@echo "$(GREEN)✓ DB test nettoyée et migrations appliquées$(NC)"
+
 # =========================
 # Gestion des conteneurs
 # =========================
@@ -198,6 +226,10 @@ db-restore: ## Restaure la DB (usage: make db-restore FILE=./backups/backup.sql)
 	fi
 	docker compose exec -T db psql -U app appdb < $(FILE)
 	@echo "$(GREEN)✓ Base de données restaurée$(NC)"
+
+db-seed: ## Lance le seed de la base de données
+	$(COMPOSE_DEV) exec api bun run src/db/seed/index.ts
+	@echo "$(GREEN)✓ Seed exécuté$(NC)"
 
 # =========================
 # SSL (production)
