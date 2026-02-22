@@ -35,7 +35,7 @@ describe('Product Service', () => {
       expect(product.id).toBeDefined()
       expect(product.name).toBe('Vitamine C')
       expect(product.createdBy).toBe(user.id)
-      expect(product.slug).toBe('vitamine-c')
+      expect(product.slug).toBe('vitamine-c-generic')
       expect(product.brand).toBe('Generic')
     })
 
@@ -72,7 +72,7 @@ describe('Product Service', () => {
         testDb
       )
 
-      expect(product.slug).toBe('acide-hyaluronique')
+      expect(product.slug).toBe('acide-hyaluronique-the-ordinary')
     })
 
     it('should use custom slug when provided', async () => {
@@ -186,7 +186,7 @@ describe('Product Service', () => {
       const fetched = await getProductBySlug(created.slug, testDb)
 
       expect(fetched.id).toBe(created.id)
-      expect(fetched.slug).toBe('coenzyme-q10')
+      expect(fetched.slug).toBe('coenzyme-q10-solgar')
     })
 
     it('should throw product_not_found for unknown slug', async () => {
