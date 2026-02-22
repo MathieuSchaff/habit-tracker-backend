@@ -1,4 +1,5 @@
 import type { CreateTagInput } from '@habit-tracker/shared'
+
 import { PRODUCT_SLUGS } from './seed-products'
 
 export const TAG_SLUGS = {

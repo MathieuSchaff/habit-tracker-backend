@@ -1,5 +1,5 @@
-import { PRODUCT_SLUGS } from './seed-products'
 import { INGREDIENT_SLUGS } from './seed-ingredients'
+import { PRODUCT_SLUGS } from './seed-products'
 
 // ─── Product ↔ Ingredient associations ──────────────────
 // Basées sur l'analyse des listes INCI réelles de chaque produit.

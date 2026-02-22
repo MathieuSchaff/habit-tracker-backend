@@ -1,10 +1,10 @@
 import type { Email, RawPassword } from '@habit-tracker/shared'
 
+import { env } from '../../config/env'
+import type { AuthContext } from '../../features/auth/service'
 import { signup } from '../../features/auth/service'
 import { getUser } from '../../features/auth/user.utils'
 import { db } from '../index'
-import type { AuthContext } from '../../features/auth/service'
-import { env } from '../../config/env'
 
 export function createCtx(overrides?: Partial<AuthContext>): AuthContext {
   return {

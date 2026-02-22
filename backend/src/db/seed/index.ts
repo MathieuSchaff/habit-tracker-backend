@@ -1,13 +1,13 @@
+import { createIngredient } from '../../features/products/ingredients/service'
+import { addIngredientToProduct } from '../../features/products/product-ingredients/product-ingredients.service'
+import { createProduct } from '../../features/products/service'
+import { addTagToProduct, createTag } from '../../features/products/tags/tags.service'
+import { db } from '..'
 import { createSeedUser } from './create-user'
 import { ingredientData } from './seed-ingredients'
+import { productIngredientAssociations } from './seed-product-ingredients'
 import { productData } from './seed-products'
 import { productTagAssociations, tagData } from './seed-tags'
-import { createProduct } from '../../features/products/service'
-import { db } from '..'
-import { createTag, addTagToProduct } from '../../features/products/tags/tags.service'
-import { createIngredient } from '../../features/products/ingredients/service'
-import { productIngredientAssociations } from './seed-product-ingredients'
-import { addIngredientToProduct } from '../../features/products/product-ingredients/product-ingredients.service'
 
 async function Seed() {
   const user = await createSeedUser()

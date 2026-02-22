@@ -1,7 +1,8 @@
+import type { IngredientChanges } from '@habit-tracker/shared'
+
 import { index, jsonb, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
 import { users } from './users'
-import type { IngredientChanges } from '@habit-tracker/shared'
 
 // Tout le monde peut lire et éditer (sauf users bannis via userBans)
 
