@@ -1,10 +1,12 @@
 import { z } from 'zod'
+
 import { fieldChangeSchema } from './common'
+
 const uuid = z.uuid()
 
 export const createProductSchema = z.object({
   name: z.string().min(1).max(200),
-  brand: z.string().min(1).max(200).optional(),
+  brand: z.string().min(1).max(200),
   kind: z.string().min(1).max(100),
   unit: z.string().min(1).max(50),
   slug: z.string().max(100).optional(),
@@ -21,7 +23,7 @@ export const createProductSchema = z.object({
 export const updateProductSchema = z
   .object({
     name: z.string().min(1).max(200).optional(),
-    brand: z.string().min(1).max(200).nullable().optional(),
+    brand: z.string().min(1).max(200).optional(),
     kind: z.string().min(1).max(100).optional(),
     unit: z.string().min(1).max(50).optional(),
     slug: z.string().max(100).optional(),

@@ -1,4 +1,4 @@
-import { HttpStatus } from '../types/api'
+import type { HttpStatus } from '../types/api'
 import type { AuthErrorCode } from '../types/auth'
 import { HTTP_STATUS } from './constants'
 
