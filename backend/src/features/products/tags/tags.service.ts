@@ -1,11 +1,12 @@
+import type { CreateTagInput, UpdateTagInput } from '@habit-tracker/shared'
+
+import slugify from '@sindresorhus/slugify'
 import { and, eq, sql } from 'drizzle-orm'
 
-import { tags, productTags, type Tag, type ProductTag } from '../../../db/schema/tags'
 import type { DB } from '../../../db/index'
+import { type ProductTag, productTags, type Tag, tags } from '../../../db/schema/tags'
 import { isUniqueViolation } from '../../../lib/helpers'
-import type { CreateTagInput, UpdateTagInput } from '@habit-tracker/shared'
 import { TagError } from './tags-error'
-import slugify from '@sindresorhus/slugify'
 
 // type ListTagsParams = {
 //   category?: string

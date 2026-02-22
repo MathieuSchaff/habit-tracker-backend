@@ -4,16 +4,16 @@ import type {
   IngredientChanges,
   UpdateIngredientInput,
 } from '@habit-tracker/shared'
-
 import { ingredientChangesSchema } from '@habit-tracker/shared'
+
 import slugify from '@sindresorhus/slugify'
 import { eq, sql } from 'drizzle-orm'
 
 import { db } from '../../../db'
+import type { Database } from '../../../db/index'
 import { type Ingredient, ingredientEdits, ingredients } from '../../../db/schema/ingredients'
-import { type Database } from '../../../db/index'
-import { IngredientError } from './ingredients-error'
 import { areEqual, isUniqueViolation } from '../../../lib/helpers'
+import { IngredientError } from './ingredients-error'
 
 const EXCLUDED_KEYS = new Set(['id', 'createdBy', 'createdAt', 'slug', 'updatedAt'])
 
