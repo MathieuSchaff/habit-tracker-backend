@@ -7,15 +7,43 @@ import type {
 import { ingredientChangesSchema } from '@habit-tracker/shared'
 
 import slugify from '@sindresorhus/slugify'
-import { eq, sql } from 'drizzle-orm'
+import { and, eq, inArray, type SQL, sql } from 'drizzle-orm'
 
 import { db } from '../../../db'
 import type { Database } from '../../../db/index'
 import { type Ingredient, ingredientEdits, ingredients } from '../../../db/schema/ingredients'
+import { ingredientTags, tags } from '../../../db/schema/tags'
 import { areEqual, isUniqueViolation } from '../../../lib/helpers'
 import { IngredientError } from './ingredients-error'
 
 const EXCLUDED_KEYS = new Set(['id', 'createdBy', 'createdAt', 'slug', 'updatedAt'])
+
+export async function listIngredients(
+  filters: { category?: string; concern?: string } = {},
+  database: Database = db
+): Promise<Ingredient[]> {
+  const conditions: SQL[] = []
+
+  if (filters.category) conditions.push(eq(ingredients.category, filters.category))
+  if (filters.concern) {
+    conditions.push(
+      inArray(
+        ingredients.id,
+        database
+          .select({ ingredientId: ingredientTags.ingredientId })
+          .from(ingredientTags)
+          .innerJoin(tags, eq(ingredientTags.tagId, tags.id))
+          .where(eq(tags.slug, filters.concern))
+      )
+    )
+  }
+
+  return database
+    .select()
+    .from(ingredients)
+    .where(conditions.length > 0 ? and(...conditions) : undefined)
+    .orderBy(ingredients.name)
+}
 
 export async function createIngredient(
   userId: string,

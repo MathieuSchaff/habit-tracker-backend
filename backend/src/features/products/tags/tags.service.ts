@@ -1,9 +1,10 @@
 import type { CreateTagInput, UpdateTagInput } from '@habit-tracker/shared'
 
 import slugify from '@sindresorhus/slugify'
-import { and, eq, sql } from 'drizzle-orm'
+import { and, eq, getTableColumns } from 'drizzle-orm'
 
 import type { DB } from '../../../db/index'
+import { type Product, products } from '../../../db/schema/products'
 import { type ProductTag, productTags, type Tag, tags } from '../../../db/schema/tags'
 import { isUniqueViolation } from '../../../lib/helpers'
 import { TagError } from './tags-error'
@@ -117,12 +118,13 @@ export async function listTagsByProduct(db: DB, productId: string) {
 /**
  * Liste les produits ayant un tag donné.
  */
-export async function listProductsByTag(db: DB, tagId: string) {
+export async function listProductsByTag(db: DB, tagId: string): Promise<Product[]> {
   return db
-    .select()
+    .select(getTableColumns(products))
     .from(productTags)
+    .innerJoin(products, eq(productTags.productId, products.id))
     .where(eq(productTags.tagId, tagId))
-    .orderBy(sql`${productTags.createdAt} DESC`)
+    .orderBy(products.name)
 }
 
 export async function removeTagFromProduct(
