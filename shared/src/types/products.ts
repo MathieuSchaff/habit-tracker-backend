@@ -5,7 +5,7 @@ export type Product = {
   createdBy: string
   name: string
   slug: string
-  brand: string | null
+  brand: string
   kind: string
   unit: string
 

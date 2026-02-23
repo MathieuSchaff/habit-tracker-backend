@@ -15,6 +15,13 @@ export type ProductTag = {
   createdAt: string | Date
 }
 
+export type IngredientTag = {
+  id: string
+  ingredientId: string
+  tagId: string
+  createdAt: string | Date
+}
+
 export type TagErrorCode =
   | 'tag_not_found'
   | 'tag_already_exists'

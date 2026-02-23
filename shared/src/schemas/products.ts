@@ -47,7 +47,7 @@ export const productResponseSchema = z.object({
   createdBy: uuid,
   name: z.string(),
   slug: z.string(),
-  brand: z.string().nullable(),
+  brand: z.string(),
   kind: z.string(),
   unit: z.string(),
   inci: z.string().nullable(),
@@ -88,6 +88,15 @@ export const productEditResponseSchema = z.object({
 export const productWithStockResponseSchema = productResponseSchema.extend({
   stock: productStockResponseSchema.nullable(),
 })
+
+export const productsPageSchema = z.object({
+  items: z.array(productResponseSchema),
+  total: z.number().int(),
+  page: z.number().int(),
+  limit: z.number().int(),
+})
+
+export type ProductsPage = z.infer<typeof productsPageSchema>
 
 const editableProductFields = {
   name: fieldChangeSchema(z.string()),
