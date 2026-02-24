@@ -1,5 +1,6 @@
 # ---------- base ----------
-FROM oven/bun:1-debian AS base
+# FROM oven/bun:1-debian AS base
+FROM oven/bun:1.3.9-debian AS base
 WORKDIR /app
 
 # ---------- deps (cache) ----------
