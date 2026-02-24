@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm'
 import { index, numeric, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
 import { ingredients } from './ingredients'
@@ -6,7 +7,8 @@ import { products } from './products'
 export const productIngredients = pgTable(
   'product_ingredients',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     productId: uuid('product_id')
       .notNull()
       .references(() => products.id, { onDelete: 'cascade' }),

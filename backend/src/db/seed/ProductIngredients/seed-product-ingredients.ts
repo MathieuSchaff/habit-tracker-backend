@@ -1,6 +1,8 @@
-import { INGREDIENT_SLUGS } from './seed-ingredients'
-import { PRODUCT_SLUGS } from './seed-products'
+import { INGREDIENT_SLUGS as file1 } from '../ingredients/seed-ingredients'
+import { INGREDIENT_SLUGS as file2 } from '../ingredients/seed-ingredients2'
+import { PRODUCT_SLUGS } from '../products/seed-products'
 
+const INGREDIENT_SLUGS = { ...file1, ...file2 }
 // ─── Product ↔ Ingredient associations ──────────────────
 // Basées sur l'analyse des listes INCI réelles de chaque produit.
 // Seuls les ingrédients actifs/notables sont référencés (pas les excipients de base type eau, émulsifiants...).

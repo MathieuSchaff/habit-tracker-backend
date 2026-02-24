@@ -89,6 +89,18 @@ export const productWithStockResponseSchema = productResponseSchema.extend({
   stock: productStockResponseSchema.nullable(),
 })
 
+export const filterOptionsSchema = z.object({
+  kinds: z.array(z.string()),
+  brands: z.array(z.string()),
+  tags: z.array(
+    z.object({
+      name: z.string(),
+      slug: z.string(),
+      category: z.string().nullable(),
+    })
+  ),
+})
+
 export const productsPageSchema = z.object({
   items: z.array(productResponseSchema),
   total: z.number().int(),

@@ -60,3 +60,4 @@ export type ProductErrorCode =
   | 'stock_update_failed'
   | 'unauthorized_access'
   | 'database_error'
+  | 'no_updatable_fields'

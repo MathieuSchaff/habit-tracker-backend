@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm'
 import {
   date,
   index,
@@ -29,7 +30,8 @@ export const habitCheckStatusEnum = pgEnum('habit_check_status', ['pending', 'do
 export const habits = pgTable(
   'habits',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     userId: uuid('user_id')
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
@@ -54,7 +56,8 @@ export const habits = pgTable(
 export const habitProducts = pgTable(
   'habit_products',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     habitId: uuid('habit_id')
       .notNull()
       .references(() => habits.id, { onDelete: 'cascade' }),
@@ -76,7 +79,8 @@ export const habitProducts = pgTable(
 export const habitSchedules = pgTable(
   'habit_schedules',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     habitId: uuid('habit_id')
       .notNull()
       .references(() => habits.id, { onDelete: 'cascade' }),
@@ -110,7 +114,8 @@ export const habitSchedules = pgTable(
 export const habitTimings = pgTable(
   'habit_timings',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     scheduleId: uuid('schedule_id')
       .notNull()
       .references(() => habitSchedules.id, { onDelete: 'cascade' }),
@@ -134,7 +139,8 @@ export const habitTimings = pgTable(
 export const habitReminders = pgTable(
   'habit_reminders',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     timingId: uuid('timing_id')
       .notNull()
       .references(() => habitTimings.id, { onDelete: 'cascade' }),
@@ -149,7 +155,8 @@ export const habitReminders = pgTable(
 export const habitPeriods = pgTable(
   'habit_periods',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     habitId: uuid('habit_id')
       .notNull()
       .references(() => habits.id, { onDelete: 'cascade' }),
@@ -170,7 +177,8 @@ export const habitPeriods = pgTable(
 export const habitChecks = pgTable(
   'habit_checks',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     userId: uuid('user_id')
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),

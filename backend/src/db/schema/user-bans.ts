@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm'
 import { index, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 
 import { users } from './users'
@@ -16,7 +17,8 @@ export const banScopeEnum = pgEnum('ban_scope', [
 export const userBans = pgTable(
   'user_bans',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     userId: uuid('user_id')
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),

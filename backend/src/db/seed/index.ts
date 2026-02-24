@@ -4,18 +4,18 @@ import { createProduct } from '../../features/products/service'
 import { addTagToProduct, createTag } from '../../features/products/tags/tags.service'
 import { db } from '..'
 import { createSeedUser } from './create-user'
-import { ingredientData } from './seed-ingredients'
-import { productIngredientAssociations } from './seed-product-ingredients'
-import { productData } from './seed-products'
-import { productTagAssociations, tagData } from './seed-tags'
+import { ingredientData } from './ingredients/seed-ingredients'
+import { productIngredientAssociations } from './ProductIngredients/seed-product-ingredients'
+import { allProductData } from './products'
+import { productData } from './products/seed-products'
+import { productTagAssociations, tagData } from './tags/seed-tags'
 
 async function Seed() {
   const user = await createSeedUser()
   const id = user.id
-
-  // ── Products ──────────────────────────────────────
+  const productsDataTotal = [...allProductData, ...productData]
   const productResults = await Promise.allSettled(
-    productData.map((product) => createProduct(id, product, db))
+    productsDataTotal.map((product) => createProduct(id, product, db))
   )
   const productFailed = productResults.filter((r) => r.status === 'rejected')
   if (productFailed.length) console.error(`${productFailed.length} produits échoués`, productFailed)

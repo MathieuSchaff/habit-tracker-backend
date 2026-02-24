@@ -9,7 +9,6 @@ export const INGREDIENT_SLUGS = {
   GLYCYRRHETINIC_ACID: 'glycyrrhetinic-acid',
   AMMONIUM_GLYCYRRHIZATE: 'ammonium-glycyrrhizate',
   PHYTOSPHINGOSINE: 'phytosphingosine',
-  NIACINAMIDE: 'niacinamide',
   PENTYLENE_GLYCOL: 'pentylene-glycol',
   TOCOPHEROL: 'tocopherol',
   SHEA_BUTTER: 'shea-butter',
@@ -100,14 +99,7 @@ export const ingredientData: CreateIngredientInput[] = [
       '# Tocophérol (Vitamine E)\n\nAntioxydant liposoluble qui protège les membranes cellulaires contre le stress oxydatif. Utilisé aussi comme stabilisant des huiles dans les formulations.\n\n## INCI\nTOCOPHEROL\n\n## Note\nTOCOPHERYL ACETATE est la forme estérifiée, plus stable mais nécessitant une conversion cutanée pour être active.',
     category: 'vitamine',
   },
-  {
-    name: 'Niacinamide (Vitamine B3)',
-    slug: INGREDIENT_SLUGS.NIACINAMIDE,
-    description: 'Renforce la barrière cutanée, anti-inflammatoire, régule le sébum.',
-    content:
-      "# Niacinamide (Vitamine B3)\n\nActif polyvalent : renforce la barrière cutanée en stimulant la synthèse de céramides, réduit l'inflammation, atténue les rougeurs et régule la production de sébum.\n\n## INCI\nNIACINAMIDE\n\n## Concentration typique\n2-5% en cosmétique, jusqu'à 10% en dermocosmétique.",
-    category: 'vitamine',
-  },
+
   {
     name: 'Panthénol (Provitamine B5)',
     slug: INGREDIENT_SLUGS.PANTHENOL,

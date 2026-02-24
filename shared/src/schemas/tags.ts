@@ -14,5 +14,12 @@ export const tagResponseSchema = z.object({
   createdAt: z.date(),
 })
 
+export const ingredientTagResponseSchema = z.object({
+  id: z.uuid(),
+  ingredientId: z.uuid(),
+  tagId: z.uuid(),
+  createdAt: z.date(),
+})
+
 export type CreateTagInput = z.infer<typeof createTagSchema>
 export type UpdateTagInput = z.infer<typeof createTagSchema>

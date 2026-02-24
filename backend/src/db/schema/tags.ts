@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm'
 import { index, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
 import { ingredients } from './ingredients'
@@ -6,7 +7,8 @@ import { products } from './products'
 export const tags = pgTable(
   'tags',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     name: text('name').notNull(),
     slug: text('slug').notNull(),
     category: text('category'), // "concern", "skin_type", "routine_step"
@@ -18,7 +20,8 @@ export const tags = pgTable(
 export const productTags = pgTable(
   'product_tags',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     productId: uuid('product_id')
       .notNull()
       .references(() => products.id, { onDelete: 'cascade' }),
@@ -37,7 +40,8 @@ export const productTags = pgTable(
 export const ingredientTags = pgTable(
   'ingredient_tags',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    // id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     ingredientId: uuid('ingredient_id')
       .notNull()
       .references(() => ingredients.id, { onDelete: 'cascade' }),
