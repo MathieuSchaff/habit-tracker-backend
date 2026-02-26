@@ -26,6 +26,7 @@ import { azelaicProductData } from './azelaique'
 import { colibriProductData } from './colibri'
 import { corpsProductData } from './corps'
 import { mixaProductData } from './mixa'
+import { newProducts } from './new1'
 import { serumsPeptidesProductData } from './serums-peptides'
 import { solairesProductData } from './solaires'
 import { tonersProductData } from './toners'
@@ -41,4 +42,5 @@ export const allProductData = [
   ...azelaicProductData,
   ...colibriProductData,
   ...mixaProductData,
+  ...newProducts,
 ]

@@ -18,23 +18,26 @@ const UserSeeder = {
   email: 'seed@seed.com',
   password: 'Azerty123!seed',
 }
-export async function createSeedUser(
+export async function getOrCreateSeedUser(
   email: string = UserSeeder.email,
   password: string = UserSeeder.password
 ) {
   const ctx = createCtx()
 
+  // 1. On essaie de récupérer l'utilisateur existant
+  const user = await getUser(ctx.db, email as Email)
+
+  if (user) {
+    console.log(`Utilisateur seed existant réutilisé : ${email}`)
+    return user
+  }
+
+  // 2. Sinon on le crée
+  console.log(`Création de l'utilisateur seed : ${email}`)
   const result = await signup(ctx, email as Email, password as RawPassword)
 
-  if (result.success === false) {
-    if (result.error === 'email_exists') {
-      const user = await getUser(ctx.db, email as Email)
-      if (!user) {
-        throw new Error(`User claimed to exist but not found: ${email}`)
-      }
-      return user
-    }
-    throw new Error(`Failed to create test user: ${result.error}`)
+  if (!result.success) {
+    throw new Error(`Échec création utilisateur seed : ${result.error}`)
   }
 
   return result.data.user

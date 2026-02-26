@@ -1,6 +1,16 @@
 import type { CreateIngredientInput } from '@habit-tracker/shared'
 
 export const INGREDIENT_SLUGS = {
+  MATRIXYL_3000: 'matrixyl-3000',
+  ARGIRELINE: 'argireline',
+  COPPER_TRIPEPTIDE_1: 'copper-tripeptide-1',
+  GHK_CU: 'ghk-cu',
+  PALMITOYL_TRIPEPTIDE_1: 'palmitoyl-tripeptide-1',
+  PALMITOYL_TETRAPEPTIDE_7: 'palmitoyl-tetrapeptide-7',
+  ACETYL_HEXAPEPTIDE_8: 'acetyl-hexapeptide-8',
+  PALMITOYL_PENTAPEPTIDE_4: 'palmitoyl-pentapeptide-4',
+  SYN_AKE: 'syn-ake',
+  COPPER_PEPTIDES: 'copper-peptides',
   AZELAIC_ACID: 'azelaic-acid',
   HYPOCHLOROUS_ACID: 'hypochlorous-acid',
   ALPHA_ARBUTIN: 'alpha-arbutin',
@@ -16,6 +26,35 @@ export const INGREDIENT_SLUGS = {
   SULFUR: 'souffre',
   HEARTLEAF: 'heartleaf',
   PHA: 'pha',
+  RETINOL: 'retinol',
+  RETINAL: 'retinal',
+  RETINALDEHYDE: 'retinaldehyde',
+  BAKUCHIOL: 'bakuchiol',
+  VITAMIN_C: 'vitamin-c',
+  ASCORBIC_ACID: 'ascorbic-acid',
+  SALICYLIC_ACID: 'salicylic-acid',
+  GLYCOLIC_ACID: 'glycolic-acid',
+  LACTIC_ACID: 'lactic-acid',
+  MANDELIC_ACID: 'mandelic-acid',
+  PEPTIDES: 'peptides',
+  HYALURONIC_ACID: 'hyaluronic-acid',
+  POLYGLUTAMIC_ACID: 'polyglutamic-acid',
+  ALLANTOIN: 'allantoin',
+  ALOE_VERA: 'aloe-vera',
+  GREEN_TEA: 'green-tea',
+  LICORICE_EXTRACT: 'licorice-extract',
+  SNOW_MUSHROOM: 'snow-mushroom',
+  PROBIOTICS: 'probiotics',
+  POSTBIOTICS: 'postbiotics',
+  L_ASCORBIC_ACID: 'l-ascorbic-acid',
+  SODIUM_ASCORBYL_PHOSPHATE: 'sodium-ascorbyl-phosphate',
+  MAGNESIUM_ASCORBYL_PHOSPHATE: 'magnesium-ascorbyl-phosphate',
+  ASCORBYL_GLUCOSIDE: 'ascorbyl-glucoside',
+  // TETRAHEXYLDECYL_ASCORBATE: 'tetrahexyldecyl-ascorbate',
+  // ASCORBYL_TETRAISOPALMITATE: 'ascorbyl-tetraisopalmitate',
+  THD_ASCORBATE: 'thd-ascorbate',
+  THREE_O_ETHYL_ASCORBIC_ACID: '3-o-ethyl-ascorbic-acid',
+  ASCORBYL_PALMITATE: 'ascorbyl-palmitate',
 } as const
 export const ingredientsSeed: CreateIngredientInput[] = [
   {
@@ -1379,5 +1418,748 @@ Forment un film protecteur limitant la perte d'eau transépidermique (TEWL). Peu
   - **Fungal acne** : soufre seul ou avec zinc pyrithione, éviter les huiles comédogènes
   - **Dermite séborrhéique** : formule soufre + acide salicylique en nettoyant`,
     category: 'ingredient',
+  },
+  // ── Actifs anti-âge & renouvellement ───────────────────────
+  {
+    name: 'Rétinol',
+    slug: INGREDIENT_SLUGS.RETINOL,
+    description:
+      'Dérivé de la vitamine A, puissant anti-âge qui accélère le renouvellement cellulaire.',
+    content: `
+     # Rétinol
+
+     Ingrédient star anti-âge et anti-acné, dérivé de la vitamine A. Il accélère le renouvellement cellulaire, stimule la production de collagène et d’élastine, réduit rides et ridules, affine le grain de peau, régule le sébum et unifie le teint pour une peau plus lisse, ferme et éclatante.
+
+     ## INCI
+     RETINOL
+
+     ## Concentration typique
+     0,1 à 0,3 % maximum dans les produits non rincés selon la réglementation européenne (SCCS).
+     Débuter à **0,1-0,2 %** pour les peaux débutantes ou sensibles.
+     Les formes micro-encapsulées ou stabilisées permettent parfois d’atteindre 0,5-1 % avec une meilleure tolérance.
+     Augmenter progressivement après 4-8 semaines d’adaptation (période de « rétinisation »).
+
+     ## Mécanisme d’action
+     Le rétinol est une forme précurseur de la vitamine A. Une fois appliqué, il pénètre les couches cutanées et se convertit en deux étapes :
+     1. Rétinol → Rétinaldéhyde
+     2. Rétinaldéhyde → Acide rétinoïque (forme active)
+
+     Il se lie alors aux récepteurs nucléaires des kératinocytes et des fibroblastes, boostant la synthèse de collagène, d’élastine et d’acide hyaluronique, accélérant le turnover cellulaire (effet kératolytique) et régulant la mélanine et la production de sébum.
+
+     ## Bienfaits prouvés
+     - **Anti-âge** : réduit visiblement rides et ridules, améliore fermeté et élasticité.
+     - **Anti-acné & pores** : désobstrue les pores, diminue la production de sébum, action antibactérienne et anti-inflammatoire.
+     - **Éclat & homogénéité** : atténue taches pigmentaires, cicatrices d’acné et hyperpigmentation, affine le grain de peau.
+     - **Global** : effet antioxydant, prévient le photovieillissement, redonne luminosité et rebondi.
+
+     Résultats visibles dès 4-6 semaines, optimaux après 3-6 mois d’utilisation régulière.
+
+     ## Comment l’utiliser (guide débutant)
+     - **Soir uniquement** (photosensibilisant).
+     - Peau propre et parfaitement sèche.
+     - Quantité : taille d’un petit pois pour tout le visage (éviter contour des yeux, ailes du nez et lèvres sauf produit spécifique).
+     - **Protocole d’introduction** :
+       Semaines 1-2 → 1-2 soirs/semaine
+       Semaines 3-4 → 3 soirs/semaine
+       Puis quotidien si tolérance bonne.
+     - Technique « sandwich » pour minimiser les irritations : crème hydratante → rétinol → crème hydratante.
+     - Le matin : toujours SPF 30+ large spectre (obligatoire !).
+     - Compatible avec niacinamide, peptides, céramides, acide hyaluronique. Éviter dans un premier temps les AHA/BHA forts et la vitamine C pure (les utiliser le matin).
+
+     ## Effets secondaires & précautions
+     - **Effets temporaires courants** (1-6 semaines) : rougeurs, sécheresse, desquamation, picotements, légère purge (pour les peaux acnéiques).
+     - **Photosensibilité** accrue → risque de coups de soleil et taches si pas de SPF.
+     - **Contre-indiqué** pendant la grossesse et l’allaitement (principe de précaution – risque tératogène).
+     - Test patch recommandé 24-48 h avant première utilisation.
+     - Ne pas utiliser sur peau lésée, brûlée ou eczémateuse.
+     - Conserver à l’abri de la lumière, chaleur et air (flacon opaque, pompe airless idéal).
+
+     ## Rétinol vs autres rétinoïdes
+     - **Esters de rétinol** (palmitate, acétate…) → très doux, pour peaux ultra-sensibles, mais moins puissants.
+     - **Rétinal (rétinaldéhyde)** → 1 seule étape de conversion, jusqu’à 11× plus efficace que le rétinol, excellente tolérance.
+     - **Acide rétinoïque (trétinoïne)** → forme active pure, sur ordonnance uniquement, très puissante mais très irritante.
+
+     Le rétinol reste le meilleur compromis efficacité / tolérance / accessibilité en cosmétique libre.
+
+     **Conseil expert** : associez-le à des actifs apaisants (centella, bisabolol, panthénol) et à une routine barrière cutanée renforcée pour un confort optimal.
+     `,
+
+    category: 'actif',
+  },
+  {
+    name: 'Bakuchiol',
+    slug: INGREDIENT_SLUGS.BAKUCHIOL,
+    description: 'Alternative végétale douce au rétinol, anti-âge sans irritation.',
+    content: `
+     # Bakuchiol
+
+     Alternative végétale douce au rétinol, extraite des graines de Psoralea corylifolia (plante babchi). Il mime les effets anti-âge du rétinol (stimulation du collagène, renouvellement cellulaire, réduction des rides) sans irritation, sans rougeurs, sans desquamation et sans photosensibilisation. Idéal pour peaux sensibles, réactives, débutants en actifs puissants, ou pendant la grossesse/allaitement (sous avis médical).
+
+     ## INCI
+     BAKUCHIOL
+
+     ## Concentration typique
+     0,5 à 1 % (le plus souvent 0,5–1 % dans les sérums et crèmes efficaces).
+     Études cliniques majeures ont utilisé 0,5 % deux fois par jour avec d’excellents résultats et très bonne tolérance.
+     Pas de limite réglementaire stricte en UE (contrairement au rétinol limité à 0,3 % depuis 2025–2027), ce qui permet des formules plus concentrées si stabilisées.
+
+     ## Mécanisme d’action
+     Bakuchiol n’est **pas** un dérivé de vitamine A, mais un meroterpène végétal. Il active des voies génétiques similaires à celles du rétinol (expression de gènes impliqués dans la production de collagène I/III, élastine, et inhibition des MMP-1), sans se lier aux récepteurs RAR/RXR du rétinol.
+     Résultat :
+     - Augmente la synthèse de collagène et d’élastine
+     - Accélère le renouvellement cellulaire
+     - Réduit l’inflammation et l’oxydation
+     - Inhibe la mélanogenèse (action anti-taches)
+     Le tout avec une stabilité photochimique excellente (pas de dégradation au soleil) et sans altérer la barrière cutanée.
+
+     ## Bienfaits prouvés (études cliniques)
+     - **Anti-âge** : réduit rides et ridules, améliore fermeté, élasticité et densité cutanée (études 12 semaines : résultats comparables au rétinol 0,5 %).
+     - **Éclat & teint** : atténue hyperpigmentation, taches solaires et post-inflammatoires.
+     - **Texture** : affine le grain de peau, lisse les irrégularités.
+     - **Antioxydant & apaisant** : protège contre le stress oxydatif, réduit l’inflammation.
+     Étude clé (British Journal of Dermatology, 2019 & revues 2024–2025) : bakuchiol 0,5 % = efficacité quasi identique au rétinol sur photo-vieillissement, mais **significativement moins irritant** (pas de scaling, stinging, rougeurs rapportés).
+
+     Résultats visibles dès 4–8 semaines, optimaux après 12 semaines d’utilisation régulière.
+
+     ## Comment l’utiliser (guide pratique)
+     - **Matin et/ou soir** (pas photosensibilisant → utilisable en journée).
+     - Peau propre, sèche ou légèrement humide.
+     - Quantité : 2–3 gouttes de sérum ou quantité d’un petit pois pour le visage.
+     - **Débutants** : commencez tous les soirs (ou 3–4 soirs/semaine), puis quotidien. Pas besoin de phase d’adaptation longue.
+     - **Technique** : appliquez après sérum hydratant (acide hyaluronique), avant crème.
+     - **Routine du matin** : bakuchiol → hydratant → SPF 30+ (recommandé même sans photosensibilisation).
+     - **Routine du soir** : nettoyage → bakuchiol → hydratant riche.
+
+     ## Compatibilités & associations gagnantes
+     - **Parfait avec** : niacinamide, peptides, céramides, acide hyaluronique, centella asiatica, panthénol (apaisant).
+     - **Vitamine C** (stable) : matin ou soir, super combo antioxydant + éclat.
+     - **AHA/BHA doux** (lactique, mandélique, salicylique faible %) : possible le soir, surveillez la tolérance.
+     - **Rétinol / rétinoïdes** : oui ! Beaucoup combinent bakuchiol le matin + rétinol le soir, ou alternent les jours pour booster les résultats tout en minimisant irritations.
+     - **Éviter en layering agressif** : très forts AHA/BHA en même temps si peau sensible (risque cumulatif de sécheresse).
+
+     ## Effets secondaires & précautions
+     - Très rare : légère sécheresse ou picotements transitoires chez peaux ultra-réactives (quasi inexistant vs rétinol).
+     - **Pas de photosensibilité** confirmée en études cliniques.
+     - **Grossesse & allaitement** : considéré comme sûr par la majorité des experts (pas de risque tératogène connu, structure chimique différente du rétinol). Souvent recommandé comme alternative. **Toujours consulter un médecin** avant utilisation (données limitées mais rassurantes).
+     - Test patch 24–48 h conseillé si peau très réactive.
+     - Conserver à température ambiante, à l’abri de la chaleur extrême (stable à la lumière).
+
+     ## Bakuchiol vs Rétinol – comparatif rapide
+     | Critère              | Bakuchiol                          | Rétinol                              |
+     |----------------------|------------------------------------|--------------------------------------|
+     | Origine              | Végétale (Psoralea corylifolia)   | Dérivé vitamine A                   |
+     | Irritation           | Très faible                        | Moyenne à élevée (surtout début)    |
+     | Photosensibilisation | Non                                | Oui (SPF obligatoire)               |
+     | Utilisation          | Matin + soir                       | Soir uniquement                     |
+     | Grossesse            | Généralement OK (avis médical)     | Contre-indiqué                      |
+     | Concentration typique| 0,5–1 %                            | 0,1–0,3 % (UE max 0,3 %)            |
+     | Vitesse résultats    | Progressive (4–12 semaines)        | Plus rapide mais avec purge         |
+     | Peaux cibles         | Sensibles, réactives, enceintes    | Tous (avec précautions)             |
+
+     **Conseil expert** : le bakuchiol est le choix n°1 pour introduire un actif anti-âge puissant sans stresser la barrière cutanée. Il peut même potentialiser un rétinol plus tard en routine mixte. Associez-le à une bonne hydratation et protection solaire pour des résultats durables et glowy !
+     `,
+    category: 'actif',
+  },
+  {
+    name: 'Vitamine C',
+    slug: INGREDIENT_SLUGS.VITAMIN_C,
+    description: 'Antioxydant puissant qui illumine et protège contre les radicaux libres.',
+    content: `
+     # Vitamine C
+
+     Antioxydant star qui illumine le teint, protège contre les radicaux libres, booste la synthèse de collagène et atténue taches pigmentaires, hyperpigmentation et signes de fatigue. Elle redonne éclat, uniformité et vitalité à la peau, tout en renforçant sa défense contre pollution, UV et stress oxydatif. Parfaite pour tous les types de peau cherchant glow naturel et prévention du vieillissement.
+
+     ## INCI
+     - **Forme pure** : ASCORBIC ACID (L-Ascorbic Acid)
+     - **Dérivés stables** : ASCORBYL GLUCOSIDE, SODIUM ASCORBYL PHOSPHATE (SAP), MAGNESIUM ASCORBYL PHOSPHATE (MAP), 3-O-ETHYL ASCORBIC ACID, ASCORBYL TETRAISOPALMITATE, TETRAHEXYLDECYL ASCORBATE (THD Ascorbate)…
+
+     ## Concentration typique
+     - **Acide ascorbique pur (L-Ascorbic Acid)** : 10-20 % (15 % souvent optimal pour équilibre efficacité / tolérance ; au-delà de 20 %, irritation ↑ sans gain majeur prouvé).
+     - **Dérivés** : 5-15 % (souvent 10-12 % pour ascorbyl glucoside ou SAP ; jusqu’à 20-30 % pour certains liposolubles comme THD ou 3-O-ethyl).
+     Concentration idéale en 2025-2026 : **10-15 %** pour la plupart des peaux (études confirment pénétration et bénéfices maximaux sans excès d’irritation). Débuter à 8-10 % si peau sensible. Pas de limite réglementaire stricte en UE pour la vitamine C (contrairement au rétinol ou vitamine A).
+
+     ## Mécanisme d’action
+     La vitamine C (acide ascorbique) est un cofacteur essentiel pour les enzymes prolyl et lysyl hydroxylases → stabilise et stimule la production de collagène.
+     - Neutralise les radicaux libres (ROS) générés par UV, pollution → protection antioxydante directe.
+     - Inhibe la tyrosinase → réduit la formation de mélanine → action anti-taches et éclaircissante.
+     - Régénère la vitamine E → synergie antioxydante renforcée.
+     - Favorise la réparation cutanée et diminue l’inflammation post-UV.
+
+     Les dérivés se convertissent en acide ascorbique dans la peau (plus lentement, mais avec moins d’irritation et meilleure stabilité).
+
+     ## Bienfaits prouvés (études cliniques)
+     - **Éclat & uniformité** : réduit teint terne, hyperpigmentation, taches solaires/post-acné (efficace dès 4-8 semaines).
+     - **Anti-âge** : augmente collagène I/III, améliore fermeté, élasticité, réduit ridules fines.
+     - **Protection** : photoprotection complémentaire (pas un filtre UV, mais renforce défense contre photo-vieillissement).
+     - **Antioxydant global** : combat stress oxydatif quotidien (pollution, lumière bleue).
+     - **Anti-inflammatoire** : apaise rougeurs, aide peaux acnéiques (surtout SAP).
+
+     Résultats optimaux après 8-12 semaines d’utilisation régulière ; plus rapides avec forme pure + ferulic acid + vitamine E.
+
+     ## Comment l’utiliser (guide pratique)
+     - **Matin idéalement** (protection antioxydante diurne), possible soir si toléré.
+     - Peau propre, sèche ou légèrement humide.
+     - Quantité : 3-4 gouttes de sérum ou petit pois pour le visage + cou.
+     - **Ordre** : après nettoyage → vitamine C → hydratant → SPF 30+ (indispensable le matin !).
+     - **Débutants / peaux sensibles** : commencez 3-4 matins/semaine, puis quotidien.
+     - **Formes pures** : pH bas (<3.5) → appliquer sur peau sèche pour minimiser picotements.
+     - **Astuce stabilité** : choisir flacon opaque/airless/pompe, conserver au frais et à l’abri de la lumière (oxydation = couleur jaune/orange → jeter).
+
+     ## Compatibilités & associations gagnantes
+     - **Parfait avec** : vitamine E + acide férulique (boost stabilité et efficacité x8), niacinamide (éclat + apaisant), acide hyaluronique (hydratation), peptides, céramides.
+     - **Matin** : combo antioxydant ultime (vit C + niacinamide + SPF).
+     - **Soir** : alterner avec rétinol/bakuchiol (vit C matin, rétinol soir) ou superposer si toléré.
+     - **Éviter layering agressif** : AHA/BHA forts le même moment (irritation cumulée) ; attendre 15-30 min si combinaison.
+
+     ## Effets secondaires & précautions
+     - **Forme pure** : picotements, rougeurs, sécheresse possibles (surtout >15 % ou pH très bas).
+     - **Dérivés** : quasi sans irritation (choix n°1 peaux sensibles/réactives).
+     - **Photosensibilité** : non (au contraire, protège !), mais SPF obligatoire.
+     - **Grossesse & allaitement** : **sûre et recommandée** (antioxydant doux, sans risque tératogène connu). Souvent conseillée pour lutter contre masque de grossesse et teint terne. Consultez un médecin si doute sur la formule complète.
+     - Test patch 24-48 h si peau réactive.
+     - Éviter sur peau lésée ou eczémateuse.
+
+     ## Vitamine C pure vs Dérivés – comparatif rapide
+     | Critère              | Acide ascorbique pur (LAA)         | Dérivés (SAP, MAP, Glucoside, THD…) |
+     |----------------------|------------------------------------|-------------------------------------|
+     | Puissance            | La plus élevée (gold standard)     | Moyenne à bonne (conversion lente)  |
+     | Stabilité            | Faible (s’oxyde vite)              | Excellente (pH neutre, lumière/air) |
+     | Irritation           | Moyenne à élevée (picotements)     | Très faible                         |
+     | pH requis            | <3.5                               | Neutre à légèrement acide           |
+     | Pénétration          | Excellente si pH bas               | Variable (liposolubles >)           |
+     | Peaux cibles         | Peaux normales à mixtes, tolérantes| Sensibles, réactives, enceintes     |
+     | Concentration typique| 10-20 %                            | 5-15 % (jusqu’à 20-30 % certains)   |
+     | Utilisation          | Matin (idéal)                      | Matin + soir possible               |
+
+     **Conseil expert** : pour un glow maximal sans risque, optez pour un sérum stabilisé (ex. LAA 15 % + ferulic + E) ou un dérivé liposoluble (THD Ascorbate) si peau sensible. Associez toujours à un SPF large spectre et une hydratation riche pour potentialiser les effets et protéger la barrière cutanée. La vitamine C reste l’actif le plus polyvalent pour un teint lumineux et sain au quotidien !
+     `,
+    category: 'actif',
+  },
+
+  // ── Acides exfoliants ───────────────────────
+  {
+    name: 'Acide Salicylique',
+    slug: INGREDIENT_SLUGS.SALICYLIC_ACID,
+    description:
+      "BHA liposoluble, pénètre les pores pour lutter contre l'acné et les points noirs.",
+    content: `
+    # Acide Salicylique
+
+    BHA (beta-hydroxy acid) liposoluble, exfoliant chimique qui pénètre au cœur des pores pour dissoudre le sébum, les cellules mortes et les impuretés. Idéal pour peaux grasses, mixtes, acnéiques, points noirs, pores dilatés et texture irrégulière. Action anti-inflammatoire, antibactérienne et kératolytique → réduit boutons, comédons, rougeurs et brillance excessive.
+
+    ## INCI
+    SALICYLIC ACID
+
+    ## Concentration typique
+    - **Exfoliant / anti-acné** : 0,5 à 2 % (2 % est la concentration la plus courante et efficace en OTC pour usage quotidien ; au-delà souvent localisé ou rinse-off).
+    - **Conservateur** : jusqu’à 0,5 % (selon SCCS et réglementation UE).
+    - **Localisé / spot treatment** : jusqu’à 5 % (crèmes ou patchs ciblés).
+    En UE (2026) : max 2 % pour produits non rincés sur le visage/corps adulte ; limite plus stricte (0,1-0,5 %) pour enfants/enfants en bas âge selon usages. Pas de restriction majeure pour adultes si bien formulé.
+
+    ## Mécanisme d’action
+    L’acide salicylique est lipophile → il pénètre facilement les follicules pileux et les pores obstrués. Il :
+    - Dissout le « ciment » intercellulaire (kératolytique) → exfolie en profondeur sans frotter.
+    - Fluidifie le sébum accumulé → désobstrue et réduit la taille des pores.
+    - Inhibe la production de prostaglandines → anti-inflammatoire (réduit rougeurs et gonflements).
+    - A une légère action antimicrobienne contre Cutibacterium acnes (bactérie acnéique).
+    - Améliore la forme interne des pores sur le long terme → moins de comédons futurs.
+
+    ## Bienfaits prouvés (études cliniques)
+    - **Anti-acné** : réduit comédons ouverts/fermés, boutons inflammatoires, microkystes (efficace dès 2-4 semaines).
+    - **Pores & texture** : affine l’apparence des pores dilatés, lisse la peau rugueuse.
+    - **Anti-inflammatoire** : apaise rougeurs, post-boutons et irritation.
+    - **Exfoliation douce** : élimine cellules mortes, prévient accumulation de sébum.
+    - **Prévention** : régule production de sébum, diminue brillance et risque de nouvelles poussées.
+
+    Résultats optimaux après 4-12 semaines ; souvent une « purge » initiale (voir ci-dessous) accélère la clarté cutanée.
+
+    ## Comment l’utiliser (guide pratique)
+    - **Soir de préférence** (photosensibilisant léger → SPF matin obligatoire).
+    - Peau propre et sèche.
+    - Quantité : 2-3 gouttes de sérum ou petit pois pour le visage ; localisé sur zones touchées.
+    - **Débutants / peaux sensibles** : commencez 2-3 soirs/semaine, puis quotidien si toléré.
+    - **Protocole** : nettoyage → acide salicylique → hydratant riche (céramides, niacinamide, hyaluronique).
+    - **Technique sandwich** (si irritation) : hydratant → BHA → hydratant.
+    - **Matin** : possible si toléré, mais toujours suivi de SPF 30+ large spectre.
+    - Éviter contour yeux, lèvres, zones lésées.
+
+    ## Compatibilités & associations gagnantes
+    - **Parfait avec** : niacinamide (apaisant + régule sébum), acide hyaluronique/céramides (renforce barrière), centella/panthénol (anti-rougeurs).
+    - **Vitamine C** : oui (matin C, soir BHA) ou alterner.
+    - **Bakuchiol** : excellent combo (matin bakuchiol, soir BHA).
+    - **Rétinol / rétinoïdes** : possible mais prudence → alterner les soirs (ex. BHA lundi/mercredi/vendredi, rétinol autres soirs) pour éviter irritation cumulée. Commencer lentement.
+    - **AHA (glycolique, lactique)** : alterner ou utiliser faible % ; risque irritation si layering agressif.
+    - **Éviter layering immédiat** : très forts AHA + BHA même soir si peau sensible ; attendre 15-30 min si combo.
+
+    ## Effets secondaires & précautions
+    - **Effets courants** (surtout début) : sécheresse, desquamation, picotements, rougeurs transitoires.
+    - **Purge cutanée** : poussée temporaire d’imperfections (4-8 semaines) → microkystes et comédons remontent plus vite → signe que ça marche ! Persévérez avec hydratation renforcée.
+    - **Photosensibilité** : légère → SPF quotidien indispensable.
+    - **Grossesse & allaitement** : prudence recommandée. Faibles concentrations (<2 %) topiques considérées généralement sûres par beaucoup d’experts (pas absorbé systémiquement en quantité significative), mais principe de précaution : éviter ou limiter (surtout >2 % ou grandes surfaces). Alternatives : niacinamide, azélaïque, acide hyaluronique. **Toujours consulter un médecin/dermatologue**.
+    - Test patch 24-48 h conseillé.
+    - Éviter sur peau très sèche, eczémateuse, lésée ou post-peeling.
+    - Conserver à température ambiante, flacon opaque.
+
+    ## Acide Salicylique vs autres exfoliants – comparatif rapide
+    | Critère              | Acide Salicylique (BHA)            | AHA (glycolique, lactique)         | PHA (gluconolactone)               |
+    |----------------------|------------------------------------|------------------------------------|------------------------------------|
+    | Solubilité           | Liposoluble (pénètre pores)        | Hydrosoluble (surface)             | Hydrosoluble (très doux)           |
+    | Action principale    | Désobstrue pores, anti-acné        | Exfolie surface, anti-âge          | Exfolie + hydrate, antioxydant     |
+    | Irritation           | Moyenne (purge possible)           | Moyenne à élevée                   | Très faible                        |
+    | Peaux cibles         | Grasses, acnéiques, pores dilatés  | Sèches, matures, taches            | Sensibles, réactives               |
+    | Concentration typique| 0,5-2 %                            | 5-10 %                             | 5-15 %                             |
+    | Utilisation          | Soir (idéal)                       | Soir                               | Matin + soir                       |
+    | Photosensibilité     | Légère                             | Oui                                | Faible                             |
+
+    **Conseil expert** : l’acide salicylique est l’actif n°1 pour transformer une peau acnéique/grasse en peau nette et mate. Introduisez-le progressivement, hydratez intensément et protégez du soleil pour éviter irritation et maximiser les bénéfices. Associez à niacinamide pour booster tolérance et résultats anti-imperfections. Patience pendant la purge → la peau en sort plus belle et équilibrée !
+    `,
+
+    category: 'actif',
+  },
+  {
+    name: 'Acide Glycolique',
+    slug: INGREDIENT_SLUGS.GLYCOLIC_ACID,
+    description: 'AHA le plus petit, exfolie en surface pour lisser et éclaircir le teint.',
+    content: `
+     # Acide Glycolique
+
+     AHA (alpha-hydroxy acid) le plus petit et le plus puissant : exfolie en surface et en profondeur pour lisser la texture, booster l’éclat, réduire ridules, taches pigmentaires et marques post-acné. Stimule le renouvellement cellulaire, augmente collagène et hydratation naturelle. Idéal pour peaux ternes, matures, mixtes à normales, ou avec hyperpigmentation/sun damage.
+
+     ## INCI
+     GLYCOLIC ACID
+
+     ## Concentration typique
+     - **OTC quotidien** : 5-10 % (8-10 % souvent optimal pour efficacité / tolérance ; 5 % pour débutants/sensibles).
+     - **Peelings maison ou pros** : 20-70 % (uniquement sous supervision dermato).
+     En UE (2026) : pas de limite réglementaire stricte pour acide glycolique (contrairement au rétinol max 0,3 % ou BHA 2 %), mais SCCS recommande prudence >10 % en usage quotidien pour éviter irritation. pH bas (<4) essentiel pour efficacité (plus le pH est bas, plus l’acide est actif).
+
+     ## Mécanisme d’action
+     Molécule la plus petite des AHA → pénètre profondément l’épiderme. Il :
+     - Dissout les liaisons entre cornéocytes (kératolytique) → exfolie cellules mortes, accélère turnover cellulaire.
+     - Stimule prolifération kératinocytes/fibroblastes → boost collagène I/III, élastine et acide hyaluronique.
+     - Inhibe tyrosinase → réduit production mélanine → action anti-taches et éclaircissante.
+     - Améliore hydratation naturelle (augmente NMF et hyaluronique).
+     Effet global : peau plus lisse, ferme, lumineuse, pores affinés, texture affinée.
+
+     ## Bienfaits prouvés (études cliniques)
+     - **Anti-âge** : réduit ridules fines, améliore fermeté/élasticité, atténue photo-vieillissement (études 8-12 semaines : + collagène, + éclat).
+     - **Éclat & uniformité** : exfolie surface → teint plus lumineux, homogène dès 4-6 semaines.
+     - **Hyperpigmentation** : atténue taches solaires, melasma, post-inflammatoires (inhibe mélanine + accélère élimination pigments).
+     - **Texture & pores** : lisse rugosités, affine grain de peau.
+     - **Acné léger** : prévient comédons, réduit marques (moins puissant que BHA sur pores obstrués).
+
+     Résultats optimaux après 8-12 semaines ; souvent une légère desquamation initiale signe d’efficacité.
+
+     ## Comment l’utiliser (guide pratique)
+     - **Soir uniquement** (photosensibilisant → augmente sensibilité UV).
+     - Peau propre et sèche (éviter humidité pour minimiser picotements).
+     - Quantité : 2-4 gouttes sérum ou petit pois pour visage + cou.
+     - **Débutants / sensibles** : commencez 2-3 soirs/semaine, puis quotidien.
+     - **Protocole** : nettoyage → acide glycolique → attendre 15-30 min → hydratant riche (céramides, hyaluronique).
+     - **Technique sandwich** (si irritation) : hydratant → glycolique → hydratant.
+     - **Matin** : toujours SPF 30+ large spectre (obligatoire !).
+     - Éviter contour yeux/lèvres sauf produit spécifique.
+
+     ## Compatibilités & associations gagnantes
+     - **Parfait avec** : niacinamide (apaise + boost éclat), acide hyaluronique/céramides (hydrate + barrière), peptides, centella/panthénol.
+     - **Vitamine C** : super combo matin (C) + soir (glycolique) ou alterner.
+     - **Bakuchiol** : excellent (matin bakuchiol, soir glycolique).
+     - **Rétinol / BHA** : alterner soirs (ex. glycolique lundi/jeudi, rétinol mardi/vendredi) pour éviter irritation cumulée. Commencer lentement.
+     - **Éviter layering agressif** : BHA fort ou rétinol même soir si peau sensible ; attendre 20-30 min si combo.
+
+     ## Effets secondaires & précautions
+     - **Effets courants** (début) : picotements, rougeurs, sécheresse, desquamation légère (1-4 semaines).
+     - **Photosensibilité** : accrue → SPF quotidien indispensable (risque taches si oubli).
+     - **Grossesse & allaitement** : généralement sûr à <10 % topique (pas de risque tératogène connu, absorption faible). Souvent recommandé vs rétinol/salicylique fort pour hyperpigmentation/masque grossesse. **Consultez médecin** (principe précaution pour peelings forts).
+     - Test patch 24-48 h conseillé.
+     - Éviter peau lésée, eczémateuse, post-peeling ou très sensible.
+     - Conserver flacon opaque, à l’abri lumière/chaleur.
+
+     ## Acide Glycolique vs autres exfoliants – comparatif rapide
+     | Critère              | Acide Glycolique (AHA)             | Acide Salicylique (BHA)            | PHA (gluconolactone)               |
+     |----------------------|------------------------------------|------------------------------------|------------------------------------|
+     | Solubilité           | Hydrosoluble (surface + profondeur)| Liposoluble (pénètre pores)        | Hydrosoluble (très doux)           |
+     | Action principale    | Exfolie surface, anti-âge, taches  | Désobstrue pores, anti-acné        | Exfolie + hydrate, antioxydant     |
+     | Pénétration          | Profonde (molécule petite)         | Profonde dans pores                | Superficielle                      |
+     | Irritation           | Moyenne à élevée                   | Moyenne (purge possible)           | Très faible                        |
+     | Peaux cibles         | Ternes, matures, hyperpigmentées   | Grasses, acnéiques, pores dilatés  | Sensibles, réactives               |
+     | Concentration typique| 5-10 %                             | 0,5-2 %                            | 5-15 %                             |
+     | Utilisation          | Soir                               | Soir                               | Matin + soir                       |
+     | Photosensibilité     | Oui                                | Légère                             | Faible                             |
+
+     **Conseil expert** : l’acide glycolique est l’exfoliant n°1 pour un glow rapide et un anti-âge visible. Introduisez-le progressivement, hydratez intensément et protégez du soleil pour éviter irritation et maximiser bénéfices. Associez à niacinamide ou hyaluronique pour une tolérance optimale. Patience : la peau devient plus lisse, lumineuse et rebondie en 2-3 mois !
+     `,
+    category: 'actif',
+  },
+  {
+    name: 'Acide Lactique',
+    slug: INGREDIENT_SLUGS.LACTIC_ACID,
+    description: 'AHA hydratant, doux exfoliant et humectant.',
+    content: `
+     # Acide Lactique
+
+     AHA (alpha-hydroxy acid) issu de la fermentation du lait ou de sucres végétaux, le plus doux et hydratant de la famille. Exfolie doucement la surface cutanée tout en agissant comme humectant naturel → parfait pour peaux sèches, sensibles, matures ou déshydratées. Améliore texture, éclat, hydratation, atténue ridules fines et marques pigmentaires sans irritation majeure.
+
+     ## INCI
+     LACTIC ACID
+
+     ## Concentration typique
+     - **Usage quotidien OTC** : 5-10 % (8-10 % souvent optimal pour équilibre exfoliation / hydratation ; 5 % pour peaux très sensibles/débutants).
+     - **Formules avancées** : jusqu’à 12 % dans certaines études (amélioration texture sans irritation accrue).
+     En UE (2026) : pas de limite réglementaire stricte spécifique pour l’acide lactique (contrairement au rétinol ou BHA), mais prudence recommandée >10 % en usage quotidien pour minimiser irritation. pH bas (<4) essentiel pour efficacité maximale.
+
+     ## Mécanisme d’action
+     Molécule plus grande que le glycolique → pénètre moins profondément, reste majoritairement en surface. Il :
+     - Dissout les liaisons intercellulaires (kératolytique doux) → exfolie cellules mortes, accélère turnover cellulaire.
+     - Attire et retient l’eau (humectant) → booste hydratation naturelle, stimule production de céramides et NMF (facteurs naturels d’hydratation).
+     - Stimule synthèse collagène et glycosaminoglycanes (GAGs) → améliore fermeté, épaisseur épidermique.
+     - Inhibe légèrement tyrosinase → réduit hyperpigmentation et taches.
+     Effet global : exfoliation + hydratation simultanée → barrière cutanée renforcée, moins de sécheresse post-exfoliation.
+
+     ## Bienfaits prouvés (études cliniques)
+     - **Hydratation & barrière** : augmente hydratation, restaure fonction barrière (études 2025 sur xérose/eczéma : réduit sécheresse, démangeaisons).
+     - **Exfoliation douce** : lisse texture, affine grain de peau, réduit rugosités sans desquamation agressive.
+     - **Anti-âge** : atténue ridules fines, booste collagène, améliore élasticité et fermeté (efficace dès 4-8 semaines).
+     - **Éclat & uniformité** : illumine teint terne, atténue marques post-acné/hyperpigmentation légère.
+     - **Peaux sensibles** : tolérance excellente, souvent préféré au glycolique pour moins d’irritation.
+
+     Résultats optimaux après 8-12 semaines ; hydratation visible dès les premières utilisations.
+
+     ## Comment l’utiliser (guide pratique)
+     - **Soir de préférence** (photosensibilisant léger → SPF matin obligatoire).
+     - Peau propre et sèche.
+     - Quantité : 2-4 gouttes sérum ou petit pois pour visage + cou.
+     - **Débutants / sensibles** : commencez 2-3 soirs/semaine, puis quotidien.
+     - **Protocole** : nettoyage → acide lactique → attendre 10-20 min → hydratant riche (céramides, hyaluronique).
+     - **Technique sandwich** (si besoin) : hydratant → lactique → hydratant.
+     - **Matin** : possible si toléré, toujours suivi de SPF 30+ large spectre.
+     - Éviter contour yeux/lèvres sauf produit dédié.
+
+     ## Compatibilités & associations gagnantes
+     - **Parfait avec** : acide hyaluronique (boost hydratation), niacinamide (apaise + éclat), céramides/panthénol (renforce barrière), centella.
+     - **Vitamine C** : super combo (matin C, soir lactique).
+     - **Bakuchiol** : excellent (matin bakuchiol, soir lactique).
+     - **Rétinol / BHA** : alterner soirs (ex. lactique lundi/mercredi, rétinol mardi/jeudi) pour minimiser irritation.
+     - **Acide glycolique** : possible en alternance ou faible % ; lactique plus doux pour layering prudent.
+     - **Éviter layering agressif** : forts AHA/BHA même soir si peau sensible.
+
+     ## Effets secondaires & précautions
+     - **Effets courants** (rares) : picotements légers, sécheresse minime (beaucoup moins que glycolique).
+     - **Photosensibilité** : légère → SPF quotidien indispensable.
+     - **Grossesse & allaitement** : **généralement sûr** à <10 % topique (pas de risque tératogène connu, absorption faible ; souvent recommandé comme alternative douce aux rétinol/salicylique). Idéal pour hyperpigmentation/masque grossesse. **Consultez médecin** pour confirmation.
+     - Test patch 24-48 h conseillé.
+     - Éviter peau lésée, eczémateuse active ou post-peeling.
+     - Conserver flacon opaque, à l’abri lumière/chaleur.
+
+     ## Acide Lactique vs Acide Glycolique – comparatif rapide
+     | Critère              | Acide Lactique                     | Acide Glycolique                   |
+     |----------------------|------------------------------------|------------------------------------|
+     | Taille moléculaire   | Plus grande (pénètre moins profond)| Plus petite (pénètre plus profond) |
+     | Action principale    | Exfolie + hydrate fortement        | Exfolie puissante, anti-âge/taches |
+     | Irritation           | Très faible                        | Moyenne à élevée                   |
+     | Hydratation          | Excellente (humectant naturel)     | Moyenne                            |
+     | Peaux cibles         | Sèches, sensibles, déshydratées    | Ternes, matures, hyperpigmentées   |
+     | Concentration typique| 5-10 %                             | 5-10 %                             |
+     | Utilisation          | Soir (ou matin si toléré)          | Soir                               |
+     | Photosensibilité     | Légère                             | Oui                                |
+
+     **Conseil expert** : l’acide lactique est l’AHA idéal pour introduire l’exfoliation chimique sans stresser la peau – surtout si sèche, sensible ou en hiver. Il hydrate en même temps qu’il exfolie, ce qui le rend parfait pour routines minimalistes ou peaux réactives. Associez à une hydratation riche et SPF pour un teint glowy, lisse et rebondi durablement !
+     `,
+    category: 'actif',
+  },
+
+  // ── Hydratants & barrière renforcés ───────────────────────
+  {
+    name: 'Acide Hyaluronique',
+    slug: INGREDIENT_SLUGS.HYALURONIC_ACID,
+    description: "Humectant star capable de retenir jusqu'à 1000× son poids en eau.",
+    content:
+      "# Acide Hyaluronique\n\nHydrate en profondeur, repulpe et réduit l'apparence des ridules.\n\n## INCI\nSODIUM HYALURONATE / HYALURONIC ACID (multi-masse souvent)\n\n## Concentration typique\n0.1-2%.",
+    category: 'excipient',
+  },
+  // ── Autres très courants / trending ───────────────────────
+  {
+    name: 'Peptides',
+    slug: INGREDIENT_SLUGS.PEPTIDES,
+    description: "Chaînes d'acides aminés qui boostent le collagène et raffermissent.",
+    content:
+      '# Peptides\n\nSignalent à la peau de produire plus de collagène, élastine et acide hyaluronique. Très utilisés en anti-âge.\n\n## INCI\nvarie (Palmitoyl Tripeptide-1, Copper Tripeptide-1, Matrixyl…)\n\n## Concentration typique\nvariable selon le type (souvent 1-5%).',
+    category: 'actif',
+  },
+  {
+    name: 'Allantoïne',
+    slug: INGREDIENT_SLUGS.ALLANTOIN,
+    description: 'Apaisante, adoucissante et favorise la régénération.',
+    content:
+      '# Allantoïne\n\nCalme les irritations, hydrate légèrement et aide à la cicatrisation.\n\n## INCI\nALLANTOIN\n\n## Concentration typique\n0.1-2%.',
+    category: 'excipient',
+  },
+  // ── Peptides & anti-âge ciblé ───────────────────────
+  {
+    name: 'Matrixyl 3000',
+    slug: INGREDIENT_SLUGS.MATRIXYL_3000,
+    description:
+      "Complexe breveté qui stimule fortement la production de collagène et d'élastine pour réduire les rides.",
+    content:
+      "# Matrixyl 3000\n\nCombinaison de deux peptides (Palmitoyl Tripeptide-1 + Palmitoyl Tetrapeptide-7) qui booste jusqu'à +350% la synthèse de collagène selon les études du fabricant. Réduit rides, améliore fermeté et élasticité.\n\n## INCI\nPALMITOYL TRIPEPTIDE-1, PALMITOYL TETRAPEPTIDE-7 (souvent listé comme 'Matrixyl 3000')\n\n## Concentration typique\n3-10% (le plus efficace autour de 3-5% dans les sérums).",
+    category: 'actif',
+  },
+  {
+    name: 'Argireline',
+    slug: INGREDIENT_SLUGS.ARGIRELINE,
+    description:
+      "Peptide relaxant musculaire ('Botox-like') qui atténue les rides d'expression sans injection.",
+    content:
+      "# Argireline\n\nAcetyl Hexapeptide-8 inhibe la libération d'acétylcholine pour détendre les muscles faciaux. Idéal pour rides du front, pattes d'oie et rides du sourire.\n\n## INCI\nACETYL HEXAPEPTIDE-8 (ou Acetyl Hexapeptide-3 anciennement)\n\n## Concentration typique\n5-10% (souvent 10% dans les formules 'Botox in a bottle').",
+    category: 'actif',
+  },
+  {
+    name: 'Copper Tripeptide-1 (GHK-Cu)',
+    slug: INGREDIENT_SLUGS.COPPER_TRIPEPTIDE_1,
+    description: 'Peptide cuivré régénérant qui booste collagène, élasticité et cicatrisation.',
+    content: `
+     # Copper Tripeptide-1 (GHK-Cu)
+
+     Peptide cuivré régénérant naturel (présent dans le plasma humain), transporteur de cuivre qui accélère la réparation cutanée, stimule collagène/élastine/glycosaminoglycanes, réduit inflammation et protège contre radicaux libres. Idéal pour peaux matures, abîmées, post-traitements (laser, microneedling), cicatrices, perte d’élasticité ou signes de photo-vieillissement. Action anti-âge douce, sans irritation majeure ni photosensibilisation.
+
+     ## INCI
+     COPPER TRIPEPTIDE-1
+     (ou TRIPEPTIDE-1 COPPER, GHK-Cu, Copper Tripeptide)
+
+     ## Concentration typique
+     - **Sérums/crèmes OTC** : 0,5-2 % (1 % courant dans produits bleutés comme The Ordinary ou NIOD ; 0,05-0,1 % dans études pour fermeté visible).
+     - **Formules avancées** : 0,01-0,5 % (efficace même à très faible dose grâce à nanomolaire activité).
+     Pas de limite réglementaire stricte en UE (autorisé sans restriction spécifique, évalué cas par cas via CPSR). Concentrations >2 % rares (risque irritation ou surcharge cuivre). Débuter bas si peau sensible.
+
+     ## Mécanisme d’action
+     GHK-Cu est un tripeptide (glycyl-histidyl-lysine) complexé au cuivre (Cu²⁺). Il agit comme signal moléculaire :
+     - Stimule fibroblastes → boost synthèse collagène I/III, élastine, glycosaminoglycanes (acide hyaluronique inclus).
+     - Active enzymes cuivre-dépendantes (lysyl oxydase) → renforce réticulation collagène pour fermeté durable.
+     - Module gènes (reset expression en cellules âgées) → réduit MMP (dégradation matrice), augmente TIMP (inhibiteurs).
+     - Antioxydant + anti-inflammatoire → neutralise ROS, baisse cytokines (IL-1β, TNF-α), attire cellules immunitaires pour réparation.
+     - Améliore cicatrisation → accélère angiogenèse, épithélialisation, réduit fibrose.
+     Pénètre bien (hydrophile, parfois encapsulé liposomes pour + efficacité).
+
+     ## Bienfaits prouvés (études cliniques 2025-2026)
+     - **Anti-âge** : augmente fermeté (22 % en 12 semaines à 0,05 %), élasticité, densité cutanée ; réduit ridules, rides fines, relâchement (études split-face vs placebo).
+     - **Réparation & cicatrisation** : accélère guérison post-laser/microneedling (25 % plus rapide), réduit érythème/inflammation post-procédure.
+     - **Texture & éclat** : lisse peau rugueuse, atténue photodamage, hyperpigmentation, cicatrices/acné.
+     - **Antioxydant** : protège UV/pollution, réduit stress oxydatif.
+     - **Hydratation** : boost hyaluronique naturel → peau plus rebondie.
+     Résultats visibles dès 4-8 semaines, optimaux 12+ semaines ; plus progressifs que rétinol mais sans purge/irritation.
+
+     ## Comment l’utiliser (guide pratique)
+     - **Matin et/ou soir** (non photosensibilisant → utilisable jour/nuit).
+     - Peau propre, sèche ou humide.
+     - Quantité : 2-3 gouttes sérum ou petit pois pour visage + cou.
+     - **Débutants** : quotidien dès le départ (tolérance excellente).
+     - **Protocole** : après nettoyage/sérum hydratant → GHK-Cu → hydratant/crème.
+     - **Post-traitement** : idéal après microneedling/laser pour accélérer récupération.
+     - **Matin** : GHK-Cu → SPF 30+ (renforce protection sans interférer).
+     - Éviter contour yeux si formule non dédiée (risque bleuissement temporaire).
+
+     ## Compatibilités & associations gagnantes
+     - **Parfait avec** : acide hyaluronique, niacinamide, céramides, panthénol, centella (boost réparation + apaisant).
+     - **Peptides** : super combo multi-peptides.
+     - **Bakuchiol** : matin bakuchiol, soir GHK-Cu (ou layering).
+     - **Vitamine C** : dérivés stables OK ; éviter acide ascorbique pur (risque oxydation cuivre → inefficacité).
+     - **Rétinol / rétinoïdes** : alterner (ex. rétinol soir, GHK-Cu matin) ou layering prudent (GHK-Cu apaise irritation rétinol).
+     - **Acides (AHA/BHA)** : alterner ; éviter layering agressif (attendre 20-30 min ou jours différents).
+     - **Éviter** : acides forts (glycolique élevé), vitamine C pure, EDTA/certain chelateurs (décoloration verte), carnosine (violet).
+
+     ## Effets secondaires & précautions
+     - **Très rare** : rougeurs légères, picotements, bleuissement temporaire (cuivre → rince).
+     - **Irritation** : minime (mieux toléré que rétinol/acides).
+     - **Photosensibilité** : **non** (au contraire, protège).
+     - **Grossesse & allaitement** : **généralement sûr** (naturel, absorption faible, pas tératogène connu ; CIR 2014/revues 2025 rassurantes). Souvent recommandé post-grossesse pour cicatrices/élasticité. **Consultez médecin** (principe précaution).
+     - Test patch 24-48 h si réactive.
+     - Éviter sur peau lésée ouverte (sauf post-traitement supervisé).
+     - Conserver frais, flacon opaque (cuivre sensible oxydation).
+
+     ## GHK-Cu vs autres anti-âge – comparatif rapide
+     | Critère              | GHK-Cu (Copper Tripeptide-1)       | Rétinol                            | Bakuchiol                          |
+     |----------------------|------------------------------------|------------------------------------|------------------------------------|
+     | Origine              | Naturel (plasma humain)            | Dérivé vitamine A                  | Végétal (Psoralea)                 |
+     | Mécanisme principal  | Régénération, collagène via cuivre | Turnover cellulaire, gènes RAR     | Mimétisme rétinol sans irritation  |
+     | Irritation           | Très faible                        | Moyenne à élevée (purge)           | Très faible                        |
+     | Photosensibilité     | Non                                | Oui                                | Non                                |
+     | Grossesse            | Généralement OK                    | Contre-indiqué                     | OK (avis médical)                  |
+     | Concentration typique| 0,5-2 % (efficace bas)             | 0,1-0,3 %                          | 0,5-1 %                            |
+     | Vitesse résultats    | Progressive (4-12 semaines)        | Rapide mais irritant               | Progressive                        |
+     | Peaux cibles         | Matures, sensibles, post-traitement| Tous (avec précautions)            | Sensibles, enceintes               |
+
+     **Conseil expert** : GHK-Cu est l’actif régénérant n°1 pour une anti-âge douce et réparatrice – parfait si rétinol irrite ou pour booster récupération cutanée. Il potentialise bien bakuchiol/peptides/hydratants. Utilisez-le quotidiennement avec hydratation riche et SPF pour fermeté, éclat et résilience durable. La peau paraît plus dense, lisse et "remodelée" sur le long terme sans stress !
+     `,
+    category: 'actif',
+  },
+  {
+    name: 'Palmitoyl Tripeptide-1',
+    slug: INGREDIENT_SLUGS.PALMITOYL_TRIPEPTIDE_1,
+    description: "Signal peptide qui stimule la production de collagène et d'acide hyaluronique.",
+    content:
+      '# Palmitoyl Tripeptide-1\n\nPartie du complexe Matrixyl 3000, agit comme un signal pour les fibroblastes : plus de collagène, meilleure hydratation et réparation.\n\n## INCI\nPALMITOYL TRIPEPTIDE-1\n\n## Concentration typique\nVariable, souvent combiné (1-5% dans les blends).',
+    category: 'actif',
+  },
+  {
+    name: 'Palmitoyl Tetrapeptide-7',
+    slug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_7,
+    description: "Réduit l'inflammation et booste collagène pour une peau plus ferme et apaisée.",
+    content:
+      "# Palmitoyl Tetrapeptide-7\n\nDiminue l'inflammation (via IL-6), stimule collagène et améliore la fermeté. Souvent associé à Palmitoyl Tripeptide-1 dans Matrixyl 3000.\n\n## INCI\nPALMITOYL TETRAPEPTIDE-7\n\n## Concentration typique\nVariable, efficace à faible dose dans les complexes.",
+    category: 'actif',
+  },
+  {
+    name: 'Palmitoyl Pentapeptide-4',
+    slug: INGREDIENT_SLUGS.PALMITOYL_PENTAPEPTIDE_4,
+    description: 'Matrixyl original, puissant stimulateur de collagène pour lisser les rides.',
+    content:
+      "# Palmitoyl Pentapeptide-4\n\nLe 'Matrixyl' original (Matrixyl 1999), augmente collagène, glycosaminoglycanes et réduit profondeur des rides de façon prouvée.\n\n## INCI\nPALMITOYL PENTAPEPTIDE-4\n\n## Concentration typique\n3-10% (études sur 3%).",
+    category: 'actif',
+  },
+  {
+    name: 'Syn-Ake',
+    slug: INGREDIENT_SLUGS.SYN_AKE,
+    description:
+      'Peptide inspiré du venin de serpent, relaxe les muscles pour effet anti-rides expressifs.',
+    content:
+      "# Syn-Ake\n\nDipeptide diaminobutyroyl benzylamide diacetate : mime le waglerin-1 du venin, bloque les contractions musculaires pour lisser rides du front et pattes d'oie.\n\n## INCI\nDIPEPTIDE DIAMINOBUTYROYL BENZYLAMIDE DIACETATE\n\n## Concentration typique\n1-4% (effet visible à 4%).",
+    category: 'actif',
+  },
+  // ── Dérivés de Vitamine C ───────────────────────
+  {
+    name: 'Ascorbyl Glucoside',
+    slug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE,
+    description: 'Dérivé stable et doux, libère lentement la vitamine C pour un éclat progressif.',
+    content:
+      '# Ascorbyl Glucoside\n\nDérivé hydrosoluble très stable (pH neutre), converti lentement en acide ascorbique dans la peau. Idéal peaux sensibles, illumine sans irritation, anti-taches et antioxydant modéré.\n\n## INCI\nASCORBYL GLUCOSIDE\n\n## Concentration typique\n1-5% (efficace dès 2%).',
+    category: 'actif',
+  },
+  {
+    name: 'Sodium Ascorbyl Phosphate (SAP)',
+    slug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE,
+    description: 'Dérivé stable, anti-acné et brighten, très doux pour peaux sensibles.',
+    content:
+      '# Sodium Ascorbyl Phosphate\n\nForme hydrosoluble stable, convertie en vitamine C dans la peau. Propriétés anti-inflammatoires et antibactériennes (bon pour acné), illumine, réduit taches, moins irritant que la pure.\n\n## INCI\nSODIUM ASCORBYL PHOSPHATE\n\n## Concentration typique\n1-10% (souvent 3-5%).',
+    category: 'actif',
+  },
+  {
+    name: 'Magnesium Ascorbyl Phosphate (MAP)',
+    slug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE,
+    description: 'Dérivé stable et hydratant, booste collagène et hydrate.',
+    content:
+      '# Magnesium Ascorbyl Phosphate\n\nStable en formule, hydrosoluble, stimule collagène, illumine et hydrate légèrement. Bon compromis pour peaux sèches/sensibles.\n\n## INCI\nMAGNESIUM ASCORBYL PHOSPHATE\n\n## Concentration typique\n1-10% (efficace à 3-5%).',
+    category: 'actif',
+  },
+  {
+    name: 'THD Ascorbate (Ascorbyl Tetraisopalmitate)',
+    slug: INGREDIENT_SLUGS.THD_ASCORBATE,
+    description:
+      'Dérivé liposoluble stable de vitamine C : pénétration profonde, éclat, réduction taches et anti-âge doux. Faible irritation, idéal peaux sèches/sensibles, mais antioxydant in vitro limité.',
+    category: 'actif',
+    content: `
+  (Tetrahexyldecyl Ascorbate / Ascorbyl Tetraisopalmitate)\n\n
+
+  Forme huileuse ultra-stable de vitamine C (dérivé tétra-ester liposoluble).\n
+  Pénètre profondément dans la peau.\n
+  Illumine le teint, atténue taches pigmentaires (hyperpigmentation, melasma, post-acné).\n
+  Booste collagène et élastine.\n
+  Protège contre radicaux libres.\n
+  Améliore hydratation et barrière cutanée.\n\n
+
+  Très faible irritation comparé à l’acide ascorbique pur.\n
+  Parfait pour peaux sensibles, sèches, matures ou réactives.\n
+  Texture huileuse idéale pour sérums/crèmes riches.\n
+  Pas photosensibilisant → matin et soir OK.\n\n
+
+  ## INCI\n
+  TETRAHEXYLDECYL ASCORBATE
+  ou
+  ASCORBYL TETRAISOPALMITATE\n\n
+  (même ingrédient ; synonymes : THD / THDA / THDC / ATIP / VC-IP)\n\n
+
+  ## Concentration typique\n
+  - 3-10 % : zone la plus courante et efficace (5-10 % dans la plupart des sérums performants).\n
+  - 20 % : exemple The Ordinary Ascorbyl Tetraisopalmitate Solution 20 % (bon pour éclat quotidien).\n
+  - 30 % : exemple Revision C+ Correcting Complex 30 % (meilleurs résultats cliniques sur pigmentation).\n\n
+  Même à 1-3 % → déjà actif grâce à haute biodisponibilité et pénétration profonde.\n
+  Pas de limite réglementaire stricte en UE.\n\n
+
+  ## Mécanisme d’action\n
+  THD est un ester tétra de l’acide ascorbique avec acide 2-hexyldécanoïque (chaînes grasses longues).\n
+  Liposoluble → traverse facilement la barrière lipidique de l’épiderme.\n\n
+  Actions principales :\n
+  - Conversion enzymatique lente en acide ascorbique pur dans la peau (pénétration plus profonde que LAA).\n
+  - Neutralise radicaux libres (antioxydant, mais in vitro faible vs LAA).\n
+  - Stimule fibroblastes → synthèse collagène I/III, élastine, glycosaminoglycanes (dont acide hyaluronique).\n
+  - Inhibe tyrosinase → réduit production de mélanine → anti-taches puissante.\n
+  - Améliore barrière cutanée et hydratation (effet émollient huileux).\n\n
+  Pénétration : x3 supérieure à l’acide ascorbique pur (études in vitro/in vivo).\n\n
+
+  ## Bienfaits prouvés\n
+  - **Éclat & uniformité du teint** : illumine teint terne, atténue taches solaires/post-inflammatoires/melasma.\n  Résultats visibles dès 4-8 semaines ; jusqu’à +35 % amélioration hyperpigmentation à 20 % + stabilisants en 12 semaines.\n- **Anti-âge** : augmente fermeté, élasticité, densité cutanée ; réduit ridules fines et photodamage (boost collagène visible).\n- **Protection** : antioxydant complémentaire SPF (neutralise ROS UV/pollution).\n- **Hydratation & confort** : texture huileuse renforce barrière, apaise peaux sèches.\n- **Anti-inflammatoire** : réduit rougeurs, aide acné légère.\n\n
+  Tolérance excellente : quasi zéro irritation, picotements ou sécheresse vs acide ascorbique pur.\n\n
+
+  ## Insights du podcast Chemist Confessions (#148, 2025)\n
+  Gloria et Victoria analysent THD en profondeur :\n\n
+  - **Antioxydant in vitro** : très faible.\n  ORAC assay → THD ~1 000 μmol TE/g vs acide ascorbique ~30 000 μmol TE/mg (soit ~30 000x plus faible après ajustement).\n  IC50 lipid peroxidation ~38,7 mg/mL (vs acétyl zingérone ~46 μg/mL → beaucoup moins efficace).\n  Verdict : "pas un bon antioxydant pur".\n\n
+  - **Stabilité** : discutable sans stabilisants.\n  Dégrade à 0 % en 6 min sous stress oxydatif (singlet oxygen/UV).\n  Avec acétyl zingérone → ~75 % restant après 10 min.\n  "Pas aussi stable qu’on le dit ; besoin d’autres antioxydants pour le booster."\n\n
+  - **Études cliniques clés** :\n  - 5 % THD seul : décevant (pigment ↓ ~4 %, rougeurs ↑, rides ↑ ~7 % à 8 semaines).\n  - 5 % + acétyl zingérone : mieux mais faible (pigment ↓ ~4-10 %).\n  - 20 % + acétyl zingérone (Image Skincare Power-C) : ~35 % amélioration hyperpigmentation à 12 semaines.\n  - 30 % + acétyl zingérone + autres (Revision C+) : impressionnant sur pigmentation (grade ↓ de ~7 à 4,5) et uniformité ton malgré soleil estival (n=10).\n\n
+  - **Verdict global** : Pas un remplaçant antioxydant fiable vs acide ascorbique.\n  Bénéfices surtout sur hyperpigmentation/uniformité à hautes concentrations (20-30 %) + stabilisants.\n  "Higher is better".\n  Pas leur dérivé préféré ; ils préfèrent ascorbyl phosphates (SAP/MAP) ou LAA pour prévention.\n\n
+
+  ## Comment l’utiliser (guide pratique)\n
+  - **Quand** : Matin et/ou soir (stable à la lumière/air, non photosensibilisant).\n
+  - **Préparation** : Peau propre, sèche ou légèrement humide.\n
+  - **Quantité** : 2-4 gouttes sérum (ou petit pois) pour visage + cou.\n
+  - **Débutants** : Quotidien dès le départ (très doux, pas de phase d’adaptation).\n
+  - **Ordre idéal** : Nettoyage → THD → attendre 5-10 min → hydratant/crème riche.\n
+  - **Matin** : THD → SPF 30+ large spectre (combo antioxydant puissant).\n
+  - **Astuces** :\n  - Texture huileuse → excellent en layering huileux ou crème.\n  - Peut jaunir lentement si oxydé (stable avec bons stabilisants).\n  - Éviter layering agressif avec AHA/BHA forts (alterner ou attendre 20-30 min).\n\n
+
+  ## Compatibilités & associations gagnantes\n
+  - **Parfait avec** :\n  - Niacinamide (éclat + apaisant).\n  - Acide hyaluronique / céramides (hydratation).\n  - Peptides, centella asiatica, panthénol.\n- **Bakuchiol / GHK-Cu** : Duo régénérant anti-âge doux.\n- **Rétinol / rétinoïdes** : Alterner (THD matin, rétinol soir) ou layering prudent (THD apaise irritations).\n- **Autres Vit C** : Combiner avec dérivés aqueux (ascorbyl glucoside/SAP) ou acide ascorbique pur (prudence oxydation).\n- **À éviter** : Acides forts (glycolique/salicylique élevé) en layering immédiat si peau sensible.\n\n
+
+  ## Effets secondaires & précautions\n
+  - **Très rares** : Sensation huileuse (normale), oxydation lente si mal conservé (jaunissement).\n
+  - **Photosensibilité** : Non (au contraire, protège et complète SPF).\n
+  - **Grossesse & allaitement** : Sûr et recommandé (dérivé doux, absorption contrôlée, pas tératogène connu).\n
+  - Test patch 24-48 h si peau ultra-réactive.\n
+  - Conservation : Flacon opaque/airless/pompe, frais et à l’abri lumière/chaleur (stabilité excellente avec stabilisants comme acétyl zingérone).\n\n
+
+  ## Comparatif THD vs autres formes Vitamine C\n
+  | Critère                  | THD Ascorbate                          | Acide ascorbique pur (LAA)     | Ascorbyl Glucoside / SAP / MAP | 3-O-Ethyl Ascorbic Acid |
+  |--------------------------|----------------------------------------|--------------------------------|--------------------------------|-------------------------|
+  | Solubilité               | Huile (liposoluble)                    | Eau                            | Eau                            | Eau/huile mixte         |
+  | Stabilité                | Excellente (avec stabilisants)         | Faible                         | Bonne                          | Bonne                   |
+  | Pénétration              | Très profonde (x3 vs LAA)              | Moyenne                        | Moyenne                        | Bonne                   |
+  | Irritation               | Très faible                            | Moyenne+                       | Très faible                    | Faible                  |
+  | Antioxydant in vitro     | Faible (ORAC ~30 000x < LAA)           | Très fort                      | Moyen                          | Moyen-fort              |
+  | Concentration typique    | 5-30 % (higher better pigmentation)    | 10-20 %                        | 5-15 %                         | 1-5 %                   |
+  | Peaux cibles             | Sèches/sensibles/matures, pigmentation | Normales/mixtes/tolérantes     | Sensibles/hydratantes          | Tous                    |
+  | Utilisation              | Matin + soir                           | Matin idéal                    | Matin + soir                   | Matin + soir            |
+  | Bénéfices principaux     | Pigmentation, hydratation, anti-âge doux | Antioxydant max, éclat       | Éclat doux, anti-acné (SAP)    | Éclat + taches          |\n\n
+
+  **Conseil expert**
+  THD Ascorbate est excellent pour un glow quotidien sans irritation, surtout peaux sèches/sensibles ou ciblage pigmentation (taches, melasma) → privilégie 20-30 % + stabilisants (acétyl zingérone comme dans Revision/Image).\n
+  Pas le meilleur antioxydant pur (in vitro faible vs LAA) → ne remplace pas un sérum Vit C puissant pour prévention globale.\n
+  Choisis formules cliniquement testées.\n
+  Associer toujours SPF large spectre + hydratation riche → teint lumineux, ferme et protégé durablement.\n
+  Upgrade doux et confortable vs Vit C instable – idéal en routine mixte !
+  `,
+  },
+  {
+    name: '3-O-Ethyl Ascorbic Acid',
+    slug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID,
+    description: 'Dérivé éthylé ultra-stable, bonne pénétration et activité proche de la pure.',
+    content:
+      "# 3-O-Ethyl Ascorbic Acid\n\nDérivé liposoluble/hydrosoluble hybride, très stable, pénètre efficacement, inhibe tyrosinase (anti-taches), booste collagène. Un des plus prometteurs en 2025-2026.\n\n## INCI\n3-O-ETHYL ASCORBIC ACID\n\n## Concentration typique\n1-5% (jusqu'à 10% dans certaines formules).",
+    category: 'actif',
+  },
+  {
+    name: 'Ascorbyl Palmitate',
+    slug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE,
+    description: 'Dérivé liposoluble basique, antioxydant dans les formules huileuses.',
+    content:
+      '# Ascorbyl Palmitate\n\nForme liposoluble stable, utilisée comme antioxydant dans les huiles/crèmes. Moins pénétrante que THD ou Tetraisopalmitate, mais protège la formule et offre bénéfices légers.\n\n## INCI\nASCORBYL PALMITATE\n\n## Concentration typique\n0.1-1% (souvent pour stabilité formule).',
+    category: 'actif',
   },
 ] as const
