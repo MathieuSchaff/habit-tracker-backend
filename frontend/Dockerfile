@@ -2,7 +2,8 @@
 # Frontend Dockerfile (Production)
 # Build avec Bun, serve avec Nginx
 # =========================
-FROM oven/bun:1-alpine AS builder
+# FROM oven/bun:1-alpine AS builder
+FROM oven/bun:1.3.9-alpine AS builder
 WORKDIR /app
 
 # Copier structure workspace

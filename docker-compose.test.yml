@@ -5,7 +5,7 @@
 
 services:
   db-test:
-    image: postgres:16
+    image: postgres:18
     container_name: app_db_test
     environment:
       POSTGRES_USER: app
@@ -22,7 +22,7 @@ services:
       - testnet
     # Pas de volume = données perdues au redémarrage (voulu pour les tests)
     tmpfs:
-      - /var/lib/postgresql/data
+      - /var/lib/postgresql
 
 networks:
   testnet:
