@@ -4,6 +4,7 @@ import {
   errorResponse,
   errorToStatus,
   HTTP_STATUS,
+  ingredientResponseSchema,
   ok,
   productResponseSchema,
   successResponse,
@@ -20,6 +21,7 @@ import {
   deleteTag,
   getTagById,
   getTagBySlug,
+  listIngredientsByTag,
   listProductsByTag,
   updateTag,
 } from './tags.service'
@@ -86,6 +88,18 @@ const listTagProductsRoute = createRoute({
   request: { params: slugParam },
   responses: {
     [HTTP_STATUS.OK]: successResponse(z.array(productResponseSchema), 'Products retrieved'),
+    [HTTP_STATUS.NOT_FOUND]: errorResponse('Tag not found'),
+  },
+})
+
+const listTagIngredientsRoute = createRoute({
+  method: 'get',
+  path: '/{slug}/ingredients',
+  tags: ['Tags'],
+  summary: 'List ingredients associated with a tag',
+  request: { params: slugParam },
+  responses: {
+    [HTTP_STATUS.OK]: successResponse(z.array(ingredientResponseSchema), 'Ingredients retrieved'),
     [HTTP_STATUS.NOT_FOUND]: errorResponse('Tag not found'),
   },
 })
@@ -158,5 +172,14 @@ export const tagRoutes = tagsApp
     const tag = await getTagBySlug(db, slug)
     if (!tag) throw new TagError('tag_not_found')
     const items = await listProductsByTag(db, tag.id)
+    return c.json(ok(items), HTTP_STATUS.OK)
+  })
+
+  .openapi(listTagIngredientsRoute, async (c) => {
+    const db = c.get('db')
+    const { slug } = c.req.valid('param')
+    const tag = await getTagBySlug(db, slug)
+    if (!tag) throw new TagError('tag_not_found')
+    const items = await listIngredientsByTag(db, tag.id)
     return c.json(ok(items), HTTP_STATUS.OK)
   })

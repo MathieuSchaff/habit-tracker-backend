@@ -4,8 +4,16 @@ import slugify from '@sindresorhus/slugify'
 import { and, eq, getTableColumns } from 'drizzle-orm'
 
 import type { DB } from '../../../db/index'
+import { type Ingredient, ingredients } from '../../../db/schema/ingredients'
 import { type Product, products } from '../../../db/schema/products'
-import { type ProductTag, productTags, type Tag, tags } from '../../../db/schema/tags'
+import {
+  type IngredientTag,
+  ingredientTags,
+  type ProductTag,
+  productTags,
+  type Tag,
+  tags,
+} from '../../../db/schema/tags'
 import { isUniqueViolation } from '../../../lib/helpers'
 import { TagError } from './tags-error'
 
@@ -155,6 +163,89 @@ export async function replaceProductTags(
     return tx
       .insert(productTags)
       .values(tagIds.map((tagId) => ({ productId, tagId })))
+      .returning()
+  })
+}
+
+// ─── Ingredient Tags ──────────────────────────────────────
+
+export async function addTagToIngredient(db: DB, ingredientId: string, tagId: string) {
+  const [link] = await db.insert(ingredientTags).values({ ingredientId, tagId }).returning()
+  return link
+}
+
+export async function addManyTagsToIngredient(
+  db: DB,
+  ingredientId: string,
+  tagIds: string[]
+): Promise<IngredientTag[]> {
+  if (tagIds.length === 0) return []
+  return db
+    .insert(ingredientTags)
+    .values(tagIds.map((tagId) => ({ ingredientId, tagId })))
+    .returning()
+}
+
+/**
+ * Liste les tags d'un ingrédient avec les infos du tag jointé.
+ */
+export async function listTagsByIngredient(db: DB, ingredientId: string) {
+  return db
+    .select({
+      id: ingredientTags.id,
+      ingredientId: ingredientTags.ingredientId,
+      tagId: ingredientTags.tagId,
+      createdAt: ingredientTags.createdAt,
+      tagName: tags.name,
+      tagSlug: tags.slug,
+      tagCategory: tags.category,
+    })
+    .from(ingredientTags)
+    .innerJoin(tags, eq(ingredientTags.tagId, tags.id))
+    .where(eq(ingredientTags.ingredientId, ingredientId))
+    .orderBy(tags.category, tags.name)
+}
+
+/**
+ * Liste les ingrédients ayant un tag donné.
+ */
+export async function listIngredientsByTag(db: DB, tagId: string): Promise<Ingredient[]> {
+  return db
+    .select(getTableColumns(ingredients))
+    .from(ingredientTags)
+    .innerJoin(ingredients, eq(ingredientTags.ingredientId, ingredients.id))
+    .where(eq(ingredientTags.tagId, tagId))
+    .orderBy(ingredients.name)
+}
+
+export async function removeTagFromIngredient(
+  db: DB,
+  ingredientId: string,
+  tagId: string
+): Promise<boolean> {
+  const result = await db
+    .delete(ingredientTags)
+    .where(and(eq(ingredientTags.ingredientId, ingredientId), eq(ingredientTags.tagId, tagId)))
+    .returning({ id: ingredientTags.id })
+  return result.length > 0
+}
+
+/**
+ * Remplace tous les tags d'un ingrédient (transaction).
+ */
+export async function replaceIngredientTags(
+  db: DB,
+  ingredientId: string,
+  tagIds: string[]
+): Promise<IngredientTag[]> {
+  return db.transaction(async (tx) => {
+    await tx.delete(ingredientTags).where(eq(ingredientTags.ingredientId, ingredientId))
+
+    if (tagIds.length === 0) return []
+
+    return tx
+      .insert(ingredientTags)
+      .values(tagIds.map((tagId) => ({ ingredientId, tagId })))
       .returning()
   })
 }
