@@ -1,5 +1,20 @@
 import { z } from 'zod'
 
+export const accessTokenPayloadSchema = z.object({
+  sub: z.string(),
+  type: z.literal('access'),
+  jti: z.string(),
+  iat: z.number(),
+  exp: z.number(),
+})
+
+export const refreshTokenPayloadSchema = z.object({
+  sub: z.string(),
+  type: z.literal('refresh'),
+  jti: z.string(),
+  iat: z.number(),
+  exp: z.number(),
+})
 // ─── Branded Types ───────────────────────────────────────
 
 /**
