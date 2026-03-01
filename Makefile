@@ -10,7 +10,7 @@ export
 	logs logs-api logs-db logs-nginx logs-frontend \
 	lint lint-fix format \
 	shell-api shell-db shell-frontend \
-	db-migrate db-generate db-push db-studio db-backup db-restore db-seed \
+	db-migrate db-generate db-push db-studio db-backup db-restore db-seed db-clean db-reset \
 	ssl-init ssl-renew \
 	clean clean-soft clean-images \
 	health install build
@@ -230,6 +230,14 @@ db-restore: ## Restaure la DB (usage: make db-restore FILE=./backups/backup.sql)
 db-seed: ## Lance le seed de la base de données
 	$(COMPOSE_DEV) exec api bun run src/db/seed/index.ts
 	@echo "$(GREEN)✓ Seed exécuté$(NC)"
+
+db-clean: ## Vide complètement la base de données (sans supprimer le container)
+	@echo "$(YELLOW)⚠ Nettoyage de la base de données local...$(NC)"
+	@read -p "Toutes les données seront perdues. Continuer ? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
+	@docker compose exec -T db psql -U app -d appdb -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public; GRANT ALL ON SCHEMA public TO app; GRANT ALL ON SCHEMA public TO public;"
+	@echo "$(GREEN)✓ Base de données vidée. Pensez à faire un 'make db-push' pour recréer les tables.$(NC)"
+
+db-reset: db-clean db-push db-seed ## Nettoie, recrée le schéma et injecte le seed
 
 # =========================
 # SSL (production)
