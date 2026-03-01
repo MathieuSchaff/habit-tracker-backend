@@ -1,0 +1,55 @@
+// export const NOREVA_PRODUCT_TAGS = [
+//   {
+//     productSlug: NOREVA_PRODUCT_SLUGS.NOREVA_SENSIDIANE_AR_PLUS,
+//     tagSlug: TAG_SLUGS.ANTI_ROUGEURS,
+//   },
+//   {
+//     productSlug: NOREVA_PRODUCT_SLUGS.NOREVA_SENSIDIANE_AR_PLUS,
+//     tagSlug: TAG_SLUGS.ROSACEE,
+//   },
+//   {
+//     productSlug: NOREVA_PRODUCT_SLUGS.NOREVA_SENSIDIANE_AR_PLUS,
+//     tagSlug: TAG_SLUGS.PEAU_REACTIVE,
+//   }
+// ]
+
+// export const ACM_PRODUCT_TAGS = [
+//   {
+//     productSlug: ACM_PRODUCT_SLUGS.ACM_ROSAKALM_CREME_ANTI_ROUGEURS,
+//     tagSlug: TAG_SLUGS.ANTI_ROUGEURS,
+//   },
+//   {
+//     productSlug: ACM_PRODUCT_SLUGS.ACM_ROSAKALM_CREME_ANTI_ROUGEURS,
+//     tagSlug: TAG_SLUGS.PEAU_SENSIBLE,
+//   }
+// ]
+
+// export const EUCERIN_PRODUCT_TAGS = [
+//   // --- Anti-Rougeurs Soin Apaisant ---
+//   {
+//     productSlug: EUCERIN_PRODUCT_SLUGS.EUCERIN_ANTI_ROUGEURS_SOIN_APAISANT,
+//     tagSlug: TAG_SLUGS.ANTI_ROUGEURS,
+//   },
+//   {
+//     productSlug: EUCERIN_PRODUCT_SLUGS.EUCERIN_ANTI_ROUGEURS_SOIN_APAISANT,
+//     tagSlug: TAG_SLUGS.PEAU_REACTIVE,
+//   },
+//   // --- Sun Photoaging Control SPF50 ---
+//   {
+//     productSlug: EUCERIN_PRODUCT_SLUGS.EUCERIN_SUN_PROTECTION_PHOTOAGING_CONTROL_FLUIDE_ANTI_AGE_SPF50,
+//     tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE,
+//   },
+//   {
+//     productSlug: EUCERIN_PRODUCT_SLUGS.EUCERIN_SUN_PROTECTION_PHOTOAGING_CONTROL_FLUIDE_ANTI_AGE_SPF50,
+//     tagSlug: TAG_SLUGS.ANTI_AGE,
+//   },
+//   // --- Sun LEB Protect SPF50 ---
+//   {
+//     productSlug: EUCERIN_PRODUCT_SLUGS.EUCERIN_SUN_PROTECTION_LEB_PROTECT_CREME_GEL_VISAGE_CORPS_SPF50,
+//     tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE,
+//   },
+//   {
+//     productSlug: EUCERIN_PRODUCT_SLUGS.EUCERIN_SUN_PROTECTION_LEB_PROTECT_CREME_GEL_VISAGE_CORPS_SPF50,
+//     tagSlug: TAG_SLUGS.PEAU_REACTIVE,
+//   }
+// ]

@@ -1,0 +1,44 @@
+import { TAG_SLUGS } from '../../tags/seed-tags'
+import { GG_PRODUCTS_SLUGS } from './geekAndGorgeous'
+
+export const GG_PRODUCT_TAGS: { productSlug: string; tagSlug: string }[] = [
+  // Power Peptides Serum – Sérum multi-peptides anti-âge
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
+  {
+    productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.SERUM },
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.PEAU_NORMALE },
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.PEAU_SECHE }, // Hydratant via peptides + panthenol/allantoine
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.REPARATEUR },
+  { productSlug: GG_PRODUCTS_SLUGS.GEEK_GORGEOUS_POWER_PEPTIDES, tagSlug: TAG_SLUGS.ECLAT },
+
+  // A-Game 20 – Sérum rétinal 0.2% puissant anti-âge
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.ECLAT },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.PEAU_SENSIBLE }, // Avec ectoine, panthenol, allantoine pour tolérance
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.SERUM },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.POST_ACNE }, // Améliore texture, pores, marques
+  { productSlug: GG_PRODUCTS_SLUGS.GG_A_GAME_20, tagSlug: TAG_SLUGS.PORES_DILATES },
+
+  // Hydration Station – Gel-crème hydratant léger
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.PEAU_NORMALE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.SOIN_DE_JOUR },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.SOIN_DE_NUIT },
+  { productSlug: GG_PRODUCTS_SLUGS.GG_HYDRATION_STATION, tagSlug: TAG_SLUGS.REPARATEUR },
+]

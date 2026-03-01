@@ -1,0 +1,133 @@
+import { TAG_SLUGS } from '../../tags/seed-tags'
+import { TO_PRODUCT_SLUGS } from './theOrdinary'
+
+export const TO_PRODUCT_TAGS: { productSlug: string; tagSlug: string }[] = [
+  // Caffeine Solution 5% + EGCG – Contour des yeux décongestionnant / anti-cernes
+  { productSlug: TO_PRODUCT_SLUGS.TO_CAFFEINE_5_EGCG, tagSlug: TAG_SLUGS.CERNES_POCHES },
+  { productSlug: TO_PRODUCT_SLUGS.TO_CAFFEINE_5_EGCG, tagSlug: TAG_SLUGS.CONTOUR_YEUX },
+  { productSlug: TO_PRODUCT_SLUGS.TO_CAFFEINE_5_EGCG, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: TO_PRODUCT_SLUGS.TO_CAFFEINE_5_EGCG, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { productSlug: TO_PRODUCT_SLUGS.TO_CAFFEINE_5_EGCG, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { productSlug: TO_PRODUCT_SLUGS.TO_CAFFEINE_5_EGCG, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+
+  // Azelaic Acid Suspension 10% – Anti-imperfections, éclaircissant, texture épaisse
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.POST_ACNE },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { productSlug: TO_PRODUCT_SLUGS.TO_AZELAIC_ACID_10, tagSlug: TAG_SLUGS.NON_COMEDOGENE },
+
+  // Multi-Peptide + Copper Peptides 1% – Anti-âge avancé, réparation, GHK-Cu
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1,
+    tagSlug: TAG_SLUGS.ANTI_AGE,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1,
+    tagSlug: TAG_SLUGS.REPARATEUR,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1,
+    tagSlug: TAG_SLUGS.ANTI_OXYDANT,
+  },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1, tagSlug: TAG_SLUGS.ECLAT },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1, tagSlug: TAG_SLUGS.SERUM },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDE_COPPER_1,
+    tagSlug: TAG_SLUGS.SANS_PARFUM,
+  },
+
+  // Matrixyl 10% + HA – Boost collagène, rides et fermeté
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MATRIXYL_10_HA, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MATRIXYL_10_HA, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MATRIXYL_10_HA,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MATRIXYL_10_HA, tagSlug: TAG_SLUGS.SERUM },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MATRIXYL_10_HA, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MATRIXYL_10_HA, tagSlug: TAG_SLUGS.HUMECTANT },
+
+  // Multi-Peptides + HA Serum (ex-Buffet) – Multi-peptides complet premier anti-âge
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_HA_EX_BUFFET,
+    tagSlug: TAG_SLUGS.ANTI_AGE,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_HA_EX_BUFFET,
+    tagSlug: TAG_SLUGS.DESHYDRATATION,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_HA_EX_BUFFET,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_HA_EX_BUFFET,
+    tagSlug: TAG_SLUGS.ECLAT,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_HA_EX_BUFFET,
+    tagSlug: TAG_SLUGS.SERUM,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_HA_EX_BUFFET,
+    tagSlug: TAG_SLUGS.SANS_PARFUM,
+  },
+
+  // Multi-Peptides Serum Yeux – Contour yeux peptides + caffeine
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_YEUX,
+    tagSlug: TAG_SLUGS.CERNES_POCHES,
+  },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_YEUX, tagSlug: TAG_SLUGS.ANTI_AGE },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_YEUX,
+    tagSlug: TAG_SLUGS.CONTOUR_YEUX,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_YEUX,
+    tagSlug: TAG_SLUGS.PEAU_SENSIBLE,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_MULTI_PEPTIDES_YEUX,
+    tagSlug: TAG_SLUGS.SANS_PARFUM,
+  },
+
+  // Sérum Éclat Multi-Antioxydant – Protection quotidienne + éclat
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_ECLAT_MULTI_ANTIOXYDANT, tagSlug: TAG_SLUGS.ECLAT },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_ECLAT_MULTI_ANTIOXYDANT,
+    tagSlug: TAG_SLUGS.ANTI_OXYDANT,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_ECLAT_MULTI_ANTIOXYDANT,
+    tagSlug: TAG_SLUGS.ANTI_TACHES,
+  },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_ECLAT_MULTI_ANTIOXYDANT,
+    tagSlug: TAG_SLUGS.HYPERPIGMENTATION,
+  },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_ECLAT_MULTI_ANTIOXYDANT, tagSlug: TAG_SLUGS.SERUM },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_ECLAT_MULTI_ANTIOXYDANT,
+    tagSlug: TAG_SLUGS.SANS_PARFUM,
+  },
+
+  // Solution GF 15% (Facteurs de Croissance) – Anti-âge avancé, réparation profonde
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_SOLUTION_GF_15, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_SOLUTION_GF_15, tagSlug: TAG_SLUGS.REPARATEUR },
+  {
+    productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_SOLUTION_GF_15,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_SOLUTION_GF_15, tagSlug: TAG_SLUGS.SERUM },
+  { productSlug: TO_PRODUCT_SLUGS.THE_ORDINARY_SOLUTION_GF_15, tagSlug: TAG_SLUGS.SANS_PARFUM },
+]

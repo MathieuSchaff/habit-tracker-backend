@@ -1,147 +1,143 @@
 import type { CreateTagInput } from '@habit-tracker/shared'
 
-import { PRODUCT_SLUGS } from '../products/seed-products'
-
+// ─── Unified TAG_SLUGS ──────────────────────────────────────────────
 export const TAG_SLUGS = {
-  // Concerns
+  // ── Concerns (Problématiques) ───────────────────
   ANTI_ROUGEURS: 'anti-rougeurs',
   ROSACEE: 'rosacee',
-  PEAU_SENSIBLE: 'peau-sensible',
   COUPEROSE: 'couperose',
   FLUSHS: 'flushs',
+  PEAU_SENSIBLE: 'peau-sensible',
   BARRIERE_CUTANEE: 'barriere-cutanee',
   ANTI_TACHES: 'anti-taches',
   ANTI_ACNE: 'anti-acne',
   ANTI_AGE: 'anti-age',
   HYPERPIGMENTATION: 'hyperpigmentation',
+  DESHYDRATATION: 'deshydratation',
+  PORES_DILATES: 'pores-dilates',
+  CERNES_POCHES: 'cernes-poches',
+  BRILLANCE: 'brillance', // excès de sébum
+  ECLAT: 'eclat', // teint terne → recherche d'éclat
+  POST_ACNE: 'post-acne',
 
-  // Skin types
+  // ── Skin types (Types de peau) ──────────────────
   PEAU_SECHE: 'peau-seche',
   PEAU_MIXTE: 'peau-mixte',
+  PEAU_GRASSE: 'peau-grasse',
   PEAU_REACTIVE: 'peau-reactive',
+  PEAU_NORMALE: 'peau-normale',
+  PEAU_ATOPIQUE: 'peau-atopique',
 
-  // Routine steps
+  // ── Routine steps (Étape / Format produit) ──────
   SOIN_DE_JOUR: 'soin-de-jour',
+  SOIN_DE_NUIT: 'soin-de-nuit',
   SERUM: 'serum',
   CREME_HYDRATANTE: 'creme-hydratante',
   NETTOYANT: 'nettoyant',
   EXFOLIANT: 'exfoliant',
-  SOIN_DE_NUIT: 'soin-de-nuit',
   PROTECTION_SOLAIRE: 'protection-solaire',
+  MASQUE: 'masque',
+  TONIQUE: 'tonique',
+  HUILE: 'huile',
+  CONTOUR_YEUX: 'contour-yeux',
+  DEMAQUILLANT: 'demaquillant',
+  ESSENCE: 'essence',
+  // Nouveaux ajouts – protections solaires (formats spécifiques)
+  SOLAIRE_VISAGE: 'solaire-visage',
+  SOLAIRE_CORPS: 'solaire-corps',
+  SOLAIRE_TEINTE: 'solaire-teinte',
+  PROTECTION_LUMIERE_BLEUE: 'protection-lumiere-bleue',
 
-  // Attributes
-  SANS_PARFUM: 'sans-parfum',
-  BIO_NATUREL: 'bio-naturel',
-  PIGMENTS_VERTS: 'pigments-verts',
+  // ── Attributes – Propriétés techniques ──────────
+  ANTI_OXYDANT: 'anti-oxydant',
+  HUMECTANT: 'humectant',
+  EMOLLIENT: 'emollient',
+  OCCLUSIF: 'occlusif',
   REPARATEUR: 'reparateur',
   ANTISEPTIQUE: 'antiseptique',
   KERATOLYTIQUE: 'keratolytique',
+  SEBO_REGULATEUR: 'sebo-regulateur',
+
+  // Nouveaux ajouts – attributs solaires
+  FILTRES_MINERAUX: 'filtres-mineraux',
+
+  // ── Attributes – Labels / Certifications ────────
+  BIOMIMETIQUE: 'biomimetique',
+  SANS_PARFUM: 'sans-parfum',
+  BIO_NATUREL: 'bio-naturel',
+  VEGAN: 'vegan',
+  CRUELTY_FREE: 'cruelty-free',
+  HYPOALLERGENIQUE: 'hypoallergenique',
+  NON_COMEDOGENE: 'non-comedogene',
+
+  // ── Attributes – Cosmétique ─────────────────────
+  PIGMENTS_VERTS: 'pigments-verts',
+  SANS_SAVON: 'sans-savon',
 } as const
 
+// ─── Unified tag seed data ──────────────────────────────────────────
 export const tagData: CreateTagInput[] = [
   // ── Concerns ──────────────────────────────────────
   { name: 'Anti-rougeurs', slug: TAG_SLUGS.ANTI_ROUGEURS, category: 'concern' },
   { name: 'Rosacée', slug: TAG_SLUGS.ROSACEE, category: 'concern' },
-  { name: 'Peau sensible', slug: TAG_SLUGS.PEAU_SENSIBLE, category: 'concern' },
   { name: 'Couperose', slug: TAG_SLUGS.COUPEROSE, category: 'concern' },
   { name: 'Flushs', slug: TAG_SLUGS.FLUSHS, category: 'concern' },
+  { name: 'Peau sensible', slug: TAG_SLUGS.PEAU_SENSIBLE, category: 'concern' },
   { name: 'Barrière cutanée', slug: TAG_SLUGS.BARRIERE_CUTANEE, category: 'concern' },
   { name: 'Anti-taches', slug: TAG_SLUGS.ANTI_TACHES, category: 'concern' },
   { name: 'Anti-acné', slug: TAG_SLUGS.ANTI_ACNE, category: 'concern' },
   { name: 'Anti-âge', slug: TAG_SLUGS.ANTI_AGE, category: 'concern' },
   { name: 'Hyperpigmentation', slug: TAG_SLUGS.HYPERPIGMENTATION, category: 'concern' },
+  { name: 'Déshydratation', slug: TAG_SLUGS.DESHYDRATATION, category: 'concern' },
+  { name: 'Pores dilatés', slug: TAG_SLUGS.PORES_DILATES, category: 'concern' },
+  { name: 'Cernes et poches', slug: TAG_SLUGS.CERNES_POCHES, category: 'concern' },
+  { name: 'Brillance', slug: TAG_SLUGS.BRILLANCE, category: 'concern' },
+  { name: 'Éclat', slug: TAG_SLUGS.ECLAT, category: 'concern' },
+  { name: 'Marques post-acné', slug: TAG_SLUGS.POST_ACNE, category: 'concern' },
 
   // ── Skin types ────────────────────────────────────
   { name: 'Peau sèche', slug: TAG_SLUGS.PEAU_SECHE, category: 'skin_type' },
   { name: 'Peau mixte', slug: TAG_SLUGS.PEAU_MIXTE, category: 'skin_type' },
+  { name: 'Peau grasse', slug: TAG_SLUGS.PEAU_GRASSE, category: 'skin_type' },
   { name: 'Peau réactive', slug: TAG_SLUGS.PEAU_REACTIVE, category: 'skin_type' },
+  { name: 'Peau normale', slug: TAG_SLUGS.PEAU_NORMALE, category: 'skin_type' },
 
   // ── Routine steps ─────────────────────────────────
   { name: 'Soin de jour', slug: TAG_SLUGS.SOIN_DE_JOUR, category: 'routine_step' },
+  { name: 'Soin de nuit', slug: TAG_SLUGS.SOIN_DE_NUIT, category: 'routine_step' },
   { name: 'Sérum', slug: TAG_SLUGS.SERUM, category: 'routine_step' },
   { name: 'Crème hydratante', slug: TAG_SLUGS.CREME_HYDRATANTE, category: 'routine_step' },
   { name: 'Nettoyant', slug: TAG_SLUGS.NETTOYANT, category: 'routine_step' },
   { name: 'Exfoliant', slug: TAG_SLUGS.EXFOLIANT, category: 'routine_step' },
-  { name: 'Soin de nuit', slug: TAG_SLUGS.SOIN_DE_NUIT, category: 'routine_step' },
   { name: 'Protection solaire', slug: TAG_SLUGS.PROTECTION_SOLAIRE, category: 'routine_step' },
+  { name: 'Solaire visage', slug: TAG_SLUGS.SOLAIRE_VISAGE, category: 'routine_step' },
+  { name: 'Solaire corps', slug: TAG_SLUGS.SOLAIRE_CORPS, category: 'routine_step' },
+  { name: 'Solaire teinté', slug: TAG_SLUGS.SOLAIRE_TEINTE, category: 'routine_step' },
+  {
+    name: 'Protection lumière bleue',
+    slug: TAG_SLUGS.PROTECTION_LUMIERE_BLEUE,
+    category: 'routine_step',
+  },
+  { name: 'Masque', slug: TAG_SLUGS.MASQUE, category: 'routine_step' },
+  { name: 'Tonique', slug: TAG_SLUGS.TONIQUE, category: 'routine_step' },
+  { name: 'Huile', slug: TAG_SLUGS.HUILE, category: 'routine_step' },
+  { name: 'Contour des yeux', slug: TAG_SLUGS.CONTOUR_YEUX, category: 'routine_step' },
 
   // ── Attributes ────────────────────────────────────
-  { name: 'Sans parfum', slug: TAG_SLUGS.SANS_PARFUM, category: 'attribute' },
-  { name: 'Bio / Naturel', slug: TAG_SLUGS.BIO_NATUREL, category: 'attribute' },
-  { name: 'Pigments verts', slug: TAG_SLUGS.PIGMENTS_VERTS, category: 'attribute' },
+  { name: 'Anti-oxydant', slug: TAG_SLUGS.ANTI_OXYDANT, category: 'attribute' },
+  { name: 'Humectant', slug: TAG_SLUGS.HUMECTANT, category: 'attribute' },
+  { name: 'Émollient', slug: TAG_SLUGS.EMOLLIENT, category: 'attribute' },
+  { name: 'Occlusif', slug: TAG_SLUGS.OCCLUSIF, category: 'attribute' },
   { name: 'Réparateur', slug: TAG_SLUGS.REPARATEUR, category: 'attribute' },
   { name: 'Antiseptique', slug: TAG_SLUGS.ANTISEPTIQUE, category: 'attribute' },
   { name: 'Kératolytique', slug: TAG_SLUGS.KERATOLYTIQUE, category: 'attribute' },
-]
-export const productTagAssociations: { productSlug: string; tagSlug: string }[] = [
-  // Bioderma Sensibio AR+
-  { productSlug: PRODUCT_SLUGS.BIODERMA_SENSIBIO_AR, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.BIODERMA_SENSIBIO_AR, tagSlug: TAG_SLUGS.ROSACEE },
-  { productSlug: PRODUCT_SLUGS.BIODERMA_SENSIBIO_AR, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
-  { productSlug: PRODUCT_SLUGS.BIODERMA_SENSIBIO_AR, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.BIODERMA_SENSIBIO_AR, tagSlug: TAG_SLUGS.SANS_PARFUM },
-
-  // SVR Sensifine AR
-  { productSlug: PRODUCT_SLUGS.SVR_SENSIFINE_AR, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.SVR_SENSIFINE_AR, tagSlug: TAG_SLUGS.FLUSHS },
-  { productSlug: PRODUCT_SLUGS.SVR_SENSIFINE_AR, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.SVR_SENSIFINE_AR, tagSlug: TAG_SLUGS.PIGMENTS_VERTS },
-
-  // Avène Rosamed
-  { productSlug: PRODUCT_SLUGS.AVENE_ROSAMED, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.AVENE_ROSAMED, tagSlug: TAG_SLUGS.ROSACEE },
-  { productSlug: PRODUCT_SLUGS.AVENE_ROSAMED, tagSlug: TAG_SLUGS.COUPEROSE },
-  { productSlug: PRODUCT_SLUGS.AVENE_ROSAMED, tagSlug: TAG_SLUGS.SERUM },
-  { productSlug: PRODUCT_SLUGS.AVENE_ROSAMED, tagSlug: TAG_SLUGS.SANS_PARFUM },
-  { productSlug: PRODUCT_SLUGS.AVENE_ROSAMED, tagSlug: TAG_SLUGS.BIO_NATUREL },
-
-  // A-Derma Biology AR
-  { productSlug: PRODUCT_SLUGS.ADERMA_BIOLOGY_AR, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.ADERMA_BIOLOGY_AR, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
-  { productSlug: PRODUCT_SLUGS.ADERMA_BIOLOGY_AR, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.ADERMA_BIOLOGY_AR, tagSlug: TAG_SLUGS.BIO_NATUREL },
-
-  // La Roche-Posay Toleriane Rosaliac AR
-  { productSlug: PRODUCT_SLUGS.LRP_ROSALIAC_AR, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.LRP_ROSALIAC_AR, tagSlug: TAG_SLUGS.ROSACEE },
-  { productSlug: PRODUCT_SLUGS.LRP_ROSALIAC_AR, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
-  { productSlug: PRODUCT_SLUGS.LRP_ROSALIAC_AR, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.LRP_ROSALIAC_AR, tagSlug: TAG_SLUGS.SANS_PARFUM },
-  { productSlug: PRODUCT_SLUGS.LRP_ROSALIAC_AR, tagSlug: TAG_SLUGS.PIGMENTS_VERTS },
-
-  // Garancia Rougeurs
-  { productSlug: PRODUCT_SLUGS.GARANCIA_ROUGEURS, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.GARANCIA_ROUGEURS, tagSlug: TAG_SLUGS.FLUSHS },
-  { productSlug: PRODUCT_SLUGS.GARANCIA_ROUGEURS, tagSlug: TAG_SLUGS.SERUM },
-
-  // Isispharma Ruboril Expert S
-  { productSlug: PRODUCT_SLUGS.ISISPHARMA_RUBORIL, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.ISISPHARMA_RUBORIL, tagSlug: TAG_SLUGS.PEAU_SECHE },
-  { productSlug: PRODUCT_SLUGS.ISISPHARMA_RUBORIL, tagSlug: TAG_SLUGS.COUPEROSE },
-  { productSlug: PRODUCT_SLUGS.ISISPHARMA_RUBORIL, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-
-  // Noreva Sensidiane AR+
-  { productSlug: PRODUCT_SLUGS.NOREVA_SENSIDIANE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.NOREVA_SENSIDIANE, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
-  { productSlug: PRODUCT_SLUGS.NOREVA_SENSIDIANE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
-  { productSlug: PRODUCT_SLUGS.NOREVA_SENSIDIANE, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.NOREVA_SENSIDIANE, tagSlug: TAG_SLUGS.PIGMENTS_VERTS },
-
-  // Uriage Roséliane
-  { productSlug: PRODUCT_SLUGS.URIAGE_ROSELIANE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.URIAGE_ROSELIANE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
-  { productSlug: PRODUCT_SLUGS.URIAGE_ROSELIANE, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-
-  // ACM Rosakalm
-  { productSlug: PRODUCT_SLUGS.ACM_ROSAKALM, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.ACM_ROSAKALM, tagSlug: TAG_SLUGS.COUPEROSE },
-  { productSlug: PRODUCT_SLUGS.ACM_ROSAKALM, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.ACM_ROSAKALM, tagSlug: TAG_SLUGS.PIGMENTS_VERTS },
-
-  // Eucerin Anti-Rougeurs
-  { productSlug: PRODUCT_SLUGS.EUCERIN_AR, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
-  { productSlug: PRODUCT_SLUGS.EUCERIN_AR, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
-  { productSlug: PRODUCT_SLUGS.EUCERIN_AR, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
-  { productSlug: PRODUCT_SLUGS.EUCERIN_AR, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
-  { productSlug: PRODUCT_SLUGS.EUCERIN_AR, tagSlug: TAG_SLUGS.SANS_PARFUM },
+  { name: 'Sébo-régulateur', slug: TAG_SLUGS.SEBO_REGULATEUR, category: 'attribute' },
+  { name: 'Filtres minéraux', slug: TAG_SLUGS.FILTRES_MINERAUX, category: 'attribute' },
+  { name: 'Sans parfum', slug: TAG_SLUGS.SANS_PARFUM, category: 'attribute' },
+  { name: 'Bio / Naturel', slug: TAG_SLUGS.BIO_NATUREL, category: 'attribute' },
+  { name: 'Vegan', slug: TAG_SLUGS.VEGAN, category: 'attribute' },
+  { name: 'Cruelty-free', slug: TAG_SLUGS.CRUELTY_FREE, category: 'attribute' },
+  { name: 'Hypoallergénique', slug: TAG_SLUGS.HYPOALLERGENIQUE, category: 'attribute' },
+  { name: 'Non comédogène', slug: TAG_SLUGS.NON_COMEDOGENE, category: 'attribute' },
+  { name: 'Pigments verts', slug: TAG_SLUGS.PIGMENTS_VERTS, category: 'attribute' },
 ]

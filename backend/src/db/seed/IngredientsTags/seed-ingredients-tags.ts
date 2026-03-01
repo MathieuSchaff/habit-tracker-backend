@@ -1,424 +1,1200 @@
+import { INGREDIENT_SLUGS } from '../ingredients/seed-ingredients'
+import { TAG_SLUGS } from '../tags/seed-tags'
+
 export const ingredientTagAssociations: { ingredientSlug: string; tagSlug: string }[] = [
-  // ── Vitamine C pure & dérivés ─────────────────────────────────────────────
-  // vitamin-c / l-ascorbic-acid / ascorbic-acid → même molécule, slugs distincts dans le seed
-  { ingredientSlug: 'vitamin-c', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'vitamin-c', tagSlug: 'anti-age' },
-  { ingredientSlug: 'vitamin-c', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'vitamin-c', tagSlug: 'eclat' },
-  { ingredientSlug: 'vitamin-c', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'vitamin-c', tagSlug: 'soin-de-jour' },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ACETYL_DIPEPTIDE_1_CETYL_ESTER,
+    tagSlug: TAG_SLUGS.PEAU_REACTIVE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ACETYL_DIPEPTIDE_1_CETYL_ESTER,
+    tagSlug: TAG_SLUGS.PEAU_SENSIBLE,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_DIPEPTIDE_1_CETYL_ESTER, tagSlug: TAG_SLUGS.FLUSHS },
 
-  { ingredientSlug: 'l-ascorbic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'l-ascorbic-acid', tagSlug: 'anti-age' },
-  { ingredientSlug: 'l-ascorbic-acid', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'l-ascorbic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: 'l-ascorbic-acid', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'l-ascorbic-acid', tagSlug: 'soin-de-jour' },
+  // adenosine (Énergie cellulaire & Anti-inflammatoire)
+  { ingredientSlug: INGREDIENT_SLUGS.ADENOSINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.ADENOSINE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ADENOSINE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'ascorbic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'ascorbic-acid', tagSlug: 'anti-age' },
-  { ingredientSlug: 'ascorbic-acid', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'ascorbic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: 'ascorbic-acid', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'ascorbic-acid', tagSlug: 'soin-de-jour' },
+  // alpha-glucan-oligosaccharide (Prébiotique protecteur)
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ALPHA_GLUCAN_OLIGOSACCHARIDE,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ALPHA_GLUCAN_OLIGOSACCHARIDE,
+    tagSlug: TAG_SLUGS.PEAU_ATOPIQUE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ALPHA_GLUCAN_OLIGOSACCHARIDE,
+    tagSlug: TAG_SLUGS.BIOMIMETIQUE,
+  },
 
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'anti-age' },
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'soin-de-jour' },
-  { ingredientSlug: '3-o-ethyl-ascorbic-acid', tagSlug: 'serum' },
+  // angiopausine (Spécifique microcirculation)
+  { ingredientSlug: INGREDIENT_SLUGS.ANGIOPAUSINE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.ANGIOPAUSINE, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.ANGIOPAUSINE, tagSlug: TAG_SLUGS.COUPEROSE },
 
-  { ingredientSlug: 'ascorbyl-glucoside', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'ascorbyl-glucoside', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'ascorbyl-glucoside', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'ascorbyl-glucoside', tagSlug: 'eclat' },
-  { ingredientSlug: 'ascorbyl-glucoside', tagSlug: 'soin-de-jour' },
-  { ingredientSlug: 'ascorbyl-glucoside', tagSlug: 'peau-sensible' },
+  // aquaphilus-dolomiae-extract (I-modulia - Anti-inflammatoire puissant)
+  {
+    ingredientSlug: INGREDIENT_SLUGS.AQUAPHILUS_DOLOMIAE_EXTRACT,
+    tagSlug: TAG_SLUGS.PEAU_ATOPIQUE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.AQUAPHILUS_DOLOMIAE_EXTRACT,
+    tagSlug: TAG_SLUGS.PEAU_REACTIVE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.AQUAPHILUS_DOLOMIAE_EXTRACT,
+    tagSlug: TAG_SLUGS.ANTI_ROUGEURS,
+  },
 
-  { ingredientSlug: 'ascorbyl-palmitate', tagSlug: 'anti-age' },
-  { ingredientSlug: 'ascorbyl-palmitate', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'ascorbyl-palmitate', tagSlug: 'soin-de-nuit' },
-  { ingredientSlug: 'ascorbyl-palmitate', tagSlug: 'peau-seche' },
+  // aquaphilus-dolomiae-ferment-filtrate (C+ Restore - Cicatrisation)
+  {
+    ingredientSlug: INGREDIENT_SLUGS.AQUAPHILUS_DOLOMIAE_FERMENT_FILTRATE,
+    tagSlug: TAG_SLUGS.REPARATEUR,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.AQUAPHILUS_DOLOMIAE_FERMENT_FILTRATE,
+    tagSlug: TAG_SLUGS.POST_ACNE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.AQUAPHILUS_DOLOMIAE_FERMENT_FILTRATE,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
 
-  { ingredientSlug: 'magnesium-ascorbyl-phosphate', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'magnesium-ascorbyl-phosphate', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'magnesium-ascorbyl-phosphate', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'magnesium-ascorbyl-phosphate', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'magnesium-ascorbyl-phosphate', tagSlug: 'serum' },
+  // arginine-pca (Hydratation biomimétique)
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE_PCA, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE_PCA, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE_PCA, tagSlug: TAG_SLUGS.BIOMIMETIQUE },
 
-  { ingredientSlug: 'sodium-ascorbyl-phosphate', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'sodium-ascorbyl-phosphate', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'sodium-ascorbyl-phosphate', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'sodium-ascorbyl-phosphate', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'sodium-ascorbyl-phosphate', tagSlug: 'peau-mixte' },
-  { ingredientSlug: 'sodium-ascorbyl-phosphate', tagSlug: 'serum' },
+  // calcium-pca (Renfort barrière)
+  { ingredientSlug: INGREDIENT_SLUGS.CALCIUM_PCA, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CALCIUM_PCA, tagSlug: TAG_SLUGS.PEAU_SECHE },
 
-  { ingredientSlug: 'thd-ascorbate', tagSlug: 'anti-age' },
-  { ingredientSlug: 'thd-ascorbate', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'thd-ascorbate', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'thd-ascorbate', tagSlug: 'eclat' },
-  { ingredientSlug: 'thd-ascorbate', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'thd-ascorbate', tagSlug: 'soin-de-nuit' },
+  // collagen-amino-acids
+  { ingredientSlug: INGREDIENT_SLUGS.COLLAGEN_AMINO_ACIDS, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.COLLAGEN_AMINO_ACIDS, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // comedoclastin (Extrait de chardon-marie titré pour l'acné)
+  { ingredientSlug: INGREDIENT_SLUGS.COMEDOCLASTIN, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.COMEDOCLASTIN, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.COMEDOCLASTIN, tagSlug: TAG_SLUGS.NON_COMEDOGENE },
+
+  // copper-sulfate (Purifiant & Anti-inflammatoire)
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_SULFATE, tagSlug: TAG_SLUGS.ANTISEPTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_SULFATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_SULFATE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // curcuma-longa-root-extract
+  { ingredientSlug: INGREDIENT_SLUGS.CURCUMA_LONGA_ROOT_EXTRACT, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.CURCUMA_LONGA_ROOT_EXTRACT, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.CURCUMA_LONGA_ROOT_EXTRACT, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // d-sensinose (Postbiotique ultra-apaisant)
+  { ingredientSlug: INGREDIENT_SLUGS.D_SENSINOSE, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
+  { ingredientSlug: INGREDIENT_SLUGS.D_SENSINOSE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.D_SENSINOSE, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+
+  // ectoin (Protection stress environnemental)
+  { ingredientSlug: INGREDIENT_SLUGS.ECTOIN, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.ECTOIN, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
+  { ingredientSlug: INGREDIENT_SLUGS.ECTOIN, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.ECTOIN, tagSlug: TAG_SLUGS.DESHYDRATATION },
+
+  // glyceryl-glucoside (Activateur d'aquaporines)
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERYL_GLUCOSIDE, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERYL_GLUCOSIDE, tagSlug: TAG_SLUGS.HUMECTANT },
+
+  // huile-onagre (Riche en GLA pour la barrière)
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_ONAGRE, tagSlug: TAG_SLUGS.HUILE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_ONAGRE, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_ONAGRE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_ONAGRE, tagSlug: TAG_SLUGS.EMOLLIENT },
+
+  // oxyde-de-fer (Pigments protecteurs)
+  { ingredientSlug: INGREDIENT_SLUGS.IRON_OXIDES, tagSlug: TAG_SLUGS.SOLAIRE_TEINTE },
+  { ingredientSlug: INGREDIENT_SLUGS.IRON_OXIDES, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+
+  // lens-esculenta-seed-extract
+  {
+    ingredientSlug: INGREDIENT_SLUGS.LENS_ESCULENTA_SEED_EXTRACT,
+    tagSlug: TAG_SLUGS.PORES_DILATES,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.LENS_ESCULENTA_SEED_EXTRACT,
+    tagSlug: TAG_SLUGS.SEBO_REGULATEUR,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.LENS_ESCULENTA_SEED_EXTRACT, tagSlug: TAG_SLUGS.BRILLANCE },
+
+  // malic-acid-ester
+  { ingredientSlug: INGREDIENT_SLUGS.MALIC_ACID_ESTER, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.MALIC_ACID_ESTER, tagSlug: TAG_SLUGS.ECLAT },
+
+  // melitane (Peptide stimulant la mélanine)
+  { ingredientSlug: INGREDIENT_SLUGS.MELITANE, tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE },
+  { ingredientSlug: INGREDIENT_SLUGS.MELITANE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+
+  // palmitamide-mea (Apaise l'inflammation barrière)
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITAMIDE_MEA, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITAMIDE_MEA, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITAMIDE_MEA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // papain
+  { ingredientSlug: INGREDIENT_SLUGS.PAPAIN, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PAPAIN, tagSlug: TAG_SLUGS.ECLAT },
+
+  // piroctone-olamine
+  { ingredientSlug: INGREDIENT_SLUGS.PIROCTONE_OLAMINE, tagSlug: TAG_SLUGS.ANTISEPTIQUE },
+
+  // prunus-amygdalus-dulcis-oil
+  { ingredientSlug: INGREDIENT_SLUGS.PRUNUS_AMYGDALUS_DULCIS_OIL, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.PRUNUS_AMYGDALUS_DULCIS_OIL, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.PRUNUS_AMYGDALUS_DULCIS_OIL, tagSlug: TAG_SLUGS.HUILE },
+
+  // resveratrol
+  { ingredientSlug: INGREDIENT_SLUGS.RESVERATROL, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.RESVERATROL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.RESVERATROL, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // ricinus-communis-seed-oil
+  { ingredientSlug: INGREDIENT_SLUGS.RICINUS_COMMUNIS_SEED_OIL, tagSlug: TAG_SLUGS.HUILE },
+  { ingredientSlug: INGREDIENT_SLUGS.RICINUS_COMMUNIS_SEED_OIL, tagSlug: TAG_SLUGS.OCCLUSIF },
+
+  // sepiwhite
+  { ingredientSlug: INGREDIENT_SLUGS.SEPIWHITE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.SEPIWHITE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.SEPIWHITE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // sodium-pca
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_PCA, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_PCA, tagSlug: TAG_SLUGS.BIOMIMETIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_PCA, tagSlug: TAG_SLUGS.DESHYDRATATION },
+
+  // sylibum-marianum-fruit-extract (Antioxydant & Anti-imperfections)
+  {
+    ingredientSlug: INGREDIENT_SLUGS.SYLIBUM_MARIANUM_FRUIT_EXTRACT,
+    tagSlug: TAG_SLUGS.ANTI_OXYDANT,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.SYLIBUM_MARIANUM_FRUIT_EXTRACT, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.SYLIBUM_MARIANUM_FRUIT_EXTRACT,
+    tagSlug: TAG_SLUGS.ANTI_ROUGEURS,
+  },
+
+  // titanium-dioxide
+  { ingredientSlug: INGREDIENT_SLUGS.TITANIUM_DIOXIDE, tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE },
+  { ingredientSlug: INGREDIENT_SLUGS.TITANIUM_DIOXIDE, tagSlug: TAG_SLUGS.FILTRES_MINERAUX },
+
+  // tocopheryl-glucoside (Précurseur Vitamine E stable)
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHERYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHERYL_GLUCOSIDE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHERYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // triasorb (Filtre organique ultra-large spectre)
+  { ingredientSlug: INGREDIENT_SLUGS.TRIASORB, tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRIASORB, tagSlug: TAG_SLUGS.PROTECTION_LUMIERE_BLEUE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRIASORB, tagSlug: TAG_SLUGS.ANTI_TACHES },
+
+  // zinc-oxide
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_OXIDE, tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_OXIDE, tagSlug: TAG_SLUGS.FILTRES_MINERAUX },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_OXIDE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // zinc-pca
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_PCA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_PCA, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_PCA, tagSlug: TAG_SLUGS.BRILLANCE },
+
+  // zinc-sulfate
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_SULFATE, tagSlug: TAG_SLUGS.ANTISEPTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_SULFATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_SULFATE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.SOIN_DE_JOUR },
+
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID,
+    tagSlug: TAG_SLUGS.HYPERPIGMENTATION,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.SOIN_DE_JOUR },
+
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.SOIN_DE_JOUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.SOIN_DE_NUIT },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  { ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE,
+    tagSlug: TAG_SLUGS.ANTI_OXYDANT,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE,
+    tagSlug: TAG_SLUGS.PEAU_SENSIBLE,
+  },
+
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE,
+    tagSlug: TAG_SLUGS.HYPERPIGMENTATION,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE,
+    tagSlug: TAG_SLUGS.SEBO_REGULATEUR,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.SOIN_DE_NUIT },
 
   // ── Dépigmentants hors vitamine C ─────────────────────────────────────────
-  { ingredientSlug: 'alpha-arbutin', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'alpha-arbutin', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'alpha-arbutin', tagSlug: 'eclat' },
-  { ingredientSlug: 'alpha-arbutin', tagSlug: 'post-acne' },
-  { ingredientSlug: 'alpha-arbutin', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.POST_ACNE },
 
-  { ingredientSlug: 'kojic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'kojic-acid', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'kojic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: 'kojic-acid', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.KOJIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.KOJIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.KOJIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
 
-  { ingredientSlug: 'tranexamic-acid', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'tranexamic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'tranexamic-acid', tagSlug: 'rosacee' },
-  { ingredientSlug: 'tranexamic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: 'tranexamic-acid', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
 
-  { ingredientSlug: 'glutathion', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'glutathion', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'glutathion', tagSlug: 'anti-age' },
-  { ingredientSlug: 'glutathion', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'glutathion', tagSlug: 'eclat' },
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTATHION, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTATHION, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTATHION, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTATHION, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTATHION, tagSlug: TAG_SLUGS.ECLAT },
 
   // ── Anti-rougeurs / Rosacée / Peau sensible ───────────────────────────────
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'rosacee' },
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'couperose' },
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'azelaic-acid', tagSlug: 'post-acne' },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.COUPEROSE },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.POST_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
 
-  { ingredientSlug: 'niacinamide', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'peau-mixte' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'peau-grasse' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'eclat' },
-  { ingredientSlug: 'niacinamide', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ANTI_TACHES },
 
-  { ingredientSlug: 'centella-asiatica', tagSlug: 'reparateur' },
-  { ingredientSlug: 'centella-asiatica', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'centella-asiatica', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'centella-asiatica', tagSlug: 'barriere-cutanee' },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.ANTI_ACNE },
 
-  { ingredientSlug: 'asiaticoside', tagSlug: 'reparateur' },
-  { ingredientSlug: 'asiaticoside', tagSlug: 'rosacee' },
-  { ingredientSlug: 'asiaticoside', tagSlug: 'peau-reactive' },
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  { ingredientSlug: 'panthenol', tagSlug: 'reparateur' },
-  { ingredientSlug: 'panthenol', tagSlug: 'humectant' },
-  { ingredientSlug: 'panthenol', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'panthenol', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'panthenol', tagSlug: 'creme-hydratante' },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'allantoin', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'allantoin', tagSlug: 'reparateur' },
-  { ingredientSlug: 'allantoin', tagSlug: 'anti-rougeurs' },
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  { ingredientSlug: 'glycyrrhetinic-acid', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'glycyrrhetinic-acid', tagSlug: 'peau-reactive' },
-  { ingredientSlug: 'glycyrrhetinic-acid', tagSlug: 'rosacee' },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.ROSACEE },
 
-  { ingredientSlug: 'ammonium-glycyrrhizate', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'ammonium-glycyrrhizate', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.AMMONIUM_GLYCYRRHIZATE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.AMMONIUM_GLYCYRRHIZATE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  // Glycyrrhiza inflata = licochalcone A
-  { ingredientSlug: 'glycyrrhiza-inflata', tagSlug: 'rosacee' },
-  { ingredientSlug: 'glycyrrhiza-inflata', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'glycyrrhiza-inflata', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'glycyrrhiza-inflata', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'glycyrrhiza-inflata', tagSlug: 'anti-oxydant' },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
 
-  // licorice-extract = réglisse générique (anti-taches via inhibition tyrosinase)
-  { ingredientSlug: 'licorice-extract', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'licorice-extract', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'licorice-extract', tagSlug: 'hyperpigmentation' },
-  { ingredientSlug: 'licorice-extract', tagSlug: 'rosacee' },
-  { ingredientSlug: 'licorice-extract', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.HUMECTANT },
 
-  { ingredientSlug: 'heartleaf', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'heartleaf', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'heartleaf', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'heartleaf', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'heartleaf', tagSlug: 'humectant' },
+  { ingredientSlug: INGREDIENT_SLUGS.AVENA_SATIVA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.AVENA_SATIVA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.AVENA_SATIVA, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'avena-sativa', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'avena-sativa', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'avena-sativa', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.CALENDULA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.CALENDULA, tagSlug: TAG_SLUGS.BIO_NATUREL },
+  { ingredientSlug: INGREDIENT_SLUGS.CALENDULA, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'calendula-officinalis', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'calendula-officinalis', tagSlug: 'bio-naturel' },
-  { ingredientSlug: 'calendula-officinalis', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
 
-  { ingredientSlug: 'camellia-sinensis', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'camellia-sinensis', tagSlug: 'anti-age' },
-  { ingredientSlug: 'camellia-sinensis', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'camellia-sinensis', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'camellia-sinensis', tagSlug: 'sebo-regulateur' },
-
-  { ingredientSlug: 'aloe-vera', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'aloe-vera', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'aloe-vera', tagSlug: 'reparateur' },
-  { ingredientSlug: 'aloe-vera', tagSlug: 'humectant' },
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.HUMECTANT },
 
   // ── Hydratation / Barrière ─────────────────────────────────────────────────
-  { ingredientSlug: 'hyaluronic-acid', tagSlug: 'humectant' },
-  { ingredientSlug: 'hyaluronic-acid', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'hyaluronic-acid', tagSlug: 'serum' },
-  { ingredientSlug: 'hyaluronic-acid', tagSlug: 'creme-hydratante' },
+  { ingredientSlug: INGREDIENT_SLUGS.HYALURONIC_ACID, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.HYALURONIC_ACID, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.HYALURONIC_ACID, tagSlug: TAG_SLUGS.DESHYDRATATION },
 
-  { ingredientSlug: 'sodium-hyaluronate', tagSlug: 'humectant' },
-  { ingredientSlug: 'sodium-hyaluronate', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'sodium-hyaluronate', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_HYALURONATE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_HYALURONATE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_HYALURONATE, tagSlug: TAG_SLUGS.DESHYDRATATION },
 
-  { ingredientSlug: 'polyglutamic-acid', tagSlug: 'humectant' },
-  { ingredientSlug: 'polyglutamic-acid', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'polyglutamic-acid', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.POLYGLUTAMIC_ACID, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.POLYGLUTAMIC_ACID, tagSlug: TAG_SLUGS.PEAU_SECHE },
 
-  { ingredientSlug: 'snow-mushroom', tagSlug: 'humectant' },
-  { ingredientSlug: 'snow-mushroom', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'snow-mushroom', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGIRELINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGIRELINE, tagSlug: TAG_SLUGS.ECLAT },
 
-  { ingredientSlug: 'glycerin', tagSlug: 'humectant' },
-  { ingredientSlug: 'glycerin', tagSlug: 'creme-hydratante' },
-  { ingredientSlug: 'glycerin', tagSlug: 'peau-seche' },
+  { ingredientSlug: INGREDIENT_SLUGS.BAKUCHIOL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.BAKUCHIOL, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.BAKUCHIOL, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.BAKUCHIOL, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'squalane', tagSlug: 'emollient' },
-  { ingredientSlug: 'squalane', tagSlug: 'occlusif' },
-  { ingredientSlug: 'squalane', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'squalane', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'squalane', tagSlug: 'soin-de-nuit' },
+  { ingredientSlug: INGREDIENT_SLUGS.BEEF_TALLOW, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.BEEF_TALLOW, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.BEEF_TALLOW, tagSlug: TAG_SLUGS.HUMECTANT },
 
-  { ingredientSlug: 'shea-butter', tagSlug: 'emollient' },
-  { ingredientSlug: 'shea-butter', tagSlug: 'occlusif' },
-  { ingredientSlug: 'shea-butter', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'shea-butter', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'shea-butter', tagSlug: 'bio-naturel' },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  { ingredientSlug: 'beef-tallow', tagSlug: 'emollient' },
-  { ingredientSlug: 'beef-tallow', tagSlug: 'occlusif' },
-  { ingredientSlug: 'beef-tallow', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'beef-tallow', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'beef-tallow', tagSlug: 'bio-naturel' },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  // Céramides génériques et types spécifiques
-  { ingredientSlug: 'ceramides', tagSlug: 'emollient' },
-  { ingredientSlug: 'ceramides', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'ceramides', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'ceramides', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  { ingredientSlug: 'ceramide-np', tagSlug: 'emollient' },
-  { ingredientSlug: 'ceramide-np', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'ceramide-np', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'ceramide-np', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  { ingredientSlug: 'ceramide-ns', tagSlug: 'emollient' },
-  { ingredientSlug: 'ceramide-ns', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'ceramide-ns', tagSlug: 'peau-seche' },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
 
-  { ingredientSlug: 'ceramide-eop', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'ceramide-eop', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'ceramide-eop', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.CHOLESTEROL, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CHOLESTEROL, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CHOLESTEROL, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'ceramide-ap', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'ceramide-ap', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'ceramide-ap', tagSlug: 'exfoliant' },
+  { ingredientSlug: INGREDIENT_SLUGS.ESCIN, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.ESCIN, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
+  { ingredientSlug: INGREDIENT_SLUGS.ESCIN, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.ESCIN, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.ESCIN, tagSlug: TAG_SLUGS.CONTOUR_YEUX },
 
-  { ingredientSlug: 'cholesterol', tagSlug: 'emollient' },
-  { ingredientSlug: 'cholesterol', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'cholesterol', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOSPHINGOLIPIDS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOSPHINGOLIPIDS, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOSPHINGOLIPIDS, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOSPHINGOLIPIDS, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
 
-  { ingredientSlug: 'phytosphingosine', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'phytosphingosine', tagSlug: 'anti-acne' },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.GREEN_TEA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'glycosphingolipids', tagSlug: 'barriere-cutanee' },
+  { ingredientSlug: INGREDIENT_SLUGS.HIPPOPHAE_RHAMNOIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.HIPPOPHAE_RHAMNOIDES, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.HIPPOPHAE_RHAMNOIDES, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.HIPPOPHAE_RHAMNOIDES, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.HIPPOPHAE_RHAMNOIDES, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'sphingomonas-ferment-extract', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'sphingomonas-ferment-extract', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.PLANKTON_EXTRACT, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PLANKTON_EXTRACT, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PLANKTON_EXTRACT, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PLANKTON_EXTRACT, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.PLANKTON_EXTRACT, tagSlug: TAG_SLUGS.HUMECTANT },
 
-  { ingredientSlug: 'pentylene-glycol', tagSlug: 'antiseptique' },
-  { ingredientSlug: 'pentylene-glycol', tagSlug: 'humectant' },
+  { ingredientSlug: INGREDIENT_SLUGS.RHAMNOSE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.RHAMNOSE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.RHAMNOSE, tagSlug: TAG_SLUGS.ANTI_AGE },
 
-  { ingredientSlug: 'probiotics', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'probiotics', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'probiotics', tagSlug: 'anti-acne' },
+  { ingredientSlug: INGREDIENT_SLUGS.RUSCUS_ACULEATUS, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.RUSCUS_ACULEATUS, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.RUSCUS_ACULEATUS, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.RUSCUS_ACULEATUS, tagSlug: TAG_SLUGS.CONTOUR_YEUX },
 
-  { ingredientSlug: 'postbiotics', tagSlug: 'barriere-cutanee' },
-  { ingredientSlug: 'postbiotics', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'postbiotics', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.SCHISANDRA, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.SCHISANDRA, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SCHISANDRA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.SCHISANDRA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'rhamnose', tagSlug: 'anti-age' },
-  { ingredientSlug: 'rhamnose', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  // ── Exfoliants / Kératolytiques ───────────────────────────────────────────
-  { ingredientSlug: 'glycolic-acid', tagSlug: 'exfoliant' },
-  { ingredientSlug: 'glycolic-acid', tagSlug: 'keratolytique' },
-  { ingredientSlug: 'glycolic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'glycolic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: 'glycolic-acid', tagSlug: 'post-acne' },
-  { ingredientSlug: 'glycolic-acid', tagSlug: 'soin-de-nuit' },
+  { ingredientSlug: INGREDIENT_SLUGS.SILYBUM_MARIANUM, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SILYBUM_MARIANUM, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SILYBUM_MARIANUM, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SILYBUM_MARIANUM, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'lactic-acid', tagSlug: 'exfoliant' },
-  { ingredientSlug: 'lactic-acid', tagSlug: 'keratolytique' },
-  { ingredientSlug: 'lactic-acid', tagSlug: 'humectant' },
-  { ingredientSlug: 'lactic-acid', tagSlug: 'eclat' },
-  { ingredientSlug: 'lactic-acid', tagSlug: 'peau-seche' },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'mandelic-acid', tagSlug: 'exfoliant' },
-  { ingredientSlug: 'mandelic-acid', tagSlug: 'keratolytique' },
-  { ingredientSlug: 'mandelic-acid', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'mandelic-acid', tagSlug: 'post-acne' },
-  { ingredientSlug: 'mandelic-acid', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.ROSACEE },
 
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'keratolytique' },
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'exfoliant' },
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'post-acne' },
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'peau-mixte' },
-  { ingredientSlug: 'salicylic-acid', tagSlug: 'peau-grasse' },
+  { ingredientSlug: INGREDIENT_SLUGS.SPHINGOMONAS_FERMENT, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SPHINGOMONAS_FERMENT, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.SPHINGOMONAS_FERMENT, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.SPHINGOMONAS_FERMENT, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SPHINGOMONAS_FERMENT, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SPHINGOMONAS_FERMENT, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  // pha = Gluconolactone dans le seed
-  { ingredientSlug: 'pha', tagSlug: 'exfoliant' },
-  { ingredientSlug: 'pha', tagSlug: 'anti-age' },
-  { ingredientSlug: 'pha', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'pha', tagSlug: 'humectant' },
-  { ingredientSlug: 'pha', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.EMOLLIENT },
 
-  { ingredientSlug: 'urea', tagSlug: 'humectant' },
-  { ingredientSlug: 'urea', tagSlug: 'keratolytique' },
-  { ingredientSlug: 'urea', tagSlug: 'reparateur' },
-  { ingredientSlug: 'urea', tagSlug: 'peau-seche' },
+  { ingredientSlug: INGREDIENT_SLUGS.SYN_AKE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.SYN_AKE, tagSlug: TAG_SLUGS.ECLAT },
 
-  // souffre = slug dans le seed (avec faute de frappe)
-  { ingredientSlug: 'souffre', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'souffre', tagSlug: 'antiseptique' },
-  { ingredientSlug: 'souffre', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'souffre', tagSlug: 'keratolytique' },
-  { ingredientSlug: 'souffre', tagSlug: 'peau-mixte' },
-  { ingredientSlug: 'souffre', tagSlug: 'peau-grasse' },
+  // ── Advanced Peptides (Matrixyl family & similar) ─────────────────────────────────────────────
+  { ingredientSlug: INGREDIENT_SLUGS.MATRIXYL_3000, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.MATRIXYL_3000, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.MATRIXYL_3000, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
 
-  // ── Antiseptique / Nettoyant ──────────────────────────────────────────────
-  { ingredientSlug: 'hypochlorous-acid', tagSlug: 'antiseptique' },
-  { ingredientSlug: 'hypochlorous-acid', tagSlug: 'rosacee' },
-  { ingredientSlug: 'hypochlorous-acid', tagSlug: 'peau-reactive' },
-  { ingredientSlug: 'hypochlorous-acid', tagSlug: 'nettoyant' },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TRIPEPTIDE_1, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TRIPEPTIDE_1, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
 
-  // ── Anti-âge / Rétinoïdes ────────────────────────────────────────────────
-  { ingredientSlug: 'retinol', tagSlug: 'anti-age' },
-  { ingredientSlug: 'retinol', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'retinol', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'retinol', tagSlug: 'post-acne' },
-  { ingredientSlug: 'retinol', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'retinol', tagSlug: 'eclat' },
-  { ingredientSlug: 'retinol', tagSlug: 'soin-de-nuit' },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_7, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_7, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_7, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'retinal', tagSlug: 'anti-age' },
-  { ingredientSlug: 'retinal', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'retinal', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'retinal', tagSlug: 'post-acne' },
-  { ingredientSlug: 'retinal', tagSlug: 'sebo-regulateur' },
-  { ingredientSlug: 'retinal', tagSlug: 'eclat' },
-  { ingredientSlug: 'retinal', tagSlug: 'soin-de-nuit' },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_PENTAPEPTIDE_4, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_PENTAPEPTIDE_4, tagSlug: TAG_SLUGS.ECLAT },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_PENTAPEPTIDE_4,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
 
-  { ingredientSlug: 'retinaldehyde', tagSlug: 'anti-age' },
-  { ingredientSlug: 'retinaldehyde', tagSlug: 'anti-taches' },
-  { ingredientSlug: 'retinaldehyde', tagSlug: 'anti-acne' },
-  { ingredientSlug: 'retinaldehyde', tagSlug: 'eclat' },
-  { ingredientSlug: 'retinaldehyde', tagSlug: 'soin-de-nuit' },
+  // ── Copper Peptides ─────────────────────────────────────────────
 
-  { ingredientSlug: 'bakuchiol', tagSlug: 'anti-age' },
-  { ingredientSlug: 'bakuchiol', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'bakuchiol', tagSlug: 'soin-de-nuit' },
-  { ingredientSlug: 'bakuchiol', tagSlug: 'bio-naturel' },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
 
-  // ── Peptides anti-âge ────────────────────────────────────────────────────
-  { ingredientSlug: 'peptides', tagSlug: 'anti-age' },
-  { ingredientSlug: 'peptides', tagSlug: 'serum' },
+  // ── Other Peptides ─────────────────────────────────────────────
+  { ingredientSlug: INGREDIENT_SLUGS.PEPTIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PEPTIDES, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.PEPTIDES, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
 
-  { ingredientSlug: 'matrixyl-3000', tagSlug: 'anti-age' },
-  { ingredientSlug: 'matrixyl-3000', tagSlug: 'serum' },
+  // ── Exfoliants & Acids (stronger ones) ─────────────────────────────────────────────
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.SOIN_DE_NUIT },
 
-  { ingredientSlug: 'palmitoyl-pentapeptide-4', tagSlug: 'anti-age' },
-  { ingredientSlug: 'palmitoyl-pentapeptide-4', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.SOIN_DE_NUIT },
 
-  { ingredientSlug: 'palmitoyl-tetrapeptide-7', tagSlug: 'anti-age' },
-  { ingredientSlug: 'palmitoyl-tetrapeptide-7', tagSlug: 'anti-rougeurs' },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.POST_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
 
-  { ingredientSlug: 'palmitoyl-tripeptide-1', tagSlug: 'anti-age' },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
 
-  { ingredientSlug: 'argireline', tagSlug: 'anti-age' },
-  { ingredientSlug: 'argireline', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.ANTI_AGE },
 
-  // acetyl-hexapeptide-8 = nom INCI d'Argireline (doublon de slug dans le seed)
-  { ingredientSlug: 'acetyl-hexapeptide-8', tagSlug: 'anti-age' },
-  { ingredientSlug: 'acetyl-hexapeptide-8', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
 
-  { ingredientSlug: 'syn-ake', tagSlug: 'anti-age' },
-  { ingredientSlug: 'syn-ake', tagSlug: 'serum' },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
 
-  // copper-tripeptide-1 et ghk-cu = même molécule, slugs distincts
-  { ingredientSlug: 'copper-tripeptide-1', tagSlug: 'reparateur' },
-  { ingredientSlug: 'copper-tripeptide-1', tagSlug: 'anti-age' },
-  { ingredientSlug: 'copper-tripeptide-1', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'copper-tripeptide-1', tagSlug: 'peau-sensible' },
+  // ── Hydrators & Barrier Support ─────────────────────────────────────────────
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'ghk-cu', tagSlug: 'reparateur' },
-  { ingredientSlug: 'ghk-cu', tagSlug: 'anti-age' },
-  { ingredientSlug: 'ghk-cu', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'ghk-cu', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
 
-  { ingredientSlug: 'copper-peptides', tagSlug: 'reparateur' },
-  { ingredientSlug: 'copper-peptides', tagSlug: 'anti-age' },
-  { ingredientSlug: 'copper-peptides', tagSlug: 'peau-sensible' },
+  // ── Regenerative / Healing ─────────────────────────────────────────────
+  { ingredientSlug: INGREDIENT_SLUGS.PDRN, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.PDRN, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PDRN, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PDRN, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'pdrn', tagSlug: 'reparateur' },
-  { ingredientSlug: 'pdrn', tagSlug: 'anti-age' },
-  { ingredientSlug: 'pdrn', tagSlug: 'peau-sensible' },
+  // ── Miscellaneous ─────────────────────────────────────────────
+  { ingredientSlug: INGREDIENT_SLUGS.HYPOCHLOROUS_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.HYPOCHLOROUS_ACID, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.HYPOCHLOROUS_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.HYPOCHLOROUS_ACID, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  // ── Antioxydants ─────────────────────────────────────────────────────────
-  { ingredientSlug: 'tocopherol', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'tocopherol', tagSlug: 'anti-age' },
-  { ingredientSlug: 'tocopherol', tagSlug: 'soin-de-nuit' },
-  { ingredientSlug: 'tocopherol', tagSlug: 'peau-seche' },
+  { ingredientSlug: INGREDIENT_SLUGS.PROBIOTICS, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.PROBIOTICS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PROBIOTICS, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
 
-  // ── Plantes & extraits botaniques ────────────────────────────────────────
-  { ingredientSlug: 'hippophae-rhamnoides', tagSlug: 'anti-age' },
-  { ingredientSlug: 'hippophae-rhamnoides', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'hippophae-rhamnoides', tagSlug: 'eclat' },
-  { ingredientSlug: 'hippophae-rhamnoides', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'hippophae-rhamnoides', tagSlug: 'bio-naturel' },
+  { ingredientSlug: INGREDIENT_SLUGS.POSTBIOTICS, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.POSTBIOTICS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.POSTBIOTICS, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'silybum-marianum', tagSlug: 'anti-age' },
-  { ingredientSlug: 'silybum-marianum', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'silybum-marianum', tagSlug: 'peau-sensible' },
+  { ingredientSlug: INGREDIENT_SLUGS.PHYTOSPHINGOSINE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHYTOSPHINGOSINE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHYTOSPHINGOSINE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'escin', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'escin', tagSlug: 'couperose' },
+  { ingredientSlug: INGREDIENT_SLUGS.PENTYLENE_GLYCOL, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PENTYLENE_GLYCOL, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
 
-  { ingredientSlug: 'plankton-extract', tagSlug: 'reparateur' },
-  { ingredientSlug: 'plankton-extract', tagSlug: 'anti-age' },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHEROL, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHEROL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHEROL, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
 
-  { ingredientSlug: 'vaccinium-myrtillus', tagSlug: 'anti-age' },
-  { ingredientSlug: 'vaccinium-myrtillus', tagSlug: 'anti-oxydant' },
-  { ingredientSlug: 'vaccinium-myrtillus', tagSlug: 'bio-naturel' },
+  { ingredientSlug: INGREDIENT_SLUGS.VACCINIUM_MYRTILLUS, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.VACCINIUM_MYRTILLUS, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.VACCINIUM_MYRTILLUS, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
 
-  { ingredientSlug: 'ophiopogon-japonicus', tagSlug: 'peau-seche' },
-  { ingredientSlug: 'ophiopogon-japonicus', tagSlug: 'humectant' },
-  { ingredientSlug: 'ophiopogon-japonicus', tagSlug: 'reparateur' },
+  { ingredientSlug: INGREDIENT_SLUGS.OPHIOPOGON_JAPONICUS, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.OPHIOPOGON_JAPONICUS, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.OPHIOPOGON_JAPONICUS, tagSlug: TAG_SLUGS.REPARATEUR },
 
-  { ingredientSlug: 'ruscus-aculeatus', tagSlug: 'couperose' },
-  { ingredientSlug: 'ruscus-aculeatus', tagSlug: 'anti-rougeurs' },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.HUMECTANTS_EMOLLIENTS_OCCLUSIFS,
+    tagSlug: TAG_SLUGS.HUMECTANT,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.HUMECTANTS_EMOLLIENTS_OCCLUSIFS,
+    tagSlug: TAG_SLUGS.PEAU_SECHE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.HUMECTANTS_EMOLLIENTS_OCCLUSIFS,
+    tagSlug: TAG_SLUGS.BARRIERE_CUTANEE,
+  },
+  // ── Huile d'Argan (Nourrissante, anti-âge)
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_D_ARGAN, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_D_ARGAN, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_D_ARGAN, tagSlug: TAG_SLUGS.ANTI_AGE },
 
-  { ingredientSlug: 'schisandra-sphenanthera', tagSlug: 'peau-sensible' },
-  { ingredientSlug: 'schisandra-sphenanthera', tagSlug: 'anti-rougeurs' },
-  { ingredientSlug: 'schisandra-sphenanthera', tagSlug: 'anti-oxydant' },
+  // ── Huile de Jojoba (Sébo-régulatrice, proche du sébum humain)
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_JOJOBA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_JOJOBA, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_JOJOBA, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+
+  // ── Huile de Pépins de Figue de Barbarie (Puissant anti-oxydant, tenseur)
+  {
+    ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_FIGUE_DE_BARBARIE,
+    tagSlug: TAG_SLUGS.ANTI_AGE,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_FIGUE_DE_BARBARIE,
+    tagSlug: TAG_SLUGS.ANTI_OXYDANT,
+  },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_FIGUE_DE_BARBARIE,
+    tagSlug: TAG_SLUGS.ECLAT,
+  },
+
+  // ── Huile de Pépins de Raisin (Légère, régulatrice)
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_RAISIN, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_RAISIN, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_RAISIN, tagSlug: TAG_SLUGS.PORES_DILATES },
+
+  // ── Menthe Poivrée (Rafraîchissante, purifiante)
+  { ingredientSlug: INGREDIENT_SLUGS.MENTHE_POIVREE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.MENTHE_POIVREE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.MENTHE_POIVREE, tagSlug: TAG_SLUGS.BRILLANCE },
+
+  // ── Romarin (Purifiant, revitalisant)
+  { ingredientSlug: INGREDIENT_SLUGS.ROMARIN, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ROMARIN, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ROMARIN, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+
+  // ── Verveine (Apaisante, tonifiante)
+  { ingredientSlug: INGREDIENT_SLUGS.VERVEINE, tagSlug: TAG_SLUGS.PEAU_REACTIVE },
+  { ingredientSlug: INGREDIENT_SLUGS.VERVEINE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ── Bourrache (Régénérante, souplesse)
+  { ingredientSlug: INGREDIENT_SLUGS.BOURRACHE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.BOURRACHE, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.BOURRACHE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ── Pâquerette (Tenseur, raffermissant)
+  { ingredientSlug: INGREDIENT_SLUGS.PAQUERETTE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PAQUERETTE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ── Mauve (Adoucissante, apaisante)
+  { ingredientSlug: INGREDIENT_SLUGS.MAUVE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.MAUVE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.MAUVE, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  // ── Manganese Gluconate (Éclat et tonifiant)
+  { ingredientSlug: INGREDIENT_SLUGS.MANGANESE_GLUCONATE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.MANGANESE_GLUCONATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+
+  // ── Palmitoyl Tetrapeptide-10 (Éclat "cristallin" et lissage)
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_10, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_10, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ── Phenylalanine (Acide aminé - Hydratation et pigment)
+  { ingredientSlug: INGREDIENT_SLUGS.PHENYLALANINE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PHENYLALANINE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+
+  // ── Propylene Glycol (Solvant et hydratant)
+  { ingredientSlug: INGREDIENT_SLUGS.PROPYLENE_GLYCOL, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PROPYLENE_GLYCOL, tagSlug: TAG_SLUGS.DESHYDRATATION },
+
+  // ── Salvia Miltiorrhiza (Sauge rouge - Apaisante et anti-glycation)
+  { ingredientSlug: INGREDIENT_SLUGS.SALVIA_MILTIORRHIZA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALVIA_MILTIORRHIZA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.SALVIA_MILTIORRHIZA, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ── Serine (Acide aminé - Barrière cutanée)
+  { ingredientSlug: INGREDIENT_SLUGS.SERINE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SERINE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ── Tretinoine (Rétinoïde puissant)
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+
+  // ── Tribehenin (Agent de texture et adoucissant)
+  { ingredientSlug: INGREDIENT_SLUGS.TRIBEHENIN, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.TRIBEHENIN, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  // ── Tyrosine (Acide aminé)
+  { ingredientSlug: INGREDIENT_SLUGS.TYROSINE, tagSlug: TAG_SLUGS.HUMECTANT },
+
+  // ── Zea Mays Starch (Amidon de maïs - Matifiant)
+  { ingredientSlug: INGREDIENT_SLUGS.ZEA_MAYS_STARCH, tagSlug: TAG_SLUGS.BRILLANCE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZEA_MAYS_STARCH, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+
+  // ── Zinc Gluconate (Purifiant et apaisant)
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+  // ── Dimethicone (Silicone - Protection et lissage)
+  { ingredientSlug: INGREDIENT_SLUGS.DIMETHICONE, tagSlug: TAG_SLUGS.OCCLUSIF },
+  { ingredientSlug: INGREDIENT_SLUGS.DIMETHICONE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ── Eau de Rose (Apaisante et rafraîchissante)
+  { ingredientSlug: INGREDIENT_SLUGS.EAU_DE_ROSE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.EAU_DE_ROSE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ── Glutamine (Acide aminé - Réparation)
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTAMINE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.GLUTAMINE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ── Glyceryl Dibehenate (Agent de texture et gras)
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERYL_DIBEHENATE, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERYL_DIBEHENATE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  // ── HAMAMELIS (Astringent et tonifiant)
+  { ingredientSlug: INGREDIENT_SLUGS.HAMAMELIS, tagSlug: TAG_SLUGS.PORES_DILATES },
+  { ingredientSlug: INGREDIENT_SLUGS.HAMAMELIS, tagSlug: TAG_SLUGS.PEAU_MIXTE },
+  { ingredientSlug: INGREDIENT_SLUGS.HAMAMELIS, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // ── Helianthus Annuus (Huile de Tournesol - Nourrissante)
+  { ingredientSlug: INGREDIENT_SLUGS.HELIANTHUS_ANNUUS, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HELIANTHUS_ANNUUS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ── Helichryse Immortelle (Cicatrisante et circulatoire)
+  { ingredientSlug: INGREDIENT_SLUGS.HELICHRYSE_IMMORTELLE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.HELICHRYSE_IMMORTELLE, tagSlug: TAG_SLUGS.COUPEROSE },
+  { ingredientSlug: INGREDIENT_SLUGS.HELICHRYSE_IMMORTELLE, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ── Histidine (Acide aminé - Antioxydant)
+  { ingredientSlug: INGREDIENT_SLUGS.HISTIDINE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.HISTIDINE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+
+  // ── Hydrogenated Polyisobutene (Substitut de squalane synthétique)
+  { ingredientSlug: INGREDIENT_SLUGS.HYDROGENATED_POLYISOBUTENE, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HYDROGENATED_POLYISOBUTENE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  // ── Leucine (Acide aminé - Structure)
+  { ingredientSlug: INGREDIENT_SLUGS.LEUCINE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.LEUCINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ── Lysine HCL (Acide aminé - Hydratation)
+  { ingredientSlug: INGREDIENT_SLUGS.LYSINE_HCL, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.LYSINE_HCL, tagSlug: TAG_SLUGS.REPARATEUR },
+  // ── Acetyl Glucosamine (Précurseur d'acide hyaluronique - Éclat)
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_GLUCOSAMINE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_GLUCOSAMINE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_GLUCOSAMINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ── Adapalene (Rétinoïde de 3ème génération)
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.POST_ACNE },
+
+  // ── Arginine (Acide aminé - Cicatrisation)
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE, tagSlug: TAG_SLUGS.HUMECTANT },
+
+  // ── Arnica (Apaisant et circulatoire)
+  { ingredientSlug: INGREDIENT_SLUGS.ARNICA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.ARNICA, tagSlug: TAG_SLUGS.CERNES_POCHES },
+
+  // ── Bixa Orellana (Rocou - Antioxydant et matifiant)
+  { ingredientSlug: INGREDIENT_SLUGS.BIXA_ORELLANA, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.BIXA_ORELLANA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.BIXA_ORELLANA, tagSlug: TAG_SLUGS.PEAU_GRASSE },
+
+  // ── Bleuet (Apaisant et décongestionnant)
+  { ingredientSlug: INGREDIENT_SLUGS.BLEUET, tagSlug: TAG_SLUGS.CERNES_POCHES },
+  { ingredientSlug: INGREDIENT_SLUGS.BLEUET, tagSlug: TAG_SLUGS.CONTOUR_YEUX },
+  { ingredientSlug: INGREDIENT_SLUGS.BLEUET, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ── Carnosine (Peptide - Anti-glycation)
+  { ingredientSlug: INGREDIENT_SLUGS.CARNOSINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.CARNOSINE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+
+  // ── Dicaprylyl Ether (Émollient sec)
+  { ingredientSlug: INGREDIENT_SLUGS.DICAPRYLYL_ETHER, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.DICAPRYLYL_ETHER, tagSlug: TAG_SLUGS.NON_COMEDOGENE },
+
+  // ─── ACETYL_GLUCOSAMINE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_GLUCOSAMINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_GLUCOSAMINE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ACETYL_GLUCOSAMINE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+
+  // ─── ADAPALENE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.ADAPALENE, tagSlug: TAG_SLUGS.POST_ACNE },
+
+  // ─── ALLANTOIN ───
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.ALLANTOIN, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ─── ALOE_VERA ───
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.ALOE_VERA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // ─── ALPHA_ARBUTIN ───
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.ALPHA_ARBUTIN, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── AMMONIUM_GLYCYRRHIZATE ───
+  { ingredientSlug: INGREDIENT_SLUGS.AMMONIUM_GLYCYRRHIZATE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.AMMONIUM_GLYCYRRHIZATE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── ARGININE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.ARGININE, tagSlug: TAG_SLUGS.REPARATEUR },
+
+  // ─── ARGIRELINE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ARGIRELINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── ASCORBYL_GLUCOSIDE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_GLUCOSIDE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+
+  // ─── ASCORBYL_PALMITATE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCORBYL_PALMITATE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── ASIATICOSIDE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.ASIATICOSIDE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── AZELAIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.AZELAIC_ACID, tagSlug: TAG_SLUGS.POST_ACNE },
+
+  // ─── BAKUCHIOL ───
+  { ingredientSlug: INGREDIENT_SLUGS.BAKUCHIOL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.BAKUCHIOL, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── CENTELLA_ASIATICA / CENTELLA_ASIATICA_EXTRACT ───
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.CENTELLA_ASIATICA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  // ─── CERAMIDES ───
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_AP, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_EOP, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NP, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDE_NS, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.CERAMIDES, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+
+  // ─── CHOLESTEROL ───
+  { ingredientSlug: INGREDIENT_SLUGS.CHOLESTEROL, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.CHOLESTEROL, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.CHOLESTEROL, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  // ─── COPPER_PEPTIDES ───
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.COPPER_PEPTIDES, tagSlug: TAG_SLUGS.REPARATEUR },
+
+  // ─── DICAPRYLYL_ETHER ───
+  { ingredientSlug: INGREDIENT_SLUGS.DICAPRYLYL_ETHER, tagSlug: TAG_SLUGS.EMOLLIENT },
+
+  // ─── DIMETHICONE ───
+  { ingredientSlug: INGREDIENT_SLUGS.DIMETHICONE, tagSlug: TAG_SLUGS.OCCLUSIF },
+  { ingredientSlug: INGREDIENT_SLUGS.DIMETHICONE, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.DIMETHICONE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ─── GLYCERIN ───
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCERIN, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  // ─── GLYCOLIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCOLIC_ACID, tagSlug: TAG_SLUGS.PORES_DILATES },
+
+  // ─── GLYCYRRHETINIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.ROSACEE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+
+  // ─── GLYCYRRHIZA_INFLATA ───
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA, tagSlug: TAG_SLUGS.ANTI_ACNE },
+
+  // ─── HEARTLEAF ───
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.HEARTLEAF, tagSlug: TAG_SLUGS.ANTI_ACNE },
+
+  // ─── HYALURONIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.HYALURONIC_ACID, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.HYALURONIC_ACID, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.HYALURONIC_ACID, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── KOJIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.KOJIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.KOJIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.KOJIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── LACTIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.LACTIC_ACID, tagSlug: TAG_SLUGS.PEAU_SECHE },
+
+  // ─── MANDELIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.MANDELIC_ACID, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── MATRIXYL_3000 ───
+  { ingredientSlug: INGREDIENT_SLUGS.MATRIXYL_3000, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── NIACINAMIDE ───
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.PORES_DILATES },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.NIACINAMIDE, tagSlug: TAG_SLUGS.POST_ACNE },
+
+  // ─── PANTHENOL ───
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.REPARATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.PANTHENOL, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // ─── PEPTIDES (génériques) ───
+  { ingredientSlug: INGREDIENT_SLUGS.PEPTIDES, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_PENTAPEPTIDE_4, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TRIPEPTIDE_1, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_7, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.PALMITOYL_TETRAPEPTIDE_10, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── PHA ───
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHA, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── PHYTOSPHINGOSINE ───
+  { ingredientSlug: INGREDIENT_SLUGS.PHYTOSPHINGOSINE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHYTOSPHINGOSINE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.PHYTOSPHINGOSINE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── RETINAL ───
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINAL, tagSlug: TAG_SLUGS.ANTI_TACHES },
+
+  // ─── RETINOL ───
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.RETINOL, tagSlug: TAG_SLUGS.ANTI_TACHES },
+
+  // ─── RHAMNOSE ───
+  { ingredientSlug: INGREDIENT_SLUGS.RHAMNOSE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.RHAMNOSE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ─── SALICYLIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.EXFOLIANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.PORES_DILATES },
+  { ingredientSlug: INGREDIENT_SLUGS.SALICYLIC_ACID, tagSlug: TAG_SLUGS.BRILLANCE },
+
+  // ─── SHEA_BUTTER ───
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.OCCLUSIF },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.SHEA_BUTTER, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+
+  // ─── SODIUM_HYALURONATE ───
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_HYALURONATE, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_HYALURONATE, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_HYALURONATE, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── SQUALANE ───
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.SQUALANE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── THD_ASCORBATE ───
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.THD_ASCORBATE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+
+  // ─── THREE_O_ETHYL_ASCORBIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.THREE_O_ETHYL_ASCORBIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── TOCOPHEROL ───
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHEROL, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHEROL, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.TOCOPHEROL, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── TRANEXAMIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+  { ingredientSlug: INGREDIENT_SLUGS.TRANEXAMIC_ACID, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── TRETINOINE ───
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.TRETINOINE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── UREA ───
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.KERATOLYTIQUE },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.UREA, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+
+  // ─── VITAMIN_C ───
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ECLAT },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.VITAMIN_C, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── ZINC_GLUCONATE ───
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.BRILLANCE },
+  { ingredientSlug: INGREDIENT_SLUGS.ZINC_GLUCONATE, tagSlug: TAG_SLUGS.ANTI_ROUGEURS },
+
+  // ─── ASCOPHYLLUM_NODOSUM_EXTRACT ───
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ASCOPHYLLUM_NODOSUM_EXTRACT,
+    tagSlug: TAG_SLUGS.ANTI_ROUGEURS,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCOPHYLLUM_NODOSUM_EXTRACT, tagSlug: TAG_SLUGS.ROSACEE },
+  {
+    ingredientSlug: INGREDIENT_SLUGS.ASCOPHYLLUM_NODOSUM_EXTRACT,
+    tagSlug: TAG_SLUGS.PEAU_SENSIBLE,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.ASCOPHYLLUM_NODOSUM_EXTRACT, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+
+  // ─── BIS_ETHYLHEXYLOXYPHENOL_METHOXYPHENYL_TRIAZINE ───
+  {
+    ingredientSlug: INGREDIENT_SLUGS.BIS_ETHYLHEXYLOXYPHENOL_METHOXYPHENYL_TRIAZINE,
+    tagSlug: TAG_SLUGS.PROTECTION_SOLAIRE,
+  },
+
+  // ─── DIACETYL_BOLDINE ───
+  { ingredientSlug: INGREDIENT_SLUGS.DIACETYL_BOLDINE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.DIACETYL_BOLDINE, tagSlug: TAG_SLUGS.HYPERPIGMENTATION },
+  { ingredientSlug: INGREDIENT_SLUGS.DIACETYL_BOLDINE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── HUILES ───
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_D_ARGAN, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_D_ARGAN, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_D_ARGAN, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_JOJOBA, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_JOJOBA, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_COCO, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_COCO, tagSlug: TAG_SLUGS.OCCLUSIF },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_RAISIN, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.HUILE_DE_PEPINS_DE_RAISIN, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+
+  // ─── MAGNESIUM_ASCORBYL_PHOSPHATE ───
+  {
+    ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE,
+    tagSlug: TAG_SLUGS.ANTI_OXYDANT,
+  },
+  { ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.MAGNESIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── SODIUM_ASCORBYL_PHOSPHATE ───
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_OXYDANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_TACHES },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SODIUM_ASCORBYL_PHOSPHATE, tagSlug: TAG_SLUGS.ECLAT },
+
+  // ─── PROBIOTICS / POSTBIOTICS ───
+  { ingredientSlug: INGREDIENT_SLUGS.PROBIOTICS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.PROBIOTICS, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { ingredientSlug: INGREDIENT_SLUGS.POSTBIOTICS, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { ingredientSlug: INGREDIENT_SLUGS.POSTBIOTICS, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+
+  // ─── PENTYLENE_GLYCOL ───
+  { ingredientSlug: INGREDIENT_SLUGS.PENTYLENE_GLYCOL, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.PENTYLENE_GLYCOL, tagSlug: TAG_SLUGS.ANTISEPTIQUE },
+
+  // ─── POLYGLUTAMIC_ACID ───
+  { ingredientSlug: INGREDIENT_SLUGS.POLYGLUTAMIC_ACID, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.POLYGLUTAMIC_ACID, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { ingredientSlug: INGREDIENT_SLUGS.POLYGLUTAMIC_ACID, tagSlug: TAG_SLUGS.ANTI_AGE },
+
+  // ─── SULFUR ───
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.ANTI_ACNE },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.SEBO_REGULATEUR },
+  { ingredientSlug: INGREDIENT_SLUGS.SULFUR, tagSlug: TAG_SLUGS.ANTISEPTIQUE },
+
+  // ─── SNOW_MUSHROOM ───
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.HUMECTANT },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.ANTI_AGE },
+  { ingredientSlug: INGREDIENT_SLUGS.SNOW_MUSHROOM, tagSlug: TAG_SLUGS.DESHYDRATATION },
+
+  // ─── BEEF_TALLOW ───
+  { ingredientSlug: INGREDIENT_SLUGS.BEEF_TALLOW, tagSlug: TAG_SLUGS.EMOLLIENT },
+  { ingredientSlug: INGREDIENT_SLUGS.BEEF_TALLOW, tagSlug: TAG_SLUGS.OCCLUSIF },
+  { ingredientSlug: INGREDIENT_SLUGS.BEEF_TALLOW, tagSlug: TAG_SLUGS.PEAU_SECHE },
 ]

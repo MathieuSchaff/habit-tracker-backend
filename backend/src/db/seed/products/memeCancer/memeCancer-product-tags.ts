@@ -1,0 +1,46 @@
+import { TAG_SLUGS } from '../../tags/seed-tags'
+import { MEME_PRODUCT_SLUGS } from './memeCancer'
+
+export const MEME_PRODUCT_TAGS: { productSlug: string; tagSlug: string }[] = [
+  // Crème pour le Visage – Hydratant/nourrissant quotidien pour peaux très sèches/fragilisées
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.DESHYDRATATION },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.REPARATEUR },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.SOIN_DE_JOUR },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.SOIN_DE_NUIT },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_CREME_VISAGE, tagSlug: TAG_SLUGS.BIO_NATUREL }, // 98% origine naturelle
+
+  // Gelée Fondante Démaquillante – Démaquillant haute tolérance, transformation gelée → huile
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_GELEE_DEMAQUILLANTE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_GELEE_DEMAQUILLANTE, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_GELEE_DEMAQUILLANTE, tagSlug: TAG_SLUGS.NON_COMEDOGENE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_GELEE_DEMAQUILLANTE, tagSlug: TAG_SLUGS.BIO_NATUREL }, // 100% origine naturelle
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_GELEE_DEMAQUILLANTE, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_GELEE_DEMAQUILLANTE, tagSlug: TAG_SLUGS.HUILE }, // Transformation huileuse
+
+  // Huile Lavante Visage et Corps – Nettoyant surgras sans savon, pH physiologique
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.NETTOYANT },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.SANS_SAVON },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.BIO_NATUREL }, // 96% origine naturelle
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.HUILE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_HUILE_LAVANTE, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+
+  // Baume Multi-Usages – Réparateur effet pansement pour zones sèches/irritées/cicatrices
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.BARRIERE_CUTANEE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.REPARATEUR },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.PEAU_SECHE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.PEAU_SENSIBLE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.PEAU_ATOPIQUE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.CREME_HYDRATANTE },
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.BIO_NATUREL }, // 98% origine naturelle
+  { productSlug: MEME_PRODUCT_SLUGS.MEME_BAUME_MULTI_USAGES, tagSlug: TAG_SLUGS.HYPOALLERGENIQUE },
+]
