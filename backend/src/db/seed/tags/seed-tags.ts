@@ -141,6 +141,8 @@ export const tagData: CreateTagInput[] = [
   { name: 'Solaire visage', slug: TAG_SLUGS.SOLAIRE_VISAGE, category: 'routine_step' },
   { name: 'Solaire corps', slug: TAG_SLUGS.SOLAIRE_CORPS, category: 'routine_step' },
   { name: 'Solaire teinté', slug: TAG_SLUGS.SOLAIRE_TEINTE, category: 'routine_step' },
+  { name: 'Démaquillant', slug: TAG_SLUGS.DEMAQUILLANT, category: 'routine_step' },
+  { name: 'Essence', slug: TAG_SLUGS.ESSENCE, category: 'routine_step' },
   {
     name: 'Protection lumière bleue',
     slug: TAG_SLUGS.PROTECTION_LUMIERE_BLEUE,

@@ -1,6 +1,5 @@
-import { INGREDIENT_SLUGS } from '../ingredients/seed-ingredients'
+import { INGREDIENT_SLUGS } from '../ingredients/ingredient-slugs'
 import { TAG_SLUGS } from '../tags/seed-tags'
-
 export interface IngredientAssociation {
   /** Tags principaux : bénéfices majeurs prouvés de l'actif */
   primary: string[]
@@ -462,32 +461,19 @@ export const ingredientTagMap: IngredientTagMap = {
     ],
     avoid: [],
   },
-  [INGREDIENT_SLUGS.GLYCYRRHETINIC_ACID]: {
-    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.ROSACEE],
+  [INGREDIENT_SLUGS.REGLISSE]: {
+    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.APAISANT, TAG_SLUGS.ROSACEE],
     secondary: [
-      TAG_SLUGS.PEAU_REACTIVE,
       TAG_SLUGS.PEAU_SENSIBLE,
+      TAG_SLUGS.SEBO_REGULATEUR,
+      TAG_SLUGS.PEAU_REACTIVE,
       TAG_SLUGS.ANTI_TACHES,
-      TAG_SLUGS.APAISANT,
+      TAG_SLUGS.ANTI_ACNE,
+      TAG_SLUGS.ANTI_OXYDANT,
     ],
-    avoid: [],
-  },
-  [INGREDIENT_SLUGS.AMMONIUM_GLYCYRRHIZATE]: {
-    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.APAISANT],
-    secondary: [TAG_SLUGS.PEAU_SENSIBLE, TAG_SLUGS.SEBO_REGULATEUR],
     avoid: [],
   },
 
-  [INGREDIENT_SLUGS.GLYCYRRHIZA_INFLATA]: {
-    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.ROSACEE],
-    secondary: [
-      TAG_SLUGS.ANTI_ACNE,
-      TAG_SLUGS.SEBO_REGULATEUR,
-      TAG_SLUGS.ANTI_OXYDANT,
-      TAG_SLUGS.PEAU_SENSIBLE,
-    ],
-    avoid: [],
-  },
   [INGREDIENT_SLUGS.HEARTLEAF]: {
     primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.ANTI_ACNE],
     secondary: [
@@ -587,7 +573,7 @@ export const ingredientTagMap: IngredientTagMap = {
       TAG_SLUGS.BIOMIMETIQUE, // Mime le complexe SNARE / Botox-like
       TAG_SLUGS.PHOTO_VIEILLISSEMENT,
       TAG_SLUGS.PEAU_SENSIBLE, // Très bon profil de tolérance
-      TAG_SLUGS.DESHYDRATATION, // Augmente l'hydratation selon les études
+      TAG_SLUGS.DESHYDRATATION, // Augmente l'HU selon les études
     ],
     avoid: [
       // Note : À éviter avec des acides forts (AHA/BHA) à pH < 4
@@ -1270,7 +1256,7 @@ export const ingredientTagMap: IngredientTagMap = {
     ],
     avoid: [TAG_SLUGS.PEAU_SECHE, TAG_SLUGS.PEAU_REACTIVE, TAG_SLUGS.BARRIERE_CUTANEE_ALTEREE],
   },
-  [INGREDIENT_SLUGS.HELIANTHUS_ANNUUS]: {
+  [INGREDIENT_SLUGS.HUILE_GRAINES_TOURNESOL]: {
     primary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.BIO_NATUREL],
     secondary: [
       TAG_SLUGS.HUILE,
@@ -1399,5 +1385,668 @@ export const ingredientTagMap: IngredientTagMap = {
       TAG_SLUGS.COMEDOGENE,
       TAG_SLUGS.PORES_DILATES,
     ],
+  },
+
+  // ── Cupressus Sempervirens (Cyprès - Tonique circulatoire) ──
+  [INGREDIENT_SLUGS.CUPRESSUS_SEMPERVIRENS]: {
+    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.ASTRINGENT],
+    secondary: [TAG_SLUGS.COUPEROSE, TAG_SLUGS.TONIQUE],
+    avoid: [],
+  },
+
+  // ── Hexylresorcinol (Éclaircissant puissant) ──
+  [INGREDIENT_SLUGS.HEXYLRESORCINOL]: {
+    primary: [TAG_SLUGS.ANTI_TACHES, TAG_SLUGS.HYPERPIGMENTATION],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.ANTI_AGE],
+    avoid: [],
+  },
+
+  // ── Melasyl (Molécule brevetée anti-taches) ──
+  [INGREDIENT_SLUGS.MELASYL]: {
+    primary: [TAG_SLUGS.ANTI_TACHES, TAG_SLUGS.HYPERPIGMENTATION],
+    secondary: [TAG_SLUGS.POST_ACNE, TAG_SLUGS.TEINT_TERNE],
+    avoid: [],
+  },
+
+  // ── Gallyl Glucoside (Apaisant / Anti-rougeurs) ──
+  [INGREDIENT_SLUGS.GALLYL_GLUCOSIDE]: {
+    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.APAISANT],
+    secondary: [TAG_SLUGS.ROSACEE, TAG_SLUGS.ANTI_OXYDANT],
+    avoid: [],
+  },
+
+  // ── Copper Gluconate (Gluconate de Cuivre - Réparateur) ──
+  [INGREDIENT_SLUGS.COPPER_GLUCONATE]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.ANTI_BACTERIEN],
+    avoid: [],
+  },
+
+  // ── Tea Tree (Arbre à thé - Purifiant) ──
+  [INGREDIENT_SLUGS.TEA_TREE]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.ANTI_BACTERIEN],
+    secondary: [TAG_SLUGS.SEBO_REGULATEUR, TAG_SLUGS.ANTISEPTIQUE],
+    avoid: [TAG_SLUGS.PEAU_REACTIVE, TAG_SLUGS.PEAU_ATOPIQUE],
+  },
+
+  // ── Drometrizole Trisiloxane (Mexoryl XL - Filtre UV) ──
+  [INGREDIENT_SLUGS.DROMETRIZOLE_TRISILOXANE]: {
+    primary: [TAG_SLUGS.PROTECTION_SOLAIRE, TAG_SLUGS.FILTRES_CHIMIQUES],
+    secondary: [TAG_SLUGS.PHOTO_VIEILLISSEMENT, TAG_SLUGS.SOLAIRE_VISAGE],
+    avoid: [],
+  },
+
+  // ── Butyl Methoxydibenzoylmethane (Avobenzone - Filtre UVA) ──
+  [INGREDIENT_SLUGS.BUTYL_METHOXYDIBENZOYLMETHANE]: {
+    primary: [TAG_SLUGS.PROTECTION_SOLAIRE, TAG_SLUGS.FILTRES_CHIMIQUES],
+    secondary: [TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    avoid: [],
+  },
+
+  // ── Octocrylene (Filtre UV stabilisateur) ──
+  [INGREDIENT_SLUGS.OCTOCRYLENE]: {
+    primary: [TAG_SLUGS.PROTECTION_SOLAIRE, TAG_SLUGS.FILTRES_CHIMIQUES],
+    secondary: [TAG_SLUGS.SOLAIRE_CORPS],
+    avoid: [TAG_SLUGS.PEAU_REACTIVE],
+  },
+
+  // ── Homosalate (Filtre UVB) ──
+  [INGREDIENT_SLUGS.HOMOSALATE]: {
+    primary: [TAG_SLUGS.PROTECTION_SOLAIRE, TAG_SLUGS.FILTRES_CHIMIQUES],
+    secondary: [TAG_SLUGS.SOLAIRE_VISAGE],
+    avoid: [],
+  },
+
+  // ── Ethylhexyl Salicylate (Octisalate - Filtre UVB) ──
+  [INGREDIENT_SLUGS.ETHYLHEXYL_SALICYLATE]: {
+    primary: [TAG_SLUGS.PROTECTION_SOLAIRE, TAG_SLUGS.FILTRES_CHIMIQUES],
+    secondary: [TAG_SLUGS.SOLAIRE_VISAGE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.SNAIL_MUCIN]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.HUMECTANT, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT, TAG_SLUGS.POST_ACNE],
+    avoid: [],
+  },
+
+  // ── Vitreoscilla Ferment (Fraction de probiotique - Microbiome) ──
+  [INGREDIENT_SLUGS.VITREOSCILLA_FERMENT]: {
+    primary: [TAG_SLUGS.MICROBIOME, TAG_SLUGS.APAISANT, TAG_SLUGS.BARRIERE_CUTANEE],
+    secondary: [TAG_SLUGS.PEAU_REACTIVE, TAG_SLUGS.PEAU_ATOPIQUE, TAG_SLUGS.PREBIOTIQUE],
+    avoid: [],
+  },
+
+  // ── Fructooligosaccharides (Prébiotiques - Sucres) ──
+  [INGREDIENT_SLUGS.FRUCTOOLIGOSACCHARIDES]: {
+    primary: [TAG_SLUGS.PREBIOTIQUE, TAG_SLUGS.MICROBIOME, TAG_SLUGS.HUMECTANT],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Asiatic Acid (Composant de la Centella Asiatica) ──
+  [INGREDIENT_SLUGS.ASIATIC_ACID]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.ANTI_AGE],
+    secondary: [TAG_SLUGS.CICATRISATION, TAG_SLUGS.ANTI_OXYDANT],
+    avoid: [],
+  },
+
+  // ── Madecassic Acid (Composant de la Centella Asiatica - Apaisant) ──
+  [INGREDIENT_SLUGS.MADECASSIC_ACID]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.CICATRISATION],
+    avoid: [],
+  },
+
+  // ── Hydroxypalmitoyl Sphinganine (Précurseur de Céramide) ──
+  [INGREDIENT_SLUGS.HYDROXYPALMITOYL_SPHINGANINE]: {
+    primary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.PEAU_SECHE, TAG_SLUGS.BIOMIMETIQUE],
+    avoid: [],
+  },
+
+  // ── 2-Oleamido-1-3-Octadecanediol (Céramide synthétique - Ceramide 5) ──
+  [INGREDIENT_SLUGS.TWO_OLEAMIDO_1_3_OCTADECANEDIOL]: {
+    primary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.EMOLLIENT],
+    secondary: [TAG_SLUGS.PROTECTION_CUTANEE, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Caffeine (Drainant / Éclat) ──
+  [INGREDIENT_SLUGS.CAFFEINE]: {
+    primary: [TAG_SLUGS.CERNES_POCHES, TAG_SLUGS.ECLAT],
+    secondary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.CONTOUR_YEUX],
+    avoid: [],
+  },
+
+  // ── Coco Glucoside (Tensioactif doux dérivé de la coco) ──
+  [INGREDIENT_SLUGS.COCO_GLUCOSIDE]: {
+    primary: [TAG_SLUGS.NETTOYANT, TAG_SLUGS.SANS_SAVON],
+    secondary: [TAG_SLUGS.PEAU_SENSIBLE, TAG_SLUGS.NON_COMEDOGENE],
+    avoid: [],
+  },
+
+  // ── Decyl Glucoside (Tensioactif très doux) ──
+  [INGREDIENT_SLUGS.DECYL_GLUCOSIDE]: {
+    primary: [TAG_SLUGS.NETTOYANT, TAG_SLUGS.HYPOALLERGENIQUE],
+    secondary: [TAG_SLUGS.PEAU_ATOPIQUE, TAG_SLUGS.SANS_SAVON],
+    avoid: [],
+  },
+
+  // ── Sodium Lauroyl Methyl Isethionate (Nettoyant doux / "Sulfate-free") ──
+  [INGREDIENT_SLUGS.SODIUM_LAUROYL_METHYL_ISETHIONATE]: {
+    primary: [TAG_SLUGS.NETTOYANT, TAG_SLUGS.TEXTURE_LEGERE],
+    secondary: [TAG_SLUGS.PEAU_MIXTE, TAG_SLUGS.PEAU_GRASSE],
+    avoid: [],
+  },
+
+  // ── Sodium Cocoyl Isethionate (Nettoyant crémeux doux) ──
+  [INGREDIENT_SLUGS.SODIUM_COCOYL_ISETHIONATE]: {
+    primary: [TAG_SLUGS.NETTOYANT, TAG_SLUGS.SANS_SAVON],
+    secondary: [TAG_SLUGS.PEAU_SECHE, TAG_SLUGS.PEAU_NORMALE],
+    avoid: [],
+  },
+
+  // ── Silica (Silice - Matifiant / Texturisant) ──
+  [INGREDIENT_SLUGS.SILICA]: {
+    primary: [TAG_SLUGS.MATIFIANT, TAG_SLUGS.BRILLANCE],
+    secondary: [TAG_SLUGS.PEAU_GRASSE, TAG_SLUGS.TEXTURE_LEGERE],
+    avoid: [],
+  },
+
+  // ── Hydrocolloid (Pansement actif) ──
+  [INGREDIENT_SLUGS.HYDROCOLLOID]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.PROTECTION_CUTANEE, TAG_SLUGS.POST_ACNE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.ORYZA_SATIVA]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.BIO_NATUREL],
+    secondary: [TAG_SLUGS.MATIFIANT, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Salix Nigra (Saule Noir - Acide salicylique naturel) ──
+  [INGREDIENT_SLUGS.SALIX_NIGRA]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.KERATOLYTIQUE],
+    secondary: [TAG_SLUGS.PORES_DILATES, TAG_SLUGS.BIO_NATUREL],
+    avoid: [TAG_SLUGS.PEAU_REACTIVE],
+  },
+
+  // ── Citrus Aurantium Dulcis (Orange Douce - Éclat / Tonifiant) ──
+  [INGREDIENT_SLUGS.CITRUS_AURANTIUM_DULCIS]: {
+    primary: [TAG_SLUGS.ECLAT, TAG_SLUGS.TEINT_TERNE],
+    secondary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.ASTRINGENT],
+    avoid: [TAG_SLUGS.PEAU_REACTIVE, TAG_SLUGS.PEAU_ATOPIQUE],
+  },
+
+  // ── Biosaccharide Gum-1 (Fucocert - Apaisant sensoriel) ──
+  [INGREDIENT_SLUGS.BIOSACCHARIDE_GUM_1]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.HUMECTANT],
+    secondary: [TAG_SLUGS.PEAU_SENSIBLE, TAG_SLUGS.DESHYDRATATION],
+    avoid: [],
+  },
+
+  // ── Ahnfeltia Concinna (Algue Rouge - HU profonde) ──
+  [INGREDIENT_SLUGS.AHNFELTIA_CONCINNA]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.HUMECTANT],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.PROTECTION_CUTANEE],
+    avoid: [],
+  },
+
+  // ── Amaranthus (Amarante - Nourrissant) ──
+  [INGREDIENT_SLUGS.AMARANTHUS_CAUDATUS]: {
+    primary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.TEXTURE_RICHE],
+    secondary: [TAG_SLUGS.PEAU_SECHE, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [],
+  },
+
+  // ── Isosorbide Dicaprylate (Booster d'HU) ──
+  [INGREDIENT_SLUGS.ISOSORBIDE_DICAPRYLATE]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.BARRIERE_CUTANEE],
+    secondary: [TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.REPULPANT],
+    avoid: [],
+  },
+
+  // ── Rice Amino Acids (Acides Aminés de Riz) ──
+  [INGREDIENT_SLUGS.RICE_AMINO_ACIDS]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.HUMECTANT],
+    secondary: [TAG_SLUGS.BIOMIMETIQUE, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Orbignya Oleifera (Huile de Babassu) ──
+  [INGREDIENT_SLUGS.ORBIGNYA_OLEIFERA]: {
+    primary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.HUILE],
+    secondary: [TAG_SLUGS.PEAU_MIXTE, TAG_SLUGS.PEAU_SECHE],
+    avoid: [],
+  },
+
+  // ── Pinus Palustris (Pin des Marais - Purifiant / Résine) ──
+  [INGREDIENT_SLUGS.PINUS_PALUSTRIS]: {
+    primary: [TAG_SLUGS.ANTISEPTIQUE, TAG_SLUGS.ASTRINGENT],
+    secondary: [TAG_SLUGS.PEAU_GRASSE, TAG_SLUGS.ANTI_BACTERIEN],
+    avoid: [],
+  },
+
+  // ── Vetiveria Zizanoides (Vétiver - Régénérant) ──
+  [INGREDIENT_SLUGS.VETIVERIA_ZIZANOIDES]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.PEAU_REACTIVE],
+    avoid: [],
+  },
+
+  // ── Aphanizomenon Flos-Aquae (Algue Bleue - "Rétinol-like" naturel) ──
+  [INGREDIENT_SLUGS.APHANIZOMENON_FLOS_AQUAE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.BIO_NATUREL],
+    avoid: [],
+  },
+
+  // ── Betaine (Dérivé de betterave - Osmoprotecteur) ──
+  [INGREDIENT_SLUGS.BETAINE]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.APAISANT],
+    secondary: [TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Xylitylglucoside (Partie de l'Aquaxyl - Circulation de l'eau) ──
+  [INGREDIENT_SLUGS.XYLITYLGLUCOSIDE]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.DESHYDRATATION],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.REPULPANT],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.XYLITOL]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.DESHYDRATATION],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.MICROBIOME],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.ANHYDROXYLITOL]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.DESHYDRATATION],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [],
+  },
+
+  // ── PCA (Pyrrolidone Carboxylic Acid - NMF Naturel) ──
+  [INGREDIENT_SLUGS.PCA]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.BIOMIMETIQUE],
+    secondary: [TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Trehalose (Sucre de résurrection) ──
+  [INGREDIENT_SLUGS.TREHALOSE]: {
+    primary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.PROTECTION_CUTANEE],
+    secondary: [TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.ANTI_OXYDANT],
+    avoid: [],
+  },
+
+  // ── Glycine (Acide aminé collagène) ──
+  [INGREDIENT_SLUGS.GLYCINE]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.ANTI_AGE],
+    secondary: [TAG_SLUGS.BIOMIMETIQUE, TAG_SLUGS.HUMECTANT],
+    avoid: [],
+  },
+
+  // ── Cera Alba (Cire d'abeille) ──
+  [INGREDIENT_SLUGS.CIRE_ABEILLE]: {
+    primary: [TAG_SLUGS.OCCLUSIF, TAG_SLUGS.PROTECTION_CUTANEE],
+    secondary: [TAG_SLUGS.PEAU_SECHE, TAG_SLUGS.TEXTURE_RICHE],
+    avoid: [TAG_SLUGS.PEAU_GRASSE, TAG_SLUGS.COMEDOGENE],
+  },
+
+  [INGREDIENT_SLUGS.CAMELLIA_JAPONICA_OIL]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.EMOLLIENT],
+    secondary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.HUILE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.APRICOT_KERNEL_OIL]: {
+    primary: [TAG_SLUGS.ECLAT, TAG_SLUGS.EMOLLIENT],
+    secondary: [TAG_SLUGS.TEINT_TERNE, TAG_SLUGS.PEAU_SECHE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.HUILE_CARTHAME]: {
+    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.EMOLLIENT],
+    secondary: [TAG_SLUGS.COUPEROSE, TAG_SLUGS.PEAU_MIXTE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.GLYCINE_SOJA_OIL]: {
+    primary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.PEAU_SECHE],
+    avoid: [],
+  },
+
+  // ── Ceramide NG (Céramide 2 - Réparation barrière) ──
+  [INGREDIENT_SLUGS.CERAMIDE_NG]: {
+    primary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.BIOMIMETIQUE],
+    avoid: [],
+  },
+
+  // ── Acides Gras (Linoleic & Oleic) ──
+  [INGREDIENT_SLUGS.LINOLEIC_ACID]: {
+    primary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.ANTI_ACNE],
+    secondary: [TAG_SLUGS.PEAU_MIXTE, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.OLEIC_ACID]: {
+    primary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.TEXTURE_RICHE],
+    secondary: [TAG_SLUGS.PEAU_SECHE],
+    avoid: [TAG_SLUGS.PEAU_GRASSE],
+  },
+
+  // ── Theobroma Cacao Butter (Beurre de cacao) ──
+  [INGREDIENT_SLUGS.THEOBROMA_CACAO_BUTTER]: {
+    primary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.TEXTURE_RICHE],
+    secondary: [TAG_SLUGS.PEAU_SECHE, TAG_SLUGS.OCCLUSIF],
+    avoid: [TAG_SLUGS.NON_COMEDOGENE], // Car il est potentiellement comédogène
+  },
+
+  // ── Protease (Enzyme exfoliante) ──
+  [INGREDIENT_SLUGS.PROTEASE]: {
+    primary: [TAG_SLUGS.EXFOLIANT, TAG_SLUGS.KERATOLYTIQUE],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.TEINT_TERNE],
+    avoid: [TAG_SLUGS.PEAU_REACTIVE],
+  },
+
+  // ── Capryloyl Salicylic Acid (LHA - Exfoliation douce) ──
+  [INGREDIENT_SLUGS.CAPRYLOYL_SALICYLIC_ACID]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.KERATOLYTIQUE],
+    secondary: [TAG_SLUGS.PORES_DILATES, TAG_SLUGS.TEINT_TERNE],
+    avoid: [],
+  },
+
+  // ── Palmitoyl Tripeptide-38 (Matrixyl Synthe'6) ──
+  [INGREDIENT_SLUGS.PALMITOYL_TRIPEPTIDE_38]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.CICATRISATION, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.ACETYL_TETRAPEPTIDE_5]: {
+    primary: [TAG_SLUGS.CERNES_POCHES, TAG_SLUGS.CONTOUR_YEUX],
+    secondary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.DESHYDRATATION],
+    avoid: [],
+  },
+
+  // ── Acetyl Tetrapeptide-2 (Uplevity - Fermeté) ──
+  [INGREDIENT_SLUGS.ACETYL_TETRAPEPTIDE_2]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [],
+  },
+
+  // ── Myristoyl Nonapeptide-3 (Retinoïde-like sans irritation) ──
+  [INGREDIENT_SLUGS.MYRISTOYL_NONAPEPTIDE_3]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.TEINT_TERNE],
+    avoid: [],
+  },
+
+  // ── Peptide Complex (Mélange générique de peptides) ──
+  [INGREDIENT_SLUGS.PEPTIDE_COMPLEX]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.BIOMIMETIQUE],
+    avoid: [],
+  },
+
+  // ── Nicotiana Benthamiana (Facteurs de croissance biotechnologiques) ──
+  // Note : Ces peptides "sh" imitent les facteurs de croissance humains (EGF, TGF-beta)
+  [INGREDIENT_SLUGS.NICOTIANA_BENTHAMIANA_OCTAPEPTIDE_30_SH_OLIGOPEPTIDE_2]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.REPULPANT, TAG_SLUGS.CICATRISATION],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.NICOTIANA_BENTHAMIANA_HEXAPEPTIDE_40_SH_POLYPEPTIDE_76]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.PHOTO_VIEILLISSEMENT, TAG_SLUGS.BIOMIMETIQUE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.NICOTIANA_BENTHAMIANA_HEXAPEPTIDE_40_SH_OLIGOPEPTIDE_1]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [],
+  },
+
+  // ── Tetrapeptide-21 (Booster de collagène) ──
+  [INGREDIENT_SLUGS.TETRAPEPTIDE_21]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.PHOTO_VIEILLISSEMENT, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+
+  // ── Copper Heptapeptide / Heptapeptide-15 (Drones cosmétiques) ──
+  [INGREDIENT_SLUGS.COPPER_PALMITOYL_HEPTAPEPTIDE_14]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.BIOMIMETIQUE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.HEPTAPEPTIDE_15_PALMITATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.HYPERPIGMENTATION],
+    avoid: [],
+  },
+
+  // ── Copper Tripeptide-1 Palmitamide (Peptide de Cuivre stable) ──
+  [INGREDIENT_SLUGS.COPPER_TRIPEPTIDE_1_PALMITAMIDE]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.MICROBIOME],
+    avoid: [],
+  },
+
+  // ── Trifluoroacetyl Tripeptide-2 (Progeline - Anti-relâchement) ──
+  [INGREDIENT_SLUGS.TRIFLUOROACETYL_TRIPEPTIDE_2]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.TRIPEPTIDE_1]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.ANTI_AGE],
+    secondary: [TAG_SLUGS.CICATRISATION, TAG_SLUGS.REPULPANT],
+    avoid: [],
+  },
+
+  // ── Tocopheryl Acetate (Vitamine E - Stabilité) ──
+  [INGREDIENT_SLUGS.TOCOPHERYL_ACETATE]: {
+    primary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.PROTECTION_CUTANEE],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.EMOLLIENT],
+    avoid: [],
+  },
+
+  // ── Cyanocobalamin (Vitamine B12 - Rose naturel) ──
+  [INGREDIENT_SLUGS.CYANOCOBALAMIN]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.BARRIERE_CUTANEE_ALTEREE, TAG_SLUGS.ECZEMA],
+    avoid: [],
+  },
+
+  // ── NAD (Nicotinamide Adenine Dinucleotide - Énergie cellulaire) ──
+  [INGREDIENT_SLUGS.NAD]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+
+  // ── Ribose (Sucre énergétique) ──
+  [INGREDIENT_SLUGS.RIBOSE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.ECLAT],
+    secondary: [TAG_SLUGS.REPULPANT, TAG_SLUGS.TEINT_TERNE],
+    avoid: [],
+  },
+
+  // ── CoQ10 (Ubiquinone - Antioxydant puissant) ──
+  [INGREDIENT_SLUGS.COQ10]: {
+    primary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.ANTI_AGE],
+    secondary: [TAG_SLUGS.PHOTO_VIEILLISSEMENT, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+
+  // ── Ergothioneine (Acide aminé antioxydant) ──
+  [INGREDIENT_SLUGS.ERGOTHIONEINE]: {
+    primary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.POLLUTION],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    avoid: [],
+  },
+
+  // ── Panax Ginseng (Vitalisant) ──
+  [INGREDIENT_SLUGS.PANAX_GINSENG]: {
+    primary: [TAG_SLUGS.ECLAT, TAG_SLUGS.ANTI_AGE],
+    secondary: [TAG_SLUGS.TEINT_TERNE, TAG_SLUGS.REPULPANT],
+    avoid: [],
+  },
+
+  // ── Haematococcus Pluvialis (Source d'Astaxanthine) ──
+  [INGREDIENT_SLUGS.HAEMATOCOCCUS_PLUVIALIS]: {
+    primary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.PROTECTION_CUTANEE],
+    avoid: [],
+  },
+
+  // ── Punica Granatum (Grenade - Antioxydant) ──
+  [INGREDIENT_SLUGS.PUNICA_GRANATUM]: {
+    primary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.ASTRINGENT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.BIO_NATUREL],
+    avoid: [],
+  },
+
+  // ── Centella Complex & Madecassoside (Cica-care) ──
+  [INGREDIENT_SLUGS.CENTELLA_COMPLEX]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.REPARATEUR],
+    secondary: [TAG_SLUGS.CICATRISATION, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.MADECASSOSIDE]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.CICATRISATION],
+    secondary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  // ── Beta-Glucan (HU apaisante) ──
+  [INGREDIENT_SLUGS.BETA_GLUCAN]: {
+    primary: [TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.APAISANT],
+    secondary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.REPULPANT],
+    avoid: [],
+  },
+
+  // ── Bisabolol (Actif apaisant de la Camomille) ──
+  [INGREDIENT_SLUGS.BISABOLOL]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.ANTI_ROUGEURS],
+    secondary: [TAG_SLUGS.PEAU_SENSIBLE, TAG_SLUGS.HYPOALLERGENIQUE],
+    avoid: [],
+  },
+
+  // ── Cucumis Sativus (Concombre - Fraîcheur) ──
+  [INGREDIENT_SLUGS.CUCUMBER_EXTRACT]: {
+    primary: [TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.ECLAT],
+    secondary: [TAG_SLUGS.APAISANT, TAG_SLUGS.CERNES_POCHES],
+    avoid: [],
+  },
+
+  // ── Portulaca Oleracea (Pourpier - Anti-inflammatoire) ──
+  [INGREDIENT_SLUGS.PORTULACA_OLERACEA]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.ANTI_OXYDANT],
+    secondary: [TAG_SLUGS.PEAU_REACTIVE, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+
+  // ── Royal Jelly Extract (Gelée Royale) ──
+  [INGREDIENT_SLUGS.ROYAL_JELLY_EXTRACT]: {
+    primary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.ANTI_AGE],
+    secondary: [TAG_SLUGS.EMOLLIENT, TAG_SLUGS.TEXTURE_RICHE],
+    avoid: [],
+  },
+
+  // ── Zanthoxylum Bungeanum (Poivre du Sichuan - Effet tenseur/apaisant) ──
+  [INGREDIENT_SLUGS.ZANTHOXYLUM_BUNGEANUM]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.APAISANT],
+    secondary: [TAG_SLUGS.REPULPANT, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+
+  [INGREDIENT_SLUGS.VITAMIN_K1]: {
+    primary: [TAG_SLUGS.ANTI_ROUGEURS, TAG_SLUGS.CERNES_POCHES],
+    secondary: [TAG_SLUGS.COUPEROSE, TAG_SLUGS.CICATRISATION, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.FERULIC_ACID]: {
+    primary: [TAG_SLUGS.ANTI_OXYDANT, TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.ANTI_AGE, TAG_SLUGS.POLLUTION],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.RETINYL_RETINOATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.ANTI_TACHES, TAG_SLUGS.REPULPANT],
+    secondary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.ECLAT, TAG_SLUGS.PEAU_SENSIBLE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.SODIUM_RETINOYL_HYALURONATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.HYPERPIGMENTATION, TAG_SLUGS.DESHYDRATATION],
+    secondary: [TAG_SLUGS.HUMECTANT, TAG_SLUGS.REPULPANT, TAG_SLUGS.POST_ACNE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.GRANACTIVE_RETINOID]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.PORES_DILATES],
+    secondary: [TAG_SLUGS.ANTI_TACHES, TAG_SLUGS.TEXTURE_LEGERE, TAG_SLUGS.ECLAT],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.COLLOIDAL_OATMEAL]: {
+    primary: [TAG_SLUGS.APAISANT, TAG_SLUGS.BARRIERE_CUTANEE, TAG_SLUGS.PEAU_ATOPIQUE],
+    secondary: [TAG_SLUGS.PEAU_SENSIBLE, TAG_SLUGS.ECZEMA, TAG_SLUGS.PROTECTION_CUTANEE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.RETINYL_ACETATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.ECLAT, TAG_SLUGS.PEAU_SENSIBLE],
+    secondary: [TAG_SLUGS.TEINT_TERNE, TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.RETINYL_LINOLLEATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.PEAU_SENSIBLE, TAG_SLUGS.BARRIERE_CUTANEE],
+    secondary: [TAG_SLUGS.ECLAT, TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.REPARATEUR],
+    avoid: [],
+  },
+  [INGREDIENT_SLUGS.ISOTRETINOIN]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.POST_ACNE, TAG_SLUGS.KERATOLYTIQUE],
+    secondary: [TAG_SLUGS.PORES_DILATES, TAG_SLUGS.SEBO_REGULATEUR, TAG_SLUGS.CICATRISATION],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE], // Tératogène majeur, même topique
+  },
+  [INGREDIENT_SLUGS.ALITRETINOIN]: {
+    primary: [TAG_SLUGS.ECZEMA, TAG_SLUGS.PEAU_ATOPIQUE, TAG_SLUGS.BARRIERE_CUTANEE_ALTEREE],
+    secondary: [TAG_SLUGS.REPARATEUR, TAG_SLUGS.CICATRISATION, TAG_SLUGS.ANTI_ROUGEURS],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE], // Tératogène, usage oral strict
+  },
+  [INGREDIENT_SLUGS.RETINYL_PALMITATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.ECLAT, TAG_SLUGS.PEAU_SENSIBLE],
+    secondary: [TAG_SLUGS.TEINT_TERNE, TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE], // Rétinoïde ester → prudence maximale en grossesse (cat. C ou évitement recommandé, risque tératogène potentiel même topique faible)
+  },
+
+  [INGREDIENT_SLUGS.RETINYL_PROPIONATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.ECLAT, TAG_SLUGS.PEAU_SENSIBLE],
+    secondary: [TAG_SLUGS.TEINT_TERNE, TAG_SLUGS.DESHYDRATATION, TAG_SLUGS.BARRIERE_CUTANEE],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE], // Rétinoïde ester → prudence en grossesse (éviter par précaution, absorption systémique faible mais risque théorique)
+  },
+
+  [INGREDIENT_SLUGS.HYDROXYPINACOLONE_RETINOATE]: {
+    primary: [TAG_SLUGS.ANTI_AGE, TAG_SLUGS.REPULPANT, TAG_SLUGS.ANTI_TACHES],
+    secondary: [
+      TAG_SLUGS.ECLAT,
+      TAG_SLUGS.PEAU_SENSIBLE,
+      TAG_SLUGS.ANTI_ACNE,
+      TAG_SLUGS.PHOTO_VIEILLISSEMENT,
+    ],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE], // Rétinoïde direct (ester d'acide rétinoïque) → contre-indiqué grossesse/allaitement (risque tératogène potentiel, usage externe prudent)
+  },
+
+  [INGREDIENT_SLUGS.TAZAROTENE]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.ANTI_AGE, TAG_SLUGS.PHOTO_VIEILLISSEMENT],
+    secondary: [TAG_SLUGS.POST_ACNE, TAG_SLUGS.PORES_DILATES, TAG_SLUGS.HYPERPIGMENTATION],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE, TAG_SLUGS.PEAU_SENSIBLE], // Cat. X (tératogène fort) + irritation très élevée → éviter grossesse et peaux réactives
+  },
+
+  [INGREDIENT_SLUGS.TRIFAROTENE]: {
+    primary: [TAG_SLUGS.ANTI_ACNE, TAG_SLUGS.POST_ACNE, TAG_SLUGS.CICATRISATION],
+    secondary: [
+      TAG_SLUGS.PORES_DILATES,
+      TAG_SLUGS.HYPERPIGMENTATION,
+      TAG_SLUGS.PHOTO_VIEILLISSEMENT,
+    ],
+    avoid: [TAG_SLUGS.GROSSESSE_COMPATIBLE, TAG_SLUGS.PEAU_SENSIBLE], // Contre-indiqué grossesse (tératogène potentiel) + irritation initiale possible → prudence peaux réactives
   },
 }

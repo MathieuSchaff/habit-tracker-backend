@@ -24,10 +24,10 @@ import { SKIN1004_PRODUCT_SLUGS } from './skin1004/skin1004'
 import { SOLAIRES_PRODUCT_SLUGS } from './solaires/solaires'
 import { SVR_PRODUCT_SLUGS } from './svr/svr'
 import { TO_PRODUCT_SLUGS } from './theOrdinary/theOrdinary'
+// import { VICHY_PRODUCT_SLUGS } from './vichy/vichy'
+import { THERAMID_PRODUCT_SLUGS } from './theramid/theramid'
 import { TONERS_PRODUCT_SLUGS } from './toners/toners'
 import { URIAGE_PRODUCT_SLUGS } from './uriage/uriage'
-// import { VICHY_PRODUCT_SLUGS } from './vichy/vichy'
-// import { THERAMID_PRODUCT_SLUGS } from './theramid/theramid'
 // import { PREQUEL_PRODUCT_SLUGS } from './prequel/prequel'
 // import { DR_IDRISS_PRODUCT_SLUGS } from './drIdriss/drIdriss'
 // import {  } from './cosrx/cosrx'
@@ -70,6 +70,6 @@ export const allProductSlugs = {
   // ...DR_SAM_PRODUCT_SLUGS,
   // ...PREQUEL_PRODUCT_SLUGS,
   // ...REMEDY_PRODUCT_SLUGS,
-  // ...THERAMID_PRODUCT_SLUGS,
+  ...THERAMID_PRODUCT_SLUGS,
   // ...VICHY_PRODUCT_SLUGS,
 } as const
